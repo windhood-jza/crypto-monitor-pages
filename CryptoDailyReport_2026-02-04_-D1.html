@@ -20,245 +20,82 @@
             --accent-orange: #d29922;
             --accent-green: #3fb950;
             --border: #30363d;
-            --font-mono: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
-            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+            --font-sans: 'Inter', sans-serif;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: var(--font-sans);
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            padding: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-            line-height: 1.7;
-        }
-        @media (min-width: 768px) {
-            body { padding: 40px; }
-        }
-        .header {
-            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 24px;
-            margin-bottom: 24px;
-        }
-        @media (min-width: 768px) {
-            .header { padding: 40px; margin-bottom: 40px; }
-        }
-        .header h1 {
-            font-family: var(--font-mono);
-            font-size: 1.25rem;
-            font-weight: 600;
-            background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 8px;
-        }
-        @media (min-width: 768px) {
-            .header h1 { font-size: 1.75rem; }
-        }
+        body { font-family: var(--font-sans); background: var(--bg-primary); color: var(--text-primary); padding: 20px; max-width: 1200px; margin: 0 auto; line-height: 1.7; }
+        @media (min-width: 768px) { body { padding: 40px; } }
+        .header { background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary)); border: 1px solid var(--border); border-radius: 12px; padding: 24px; margin-bottom: 24px; }
+        @media (min-width: 768px) { .header { padding: 40px; margin-bottom: 40px; } }
+        .header h1 { font-family: var(--font-mono); font-size: 1.25rem; font-weight: 600; background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 8px; }
+        @media (min-width: 768px) { .header h1 { font-size: 1.75rem; } }
         .meta { color: var(--text-secondary); font-size: 0.8rem; font-family: var(--font-mono); }
-        .stats-row {
-            display: flex;
-            gap: 10px;
-            margin: 16px 0;
-            flex-wrap: wrap;
-        }
-        @media (min-width: 768px) {
-            .stats-row { gap: 16px; margin: 24px 0; }
-        }
-        .stat {
-            background: var(--bg-tertiary);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 12px 16px;
-            flex: 1;
-            min-width: 80px;
-        }
-        @media (min-width: 768px) {
-            .stat { padding: 16px 24px; min-width: 120px; }
-        }
+        .stats-row { display: flex; gap: 10px; margin: 16px 0; flex-wrap: wrap; }
+        @media (min-width: 768px) { .stats-row { gap: 16px; margin: 24px 0; } }
+        .stat { background: var(--bg-tertiary); border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px; flex: 1; min-width: 80px; }
+        @media (min-width: 768px) { .stat { padding: 16px 24px; min-width: 120px; } }
         .stat-value { font-family: var(--font-mono); font-size: 1.25rem; font-weight: 600; }
-        @media (min-width: 768px) {
-            .stat-value { font-size: 1.5rem; }
-        }
+        @media (min-width: 768px) { .stat-value { font-size: 1.5rem; } }
         .stat-value.red { color: var(--accent-red); }
         .stat-value.blue { color: var(--accent-blue); }
         .stat-value.green { color: var(--accent-green); }
         .stat-label { font-size: 0.7rem; color: var(--text-secondary); margin-top: 4px; }
-        @media (min-width: 768px) {
-            .stat-label { font-size: 0.8rem; }
-        }
-        .section {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 20px;
-        }
-        @media (min-width: 768px) {
-            .section { padding: 24px; margin-bottom: 20px; }
-        }
-        .section h2 {
-            font-family: var(--font-mono);
-            font-size: 1rem;
-            font-weight: 500;
-            margin-bottom: 16px;
-            padding-bottom: 12px;
-            border-bottom: 1px solid var(--border);
-        }
-        @media (min-width: 768px) {
-            .section h2 { font-size: 1.1rem; margin-bottom: 20px; padding-bottom: 16px; }
-        }
-        .tag {
-            display: inline-block;
-            font-family: var(--font-mono);
-            font-size: 0.7rem;
-            padding: 2px 6px;
-            border-radius: 4px;
-            margin-right: 6px;
-        }
-        @media (min-width: 768px) {
-            .tag { font-size: 0.75rem; padding: 2px 8px; margin-right: 8px; }
-        }
+        @media (min-width: 768px) { .stat-label { font-size: 0.8rem; } }
+        .section { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 20px; margin-bottom: 20px; }
+        @media (min-width: 768px) { .section { padding: 24px; margin-bottom: 20px; } }
+        .section h2 { font-family: var(--font-mono); font-size: 1rem; font-weight: 500; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--border); }
+        @media (min-width: 768px) { .section h2 { font-size: 1.1rem; margin-bottom: 20px; padding-bottom: 16px; } }
+        .section h3 { font-family: var(--font-mono); font-size: 0.9rem; font-weight: 500; margin: 20px 0 12px; color: var(--accent-blue); }
+        @media (min-width: 768px) { .section h3 { font-size: 1rem; margin: 24px 0 16px; } }
+        .tag { display: inline-block; font-family: var(--font-mono); font-size: 0.7rem; padding: 2px 6px; border-radius: 4px; margin-right: 6px; }
+        @media (min-width: 768px) { .tag { font-size: 0.75rem; padding: 2px 8px; margin-right: 8px; } }
         .tag.p1 { background: rgba(248, 81, 73, 0.15); color: var(--accent-red); }
         .tag.p2 { background: rgba(88, 166, 255, 0.15); color: var(--accent-blue); }
         .tag.p3 { background: rgba(63, 185, 80, 0.15); color: var(--accent-green); }
         .tag.p4 { background: rgba(139, 148, 158, 0.15); color: var(--text-secondary); }
-        .item {
-            background: var(--bg-tertiary);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 16px;
-            margin-bottom: 12px;
-        }
-        @media (min-width: 768px) {
-            .item { padding: 20px; margin-bottom: 16px; }
-        }
-        .item-title {
-            font-family: var(--font-mono);
-            font-size: 0.9rem;
-            font-weight: 500;
-            margin-bottom: 10px;
-        }
-        @media (min-width: 768px) {
-            .item-title { font-size: 0.95rem; margin-bottom: 12px; }
-        }
+        .item { background: var(--bg-tertiary); border: 1px solid var(--border); border-radius: 8px; padding: 16px; margin-bottom: 12px; }
+        @media (min-width: 768px) { .item { padding: 20px; margin-bottom: 16px; } }
+        .item-title { font-family: var(--font-mono); font-size: 0.9rem; font-weight: 500; margin-bottom: 10px; }
+        @media (min-width: 768px) { .item-title { font-size: 0.95rem; margin-bottom: 12px; } }
         .item-meta { font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 10px; }
-        @media (min-width: 768px) {
-            .item-meta { font-size: 0.8rem; margin-bottom: 12px; }
-        }
+        @media (min-width: 768px) { .item-meta { font-size: 0.8rem; margin-bottom: 12px; } }
         .score { font-family: var(--font-mono); color: var(--accent-orange); }
-        .highlight-box {
-            background: var(--bg-primary);
-            border-left: 3px solid var(--accent-blue);
-            padding: 12px;
-            margin: 12px 0;
-            border-radius: 0 6px 6px 0;
-            font-size: 0.85rem;
-        }
-        @media (min-width: 768px) {
-            .highlight-box { padding: 16px; margin: 16px 0; }
-        }
+        .highlight-box { background: var(--bg-primary); border-left: 3px solid var(--accent-blue); padding: 12px; margin: 12px 0; border-radius: 0 6px 6px 0; font-size: 0.85rem; }
+        @media (min-width: 768px) { .highlight-box { padding: 16px; margin: 16px 0; } }
         .checklist { list-style: none; padding: 0; }
-        .checklist li {
-            font-family: var(--font-mono);
-            font-size: 0.8rem;
-            padding: 4px 0;
-            padding-left: 20px;
-            position: relative;
-        }
-        @media (min-width: 768px) {
-            .checklist li { font-size: 0.85rem; padding: 6px 0; padding-left: 24px; }
-        }
+        .checklist li { font-family: var(--font-mono); font-size: 0.8rem; padding: 4px 0; padding-left: 20px; position: relative; }
+        @media (min-width: 768px) { .checklist li { font-size: 0.85rem; padding: 6px 0; padding-left: 24px; } }
         .checklist li::before { content: "□"; position: absolute; left: 0; color: var(--text-secondary); }
         .checklist li.checked::before { content: "☑"; color: var(--accent-green); }
-        .grid-2 {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 12px;
-        }
-        @media (min-width: 768px) {
-            .grid-2 { grid-template-columns: repeat(2, 1fr); gap: 16px; }
-        }
-        @media (min-width: 1024px) {
-            .grid-2 { grid-template-columns: repeat(2, 1fr); gap: 16px; }
-        }
+        .grid-2 { display: grid; grid-template-columns: 1fr; gap: 12px; }
+        @media (min-width: 768px) { .grid-2 { grid-template-columns: repeat(2, 1fr); gap: 16px; } }
         table { width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 0.8rem; }
-        @media (min-width: 768px) {
-            table { margin-top: 16px; font-size: 0.9rem; }
-        }
+        @media (min-width: 768px) { table { margin-top: 16px; font-size: 0.9rem; } }
         th, td { padding: 10px; text-align: left; border-bottom: 1px solid var(--border); }
         th { color: var(--text-secondary); font-weight: 500; font-size: 0.75rem; }
-        @media (min-width: 768px) {
-            th, td { padding: 12px; }
-        }
-        .footer {
-            text-align: center;
-            padding: 24px;
-            color: var(--text-secondary);
-            font-family: var(--font-mono);
-            font-size: 0.75rem;
-            border-top: 1px solid var(--border);
-            margin-top: 24px;
-        }
-        @media (min-width: 768px) {
-            .footer { padding: 40px; margin-top: 40px; font-size: 0.8rem; }
-        }
-        .nav-link {
-            display: inline-block;
-            font-family: var(--font-mono);
-            font-size: 0.8rem;
-            color: var(--accent-blue);
-            text-decoration: none;
-            padding: 8px 12px;
-            border: 1px solid var(--border);
-            border-radius: 6px;
-            margin-right: 8px;
-            margin-bottom: 8px;
-        }
-        @media (min-width: 768px) {
-            .nav-link { padding: 8px 16px; margin-right: 12px; }
-        }
+        @media (min-width: 768px) { th, td { padding: 12px; } }
+        .footer { text-align: center; padding: 24px; color: var(--text-secondary); font-family: var(--font-mono); font-size: 0.75rem; border-top: 1px solid var(--border); margin-top: 24px; }
+        @media (min-width: 768px) { .footer { padding: 40px; margin-top: 40px; font-size: 0.8rem; } }
+        .nav-link { display: inline-block; font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-blue); text-decoration: none; padding: 8px 12px; border: 1px solid var(--border); border-radius: 6px; margin-right: 8px; margin-bottom: 8px; }
+        @media (min-width: 768px) { .nav-link { padding: 8px 16px; margin-right: 12px; } }
         .nav-link:hover { border-color: var(--accent-blue); background: rgba(88, 166, 255, 0.1); }
-        .nav-link.home { border-color: var(--accent-blue); }
-        .insight-card {
-            background: var(--bg-tertiary);
-            border-radius: 8px;
-            padding: 14px;
-            margin-bottom: 10px;
-        }
-        @media (min-width: 768px) {
-            .insight-card { padding: 16px; margin-bottom: 12px; }
-        }
-        .insight-title {
-            font-family: var(--font-mono);
-            font-size: 0.75rem;
-            color: var(--accent-orange);
-            margin-bottom: 6px;
-        }
-        @media (min-width: 768px) {
-            .insight-title { font-size: 0.8rem; margin-bottom: 8px; }
-        }
-        .list-marker { margin-left: 16px; color: var(--text-primary); }
-        .list-marker li { margin-bottom: 4px; }
-        .section-nav {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-bottom: 20px;
-        }
-        .section-link {
-            font-family: var(--font-mono);
-            font-size: 0.75rem;
-            color: var(--text-secondary);
-            text-decoration: none;
-            padding: 6px 10px;
-            border: 1px solid var(--border);
-            border-radius: 4px;
-        }
+        .insight-card { background: var(--bg-tertiary); border-radius: 8px; padding: 14px; margin-bottom: 10px; }
+        @media (min-width: 768px) { .insight-card { padding: 16px; margin-bottom: 12px; } }
+        .insight-title { font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent-orange); margin-bottom: 6px; }
+        @media (min-width: 768px) { .insight-title { font-size: 0.8rem; margin-bottom: 8px; } }
+        .section-nav { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+        .section-link { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-secondary); text-decoration: none; padding: 6px 10px; border: 1px solid var(--border); border-radius: 4px; }
         .section-link:hover { color: var(--accent-blue); border-color: var(--accent-blue); }
+        .mini-table { width: 100%; font-size: 0.85rem; }
+        .mini-table td { padding: 8px; border-bottom: 1px solid var(--border); }
+        .mini-table td:first-child { color: var(--text-secondary); width: 40%; }
+        .progress-bar { height: 8px; background: var(--bg-tertiary); border-radius: 4px; overflow: hidden; margin: 8px 0; }
+        .progress-bar-fill { height: 100%; border-radius: 4px; }
+        .progress-p1 { background: var(--accent-red); width: 5.3%; }
+        .progress-p2 { background: var(--accent-blue); width: 8.4%; }
+        .progress-p3 { background: var(--accent-green); width: 47.4%; }
+        .progress-p4 { background: var(--text-secondary); width: 38.9%; }
     </style>
 </head>
 <body>
@@ -270,97 +107,89 @@
             <span>Generated: 10:00 UTC</span>
         </div>
         <div class="stats-row">
-            <div class="stat">
-                <div class="stat-value">25</div>
-                <div class="stat-label">Sources</div>
-            </div>
-            <div class="stat">
-                <div class="stat-value">95</div>
-                <div class="stat-label">Tweets</div>
-            </div>
-            <div class="stat">
-                <div class="stat-value red">5</div>
-                <div class="stat-label">P1</div>
-            </div>
-            <div class="stat">
-                <div class="stat-value blue">8</div>
-                <div class="stat-label">P2</div>
-            </div>
-            <div class="stat">
-                <div class="stat-value green">45</div>
-                <div class="stat-label">P3</div>
-            </div>
+            <div class="stat"><div class="stat-value">25</div><div class="stat-label">Sources</div></div>
+            <div class="stat"><div class="stat-value">95</div><div class="stat-label">Tweets</div></div>
+            <div class="stat"><div class="stat-value red">5</div><div class="stat-label">P1</div></div>
+            <div class="stat"><div class="stat-value blue">8</div><div class="stat-label">P2</div></div>
+            <div class="stat"><div class="stat-value green">45</div><div class="stat-label">P3</div></div>
         </div>
     </div>
 
     <div class="nav">
-        <a href="index.html" class="nav-link home">← Home</a>
+        <a href="index.html" class="nav-link">← Home</a>
         <a href="#" class="nav-link">↑ Top</a>
     </div>
 
     <div class="section-nav">
-        <a href="#stats" class="section-link">Stats</a>
-        <a href="#macro" class="section-link">Macro</a>
-        <a href="#radar" class="section-link">Radar</a>
-        <a href="#p1" class="section-link">P1</a>
-        <a href="#p2" class="section-link">P2</a>
-        <a href="#insights" class="section-link">Insights</a>
-        <a href="#sources" class="section-link">Sources</a>
+        <a href="#stats" class="section-link">📊 Stats</a>
+        <a href="#macro" class="section-link">🌍 Macro</a>
+        <a href="#radar" class="section-link">📡 Radar</a>
+        <a href="#progress" class="section-link">📈 Progress</a>
+        <a href="#p1" class="section-link">🚨 P1</a>
+        <a href="#p2" class="section-link">⭐ P2</a>
+        <a href="#insights" class="section-link">💡 Insights</a>
+        <a href="#sources" class="section-link">📋 Sources</a>
+        <a href="#verify" class="section-link">✅ Verify</a>
+        <a href="#appendix" class="section-link">📊 Appendix</a>
     </div>
 
+    <!-- 1. Statistics -->
     <div class="section" id="stats">
-        <h2>> 📊 Statistics</h2>
+        <h2>> 📊 Today's Statistics</h2>
         <div class="item">
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; font-size: 0.85rem;">
-                <div><strong>Sources:</strong> 25</div>
-                <div><strong>Tweets:</strong> 95</div>
-                <div><strong>P1:</strong> <span style="color: var(--accent-red);">5 (5.3%)</span></div>
-                <div><strong>P2:</strong> <span style="color: var(--accent-blue);">8 (8.4%)</span></div>
-                <div><strong>P3:</strong> <span style="color: var(--accent-green);">45 (47.4%)</span></div>
-                <div><strong>P4:</strong> <span style="color: var(--text-secondary);">37 (38.9%)</span></div>
+            <table class="mini-table">
+                <tr><td>Sources</td><td>25</td></tr>
+                <tr><td>Tweets</td><td>95</td></tr>
+            </table>
+            <div style="margin-top: 12px;">
+                <div class="tag p1">P1: 5 (5.3%)</div>
+                <div class="tag p2">P2: 8 (8.4%)</div>
+                <div class="tag p3">P3: 45 (47.4%)</div>
+                <div class="tag p4">P4: 37 (38.9%)</div>
             </div>
+            <div class="progress-bar"><div class="progress-bar-fill progress-p1"></div></div>
+            <div class="progress-bar"><div class="progress-bar-fill progress-p2"></div></div>
+            <div class="progress-bar"><div class="progress-bar-fill progress-p3"></div></div>
+            <div class="progress-bar"><div class="progress-bar-fill progress-p4"></div></div>
         </div>
     </div>
 
+    <!-- 2. Macro Environment -->
     <div class="section" id="macro">
         <h2>> 🌍 Macro Environment</h2>
         
+        <h3>Federal Reserve</h3>
         <div class="item">
-            <div class="item-title">Federal Reserve</div>
-            <div class="item-meta">Rate Decision</div>
-            <p style="font-size: 0.85rem; margin-bottom: 8px;">Rates unchanged, pause on rate cuts</p>
-            <div style="font-size: 0.8rem; color: var(--text-secondary);">
-                <div style="margin-bottom: 4px;">Short-term: BTC below $73K, $285M liquidated</div>
-                <div>Medium-term: Liquidity changes affect risk appetite</div>
-            </div>
+            <div class="item-title">Rate Decision</div>
+            <p style="font-size: 0.85rem;">Rates unchanged, pause on rate cuts</p>
         </div>
 
+        <h3>SEC-CFTC</h3>
         <div class="item">
-            <div class="item-title">SEC-CFTC Coordination</div>
-            <div class="item-meta">Regulation</div>
+            <div class="item-title">Coordination</div>
             <p style="font-size: 0.85rem;">Project Crypto ongoing, Regulation Crypto expected 2026</p>
         </div>
 
+        <h3>FDIC Stablecoin</h3>
         <div class="item">
-            <div class="item-title">FDIC Stablecoin Program</div>
-            <div class="item-meta">Regulatory Framework</div>
+            <div class="item-title">Program</div>
             <p style="font-size: 0.85rem;">Program improving, clearer path for compliant stablecoins</p>
         </div>
 
+        <h3>Global Events</h3>
         <div class="item">
-            <div class="item-title">US Government Shutdown</div>
-            <div class="item-meta">Ended via Funding Bill</div>
-            <p style="font-size: 0.85rem;">Short-term uncertainty resolved</p>
+            <div class="item-title">⚠️ Market Crash</div>
+            <p style="font-size: 0.85rem;">BTC below $73K, $285M liquidated in 24h</p>
         </div>
     </div>
 
+    <!-- 3. Project Radar -->
     <div class="section" id="radar">
         <h2>> 📡 Project Radar</h2>
         
+        <h3>High Priority (≥70)</h3>
         <div class="item">
-            <div class="item-title">🚨 High Priority (≥70)</div>
-            <div class="item-meta">5 items detected</div>
-            <ul style="font-size: 0.8rem; margin-left: 16px; color: var(--text-primary);">
+            <ul style="font-size: 0.85rem; margin-left: 16px;">
                 <li>Ondo Summit - White House & Treasury spoke</li>
                 <li>BlackRock calls Ondo "gold standard"</li>
                 <li>WisdomTree CEO supports tokenization</li>
@@ -369,92 +198,107 @@
             </ul>
         </div>
 
+        <h3>Medium Priority (50-69)</h3>
         <div class="item">
-            <div class="item-title">⭐ Medium Priority (50-69)</div>
-            <div class="item-meta">8 items detected</div>
-            <ul style="font-size: 0.8rem; margin-left: 16px; color: var(--text-primary);">
+            <ul style="font-size: 0.85rem; margin-left: 16px;">
                 <li>ADI Chain - Hong Kong sovereign finance</li>
                 <li>zkSync Prividiums enterprise solution</li>
-                <li>Centrifuge V3.1 multi-chain support</li>
+                <li>Centrifuge V3.1 multi-chain</li>
                 <li>Arbitrum ArbOS Dia upgrade</li>
                 <li>Solana RWA Luncheon</li>
                 <li>Ondo Europe expansion</li>
-                <li>Polymarket grocery store</li>
+                <li>Polymarket activities</li>
                 <li>Polymarket recognized by Bankless</li>
             </ul>
         </div>
     </div>
 
+    <!-- 4. Progress Update -->
+    <div class="section" id="progress">
+        <h2>> 📈 Progress Update</h2>
+        
+        <h3>This Week's Focus</h3>
+        <div class="item">
+            <table class="mini-table">
+                <tr><td>RWA Tokenization</td><td>🔴 Major Progress</td></tr>
+                <tr><td>zkSync</td><td>On Track</td></tr>
+                <tr><td>Stablecoin Regulation</td><td>On Track</td></tr>
+                <tr><td>Market Risk</td><td>🔴 Worsened</td></tr>
+            </table>
+        </div>
+
+        <h3>Long-term Tracking</h3>
+        <div class="item">
+            <table class="mini-table">
+                <tr><td>Ondo Finance</td><td>🔴 Major Progress</td></tr>
+                <tr><td>zkSync</td><td>On Track</td></tr>
+            </table>
+        </div>
+
+        <h3>Key Data</h3>
+        <div class="item">
+            <table class="mini-table">
+                <tr><td>BTC Price</td><td>< $73,000 ↓</td></tr>
+                <tr><td>24h Liquidation</td><td>$285M 🔴</td></tr>
+                <tr><td>Summit Attendees</td><td>BlackRock, JPM, Citi ↑</td></tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- 5. New Discoveries -->
+    <div class="section">
+        <h2>> 🔍 New Discoveries</h2>
+        <div class="item">
+            <p style="font-size: 0.85rem; color: var(--text-secondary);">No new projects discovered this cycle.</p>
+        </div>
+    </div>
+
+    <!-- 6. P1 Items -->
     <div class="section" id="p1">
         <h2>> 🚨 P1 - Must Read</h2>
         
         <div class="item">
             <div class="item-title">1. Ondo Summit - White House & Treasury</div>
-            <div class="item-meta">
-                <span class="tag p1">P1</span>
-                <span class="score">Score: 85/100</span> ·
-                <span>@OndoFinance</span>
-            </div>
+            <div class="item-meta"><span class="tag p1">P1</span><span class="score">85/100</span></div>
             <div class="highlight-box">
-                <strong>"This is a win-win for the entire financial system...This is going to become part of the financial fabric"</strong>
+                <strong>"This is a win-win for the entire financial system..."</strong>
                 <br><span style="color: var(--text-secondary);">— Patrick Witt, President's Council</span>
             </div>
-            <p style="font-size: 0.85rem; margin: 12px 0;">White House and Treasury spoke at Ondo Summit, discussing crypto policy and 2026 outlook. BlackRock, JPM, Citi attended.</p>
             <ul class="checklist">
                 <li class="checked">Track Ondo Finance</li>
-                <li>Follow up on summit announcements</li>
+                <li>Follow summit announcements</li>
                 <li>Evaluate ONDO investment</li>
             </ul>
         </div>
 
         <div class="item">
             <div class="item-title">2. BlackRock: "Gold Standard"</div>
-            <div class="item-meta">
-                <span class="tag p1">P1</span>
-                <span class="score">Score: 82/100</span> ·
-                <span>@OndoFinance</span>
-            </div>
+            <div class="item-meta"><span class="tag p1">P1</span><span class="score">82/100</span></div>
             <div class="highlight-box">
-                <strong>"I think you guys have put out a gold standard type of tokenized price representation."</strong>
+                <strong>"I think you guys have put out a gold standard..."</strong>
                 <br><span style="color: var(--text-secondary);">— Samara Cohen, BlackRock</span>
             </div>
-            <ul class="checklist">
-                <li class="checked">Ondo in long-term watch</li>
-                <li>Research BlackRock partnership</li>
-            </ul>
         </div>
 
         <div class="item">
-            <div class="item-title">3. WisdomTree CEO Supports Tokenization</div>
-            <div class="item-meta">
-                <span class="tag p1">P1</span>
-                <span class="score">Score: 78/100</span> ·
-                <span>@OndoFinance</span>
-            </div>
+            <div class="item-title">3. WisdomTree CEO Supports</div>
+            <div class="item-meta"><span class="tag p1">P1</span><span class="score">78/100</span></div>
             <div class="highlight-box">
-                <strong>"We believe eventually everything will go onchain. You can see the energy building."</strong>
+                <strong>"Eventually everything will go onchain."</strong>
                 <br><span style="color: var(--text-secondary);">— Jonathan Steinberg, WisdomTree ($160B AUM)</span>
             </div>
         </div>
 
         <div class="item">
-            <div class="item-title">4. MetaMask Integrates Tokenized Assets</div>
-            <div class="item-meta">
-                <span class="tag p1">P1</span>
-                <span class="score">Score: 75/100</span> ·
-                <span>@WatcherGuru</span>
-            </div>
-            <p style="font-size: 0.85rem;">MetaMask announces integration of tokenized US stocks, ETFs and commodities.</p>
+            <div class="item-title">4. MetaMask Integrates</div>
+            <div class="item-meta"><span class="tag p1">P1</span><span class="score">75/100</span></div>
+            <p style="font-size: 0.85rem;">MetaMask announces tokenized US stocks, ETFs and commodities.</p>
         </div>
 
         <div class="item">
-            <div class="item-title">5. BTC Drops Below $73K</div>
-            <div class="item-meta">
-                <span class="tag p1">P1</span>
-                <span class="score">Score: 72/100</span> ·
-                <span>@WatcherGuru</span>
-            </div>
-            <p style="font-size: 0.85rem; margin-bottom: 8px;">BTC hits lowest since Trump election victory. $285M liquidated in 24h.</p>
+            <div class="item-title">5. BTC Below $73K</div>
+            <div class="item-meta"><span class="tag p1">P1</span><span class="score">72/100</span></div>
+            <p style="font-size: 0.85rem;">BTC hits lowest since Trump election. $285M liquidated.</p>
             <ul class="checklist">
                 <li>Assess portfolio risk</li>
                 <li>Long-term: buying opportunity?</li>
@@ -463,72 +307,56 @@
         </div>
     </div>
 
+    <!-- 7. P2 Items -->
     <div class="section" id="p2">
         <h2>> ⭐ P2 - Important</h2>
         
         <div class="grid-2">
             <div class="item">
-                <div class="item-title">6. ADI Chain Hong Kong Model</div>
-                <div class="item-meta">
-                    <span class="tag p2">P2</span>
-                    <span class="score">65/100</span>
-                </div>
-                <p style="font-size: 0.8rem;">Validates Hong Kong sovereign finance model. Quality over quantity approach.</p>
+                <div class="item-title">6. ADI Chain Hong Kong</div>
+                <div class="item-meta"><span class="tag p2">P2</span><span class="score">65/100</span></div>
+                <p style="font-size: 0.8rem;">Validates Hong Kong sovereign finance model.</p>
             </div>
             
             <div class="item">
                 <div class="item-title">7. zkSync Prividiums</div>
-                <div class="item-meta">
-                    <span class="tag p2">P2</span>
-                    <span class="score">62/100</span>
-                </div>
+                <div class="item-meta"><span class="tag p2">P2</span><span class="score">62/100</span></div>
                 <p style="font-size: 0.8rem;">Enterprises can launch compliantly from Day 1.</p>
             </div>
             
             <div class="item">
                 <div class="item-title">8. Centrifuge V3.1</div>
-                <div class="item-meta">
-                    <span class="tag p2">P2</span>
-                    <span class="score">58/100</span>
-                </div>
-                <p style="font-size: 0.8rem;">Expands to 10 chains. Hub-and-spoke architecture.</p>
+                <div class="item-meta"><span class="tag p2">P2</span><span class="score">58/100</span></div>
+                <p style="font-size: 0.8rem;">Expands to 10 chains.</p>
             </div>
             
             <div class="item">
                 <div class="item-title">9. Arbitrum ArbOS Dia</div>
-                <div class="item-meta">
-                    <span class="tag p2">P2</span>
-                    <span class="score">55/100</span>
-                </div>
-                <p style="font-size: 0.8rem;">More stable gas pricing and better UX.</p>
+                <div class="item-meta"><span class="tag p2">P2</span><span class="score">55/100</span></div>
+                <p style="font-size: 0.8rem;">More stable gas pricing.</p>
             </div>
             
             <div class="item">
-                <div class="item-title">10. Solana RWA Luncheon</div>
-                <div class="item-meta">
-                    <span class="tag p2">P2</span>
-                    <span class="score">52/100</span>
-                </div>
+                <div class="item-title">10. Solana RWA</div>
+                <div class="item-meta"><span class="tag p2">P2</span><span class="score">52/100</span></div>
                 <p style="font-size: 0.8rem;">Anchorage hosts at Consensus HK.</p>
             </div>
             
             <div class="item">
-                <div class="item-title">11. Ondo Europe Expansion</div>
-                <div class="item-meta">
-                    <span class="tag p2">P2</span>
-                    <span class="score">50/100</span>
-                </div>
-                <p style="font-size: 0.8rem;">200+ tokenized assets via Blockchain.com Wallet.</p>
+                <div class="item-title">11. Ondo Europe</div>
+                <div class="item-meta"><span class="tag p2">P2</span><span class="score">50/100</span></div>
+                <p style="font-size: 0.8rem;">200+ assets via Blockchain.com Wallet.</p>
             </div>
         </div>
     </div>
 
+    <!-- 8. Insights -->
     <div class="section" id="insights">
         <h2>> 💡 Key Insights</h2>
         
         <div class="insight-card">
             <div class="insight-title">🔥 Top Finding</div>
-            <p style="font-size: 0.85rem;"><strong>Ondo Summit Success</strong> - White House and Treasury participated for the first time. BlackRock called it "gold standard". This could be a turning point for RWA tokenization.</p>
+            <p style="font-size: 0.85rem;"><strong>Ondo Summit Success</strong> - White House and Treasury participated. BlackRock called it "gold standard". Turning point for RWA.</p>
         </div>
         
         <div class="insight-card">
@@ -550,17 +378,61 @@
         </div>
     </div>
 
+    <!-- 9. Source Optimization -->
     <div class="section" id="sources">
-        <h2>> 📊 Data Sources</h2>
+        <h2>> 📋 Source Optimization</h2>
+        
+        <h3>Recommended Additions</h3>
+        <div class="item">
+            <p style="font-size: 0.85rem; color: var(--text-secondary);">No new recommendations. Current coverage is good.</p>
+        </div>
+
+        <h3>Watch List (30-49)</h3>
+        <div class="item">
+            <ul style="font-size: 0.85rem; margin-left: 16px;">
+                <li>matrixdock STBT - Short-term Treasury tokens</li>
+                <li>Jupiter DEX - Solana DEX</li>
+            </ul>
+        </div>
+
+        <h3>Source Stats</h3>
+        <div class="item">
+            <table class="mini-table">
+                <tr><td>Core Layer</td><td>5 accounts</td></tr>
+                <tr><td>Project Layer</td><td>6 accounts</td></tr>
+                <tr><td>Important Layer</td><td>14 accounts</td></tr>
+                <tr><td><strong>Total</strong></td><td><strong>25 accounts</strong></td></tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- 10. Verification -->
+    <div class="section" id="verify">
+        <h2>> ✅ Verification</h2>
+        <div class="item">
+            <table class="mini-table">
+                <tr><td>Update 本周关注.md</td><td>✅ Done</td></tr>
+                <tr><td>Update 长期跟踪.md</td><td>✅ Done</td></tr>
+                <tr><td>Read info-sources.md</td><td>✅ Done</td></tr>
+                <tr><td>Update info-sources.md</td><td>✅ No new sources</td></tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- 11. Appendix -->
+    <div class="section" id="appendix">
+        <h2>> 📊 Appendix: Source Stats</h2>
         <table>
             <tr><th>Account</th><th>Tweets</th><th>Tier</th></tr>
             <tr><td>@WatcherGuru</td><td>10</td><td>Core</td></tr>
             <tr><td>@OndoFinance</td><td>16</td><td>Project</td></tr>
             <tr><td>@zksync</td><td>7</td><td>Project</td></tr>
             <tr><td>@arbitrum</td><td>7</td><td>Project</td></tr>
+            <tr><td>@centrifuge</td><td>4</td><td>Project</td></tr>
             <tr><td>@Anchorage</td><td>3</td><td>Core</td></tr>
             <tr><td>@Fidelity</td><td>3</td><td>Core</td></tr>
-            <tr><td>@centrifuge</td><td>4</td><td>Project</td></tr>
+            <tr><td>@APompliano</td><td>3</td><td>Important</td></tr>
+            <tr><td>@Bankless</td><td>3</td><td>Important</td></tr>
         </table>
         <p style="margin-top: 12px; font-size: 0.8rem; color: var(--text-secondary);">Total: 25 sources, 95 tweets</p>
     </div>
