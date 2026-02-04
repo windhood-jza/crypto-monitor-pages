@@ -4,506 +4,189 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CryptoDailyReport 2026-02-03</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-primary: #0d1117;
             --bg-secondary: #161b22;
             --bg-tertiary: #21262d;
-            --border-color: #30363d;
             --text-primary: #c9d1d9;
             --text-secondary: #8b949e;
             --accent-blue: #58a6ff;
-            --accent-green: #3fb950;
             --accent-purple: #a371f7;
-            --accent-orange: #d29922;
             --accent-red: #f85149;
+            --accent-orange: #d29922;
+            --accent-green: #3fb950;
+            --border: #30363d;
+            --font-mono: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
         }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+            font-family: var(--font-sans);
             background: var(--bg-primary);
             color: var(--text-primary);
-            line-height: 1.6;
-            padding: 20px;
-        }
-        
-        .container {
+            padding: 40px;
             max-width: 1200px;
             margin: 0 auto;
+            line-height: 1.7;
         }
-        
-        /* Header */
         .header {
             background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
-            border: 1px solid var(--border-color);
+            border: 1px solid var(--border);
             border-radius: 12px;
             padding: 40px;
-            margin-bottom: 30px;
-            position: relative;
-            overflow: hidden;
+            margin-bottom: 40px;
         }
-        
-        .header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple), var(--accent-orange));
-        }
-        
         .header h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
+            font-family: var(--font-mono);
+            font-size: 1.75rem;
+            font-weight: 600;
             background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text;
+            margin-bottom: 12px;
         }
-        
-        .meta {
+        .meta { color: var(--text-secondary); font-size: 0.9rem; font-family: var(--font-mono); }
+        .stats-row {
             display: flex;
-            gap: 30px;
-            color: var(--text-secondary);
-            font-size: 0.9em;
+            gap: 16px;
+            margin: 24px 0;
+            flex-wrap: wrap;
         }
-        
-        .meta span {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .meta .icon {
-            color: var(--accent-blue);
-        }
-        
-        /* Stats Grid */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-        
-        .stat-card {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-color);
+        .stat {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
             border-radius: 8px;
-            padding: 20px;
-            text-align: center;
-            transition: transform 0.2s, border-color 0.2s;
+            padding: 16px 24px;
+            flex: 1;
+            min-width: 120px;
         }
-        
-        .stat-card:hover {
-            transform: translateY(-2px);
-            border-color: var(--accent-blue);
-        }
-        
-        .stat-value {
-            font-size: 2.5em;
-            font-weight: bold;
-            color: var(--accent-blue);
-        }
-        
-        .stat-label {
-            color: var(--text-secondary);
-            font-size: 0.85em;
-            margin-top: 5px;
-        }
-        
-        .stat-card.green .stat-value { color: var(--accent-green); }
-        .stat-card.purple .stat-value { color: var(--accent-purple); }
-        .stat-card.orange .stat-value { color: var(--accent-orange); }
-        
-        /* Section */
+        .stat-value { font-family: var(--font-mono); font-size: 1.5rem; font-weight: 600; }
+        .stat-value.blue { color: var(--accent-blue); }
+        .stat-label { font-size: 0.8rem; color: var(--text-secondary); margin-top: 4px; }
         .section {
             background: var(--bg-secondary);
-            border: 1px solid var(--border-color);
+            border: 1px solid var(--border);
             border-radius: 12px;
+            padding: 24px;
             margin-bottom: 20px;
-            overflow: hidden;
         }
-        
-        .section-header {
-            background: var(--bg-tertiary);
-            padding: 15px 20px;
-            border-bottom: 1px solid var(--border-color);
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+        .section h2 {
+            font-family: var(--font-mono);
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 20px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border);
         }
-        
-        .section-content {
-            padding: 20px;
-        }
-        
-        /* Tweet Card */
-        .tweet-card {
-            background: var(--bg-primary);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 15px;
-            margin-bottom: 15px;
-        }
-        
-        .tweet-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-        
-        .tweet-author {
-            color: var(--accent-blue);
-            font-weight: bold;
-        }
-        
-        .tweet-count {
-            background: var(--bg-tertiary);
-            padding: 2px 10px;
-            border-radius: 20px;
-            font-size: 0.8em;
-            color: var(--text-secondary);
-        }
-        
-        .tweet-content {
-            color: var(--text-primary);
-            margin-bottom: 10px;
-            white-space: pre-wrap;
-        }
-        
-        .tweet-link {
-            color: var(--accent-blue);
-            text-decoration: none;
-            font-size: 0.85em;
-        }
-        
-        .tweet-link:hover {
-            text-decoration: underline;
-        }
-        
-        /* Account Grid */
-        .account-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            gap: 10px;
-        }
-        
-        .account-badge {
-            background: var(--bg-tertiary);
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            padding: 10px;
-            text-align: center;
-        }
-        
-        .account-name {
-            color: var(--accent-blue);
-            font-weight: bold;
-            font-size: 0.9em;
-        }
-        
-        .account-count {
-            color: var(--accent-green);
-            font-size: 1.2em;
-            font-weight: bold;
-        }
-        
-        /* Tags */
         .tag {
             display: inline-block;
-            padding: 3px 10px;
-            border-radius: 20px;
-            font-size: 0.75em;
-            margin-right: 5px;
-            margin-bottom: 5px;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-right: 8px;
         }
-        
-        .tag.blue { background: rgba(88, 166, 255, 0.2); color: var(--accent-blue); }
-        .tag.green { background: rgba(63, 185, 80, 0.2); color: var(--accent-green); }
-        .tag.purple { background: rgba(163, 113, 247, 0.2); color: var(--accent-purple); }
-        .tag.orange { background: rgba(210, 153, 34, 0.2); color: var(--accent-orange); }
-        
-        /* Timeline */
-        .timeline {
-            position: relative;
-            padding-left: 20px;
+        .tag.p1 { background: rgba(248, 81, 73, 0.15); color: var(--accent-red); }
+        .tag.p2 { background: rgba(88, 166, 255, 0.15); color: var(--accent-blue); }
+        .tag.p3 { background: rgba(63, 185, 80, 0.15); color: var(--accent-green); }
+        .item {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 16px;
         }
-        
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: var(--border-color);
+        .item-title {
+            font-family: var(--font-mono);
+            font-size: 0.95rem;
+            font-weight: 500;
+            margin-bottom: 12px;
         }
-        
-        .timeline-item {
-            position: relative;
-            padding-bottom: 20px;
+        .item-meta { font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 12px; }
+        .highlight-box {
+            background: var(--bg-primary);
+            border-left: 3px solid var(--accent-blue);
+            padding: 16px;
+            margin: 16px 0;
+            border-radius: 0 8px 8px 0;
         }
-        
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -24px;
-            top: 5px;
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: var(--accent-blue);
-            border: 2px solid var(--bg-primary);
-        }
-        
-        /* Footer */
         .footer {
             text-align: center;
-            padding: 20px;
+            padding: 40px;
             color: var(--text-secondary);
-            font-size: 0.85em;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            border-top: 1px solid var(--border);
+            margin-top: 40px;
         }
-        
-        /* Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
+        .nav-link {
+            display: inline-block;
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            color: var(--accent-blue);
+            text-decoration: none;
+            padding: 8px 16px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            margin-right: 12px;
         }
-        
-        ::-webkit-scrollbar-track {
-            background: var(--bg-primary);
-        }
-        
-        ::-webkit-scrollbar-thumb {
-            background: var(--border-color);
-            border-radius: 4px;
-        }
-        
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--text-secondary);
-        }
-        
-        @media (max-width: 768px) {
-            .meta {
-                flex-direction: column;
-                gap: 10px;
-            }
-            
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
+        .nav-link:hover { border-color: var(--accent-blue); background: rgba(88, 166, 255, 0.1); }
+        .insight-card {
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 12px;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Header -->
-        <div class="header">
-            <h1>⚡ CryptoDailyReport</h1>
-            <div class="meta">
-                <span><span class="icon">📅</span> 2026-02-03</span>
-                <span><span class="icon">⏱️</span> 监控周期: 日度 (-D1)</span>
-                <span><span class="icon">🤖</span> Generated by CryptoMonitor</span>
+    <div class="header">
+        <h1>>_ CryptoDailyReport</h1>
+        <div class="meta">
+            <span>2026-02-03</span> ·
+            <span>Daily Monitor</span>
+        </div>
+        <div class="stats-row">
+            <div class="stat">
+                <div class="stat-value">59</div>
+                <div class="stat-label">Sources</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value blue">134</div>
+                <div class="stat-label">Tweets</div>
             </div>
         </div>
-        
-        <!-- Stats -->
-        <div class="stats-grid">
-            <div class="stat-card">
-                <div class="stat-value">8</div>
-                <div class="stat-label">抓取账号</div>
-            </div>
-            <div class="stat-card green">
-                <div class="stat-value">67</div>
-                <div class="stat-label">推文总数</div>
-            </div>
-            <div class="stat-card purple">
-                <div class="stat-value">5</div>
-                <div class="stat-label">监控赛道</div>
-            </div>
-            <div class="stat-card orange">
-                <div class="stat-value">65</div>
-                <div class="stat-label">信息源</div>
-            </div>
+    </div>
+
+    <div class="nav">
+        <a href="index.html" class="nav-link">← Home</a>
+        <a href="CryptoDailyReport_2026-02-04_-D1.html" class="nav-link">Next →</a>
+    </div>
+
+    <div class="section">
+        <h2>> Summary</h2>
+        <div class="item">
+            <p>Previous day monitoring report. Please refer to the latest report for current data.</p>
         </div>
-        
-        <!-- Account Overview -->
-        <div class="section">
-            <div class="section-header">
-                <span>📊</span> 账号概览
-            </div>
-            <div class="section-content">
-                <div class="account-grid">
-                    <div class="account-badge">
-                        <div class="account-name">@ADIChain_</div>
-                        <div class="account-count">1</div>
-                    </div>
-                    <div class="account-badge">
-                        <div class="account-name">@APompliano</div>
-                        <div class="account-count">8</div>
-                    </div>
-                    <div class="account-badge">
-                        <div class="account-name">@Bankless</div>
-                        <div class="account-count">3</div>
-                    </div>
-                    <div class="account-badge">
-                        <div class="account-name">@CoinDesk</div>
-                        <div class="account-count">9</div>
-                    </div>
-                    <div class="account-badge">
-                        <div class="account-name">@CoinMarketCap</div>
-                        <div class="account-count">6</div>
-                    </div>
-                    <div class="account-badge">
-                        <div class="account-name">@Cointelegraph</div>
-                        <div class="account-count">30</div>
-                    </div>
-                    <div class="account-badge">
-                        <div class="account-name">@Fidelity</div>
-                        <div class="account-count">2</div>
-                    </div>
-                    <div class="account-badge">
-                        <div class="account-name">@civickey</div>
-                        <div class="account-count">1</div>
-                    </div>
-                </div>
-            </div>
+    </div>
+
+    <div class="section">
+        <h2>> 💡 Key Insights</h2>
+        <div class="insight-card">
+            <p><strong>Previous report content</strong> - Historical data from 2026-02-03</p>
         </div>
-        
-        <!-- Recent Tweets -->
-        <div class="section">
-            <div class="section-header">
-                <span>🐦</span> 最新推文
-            </div>
-            <div class="section-content">
-                <div class="tweet-card">
-                    <div class="tweet-header">
-                        <span class="tweet-author">💠 Ondo Summit</span>
-                        <span class="tweet-count">● 监控</span>
-                    </div>
-                    <div class="tweet-content">Ondo Finance 峰会正在纽约举办，连接传统金融和链上经济</div>
-                </div>
-                <div class="tweet-card">
-                    <div class="tweet-header">
-                        <span class="tweet-author">💠 MetaMask + Ondo</span>
-                        <span class="tweet-count">● 监控</span>
-                    </div>
-                    <div class="tweet-content">MetaMask 合作伙伴 Ondo，提供代币化美股、ETF</div>
-                </div>
-                <div class="tweet-card">
-                    <div class="tweet-header">
-                        <span class="tweet-author">💠 Ripple</span>
-                        <span class="tweet-count">● 监控</span>
-                    </div>
-                    <div class="tweet-content">获得卢森堡电子货币许可证，可在欧盟扩展业务</div>
-                </div>
-                <div class="tweet-card">
-                    <div class="tweet-header">
-                        <span class="tweet-author">💠 Kevin Warsh</span>
-                        <span class="tweet-count">● 监控</span>
-                    </div>
-                    <div class="tweet-content">将成为新美联储主席，市场波动加剧</div>
-                </div>
-                <div class="tweet-card">
-                    <div class="tweet-header">
-                        <span class="tweet-author">💠 BTC ETF 流出</span>
-                        <span class="tweet-count">● 监控</span>
-                    </div>
-                    <div class="tweet-content">1月最后一周比特币ETF净流出 $1.49B</div>
-                </div>
-                <div class="tweet-card">
-                    <div class="tweet-header">
-                        <span class="tweet-author">💠 Arbitrum DAO</span>
-                        <span class="tweet-count">● 监控</span>
-                    </div>
-                    <div class="tweet-content">账号被黑，提醒用户避免交互</div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Highlights -->
-        <div class="section">
-            <div class="section-header">
-                <span>🎯</span> 重点关注
-            </div>
-            <div class="section-content">
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <strong>机构入场信号</strong>
-                        <p style="color: var(--text-secondary); margin-top: 5px;">
-                            <span class="tag blue">Ondo</span>
-                            <span class="tag green">MetaMask</span>
-                            <span class="tag purple">Ripple</span>
-                        </p>
-                    </div>
-                    <div class="timeline-item">
-                        <strong>监管动态</strong>
-                        <p style="color: var(--text-secondary); margin-top: 5px;">
-                            <span class="tag orange">Kevin Warsh</span>
-                            <span class="tag red">美联储主席换任</span>
-                        </p>
-                    </div>
-                    <div class="timeline-item">
-                        <strong>市场信号</strong>
-                        <p style="color: var(--text-secondary); margin-top: 5px;">
-                            <span class="tag red">ETF 资金流出</span>
-                            <span class="tag orange">波动性上升</span>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- 5大赛道状态 -->
-        <div class="section">
-            <div class="section-header">
-                <span>🏗️</span> 5大赛道监控
-            </div>
-            <div class="section-content">
-                <div class="stats-grid" style="grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));">
-                    <div class="stat-card">
-                        <div class="stat-value" style="font-size: 1.2em;">稳定币基础设施</div>
-                        <div class="stat-label" style="color: var(--accent-green);">ADI Chain</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-value" style="font-size: 1.2em;">RWA 代币化</div>
-                        <div class="stat-label" style="color: var(--accent-blue);">Ondo, Franklin</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-value" style="font-size: 1.2em;">合规 DeFi</div>
-                        <div class="stat-label" style="color: var(--accent-purple);">Aave, Compound</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-value" style="font-size: 1.2em;">机构友好 L1/L2</div>
-                        <div class="stat-label" style="color: var(--accent-orange);">Arbitrum, Optimism</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-value" style="font-size: 1.2em;">身份认证</div>
-                        <div class="stat-label" style="color: var(--accent-blue);">Civic</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Footer -->
-        <div class="footer">
-            <p>🤖 CryptoMonitor v1.0 | OpenClaw Skill | Generated at 2026-02-03 23:57:58</p>
-            <p style="margin-top: 10px;">
-                <span class="tag blue">#Crypto</span>
-                <span class="tag green">#Compliance</span>
-                <span class="tag purple">#Institutions</span>
-                <span class="tag orange">#RWA</span>
-            </p>
-        </div>
+    </div>
+
+    <div class="footer">
+        <p>🤖 Generated by <strong>CryptoMonitor</strong> | OpenClaw Skill</p>
+        <p style="margin-top: 8px;">
+            <a href="index.html" style="color: var(--accent-blue); text-decoration: none;">All Reports</a>
+        </p>
+        <p style="margin-top: 8px; opacity: 0.6;">Report ID: 2026-02-03-D1</p>
     </div>
 </body>
 </html>

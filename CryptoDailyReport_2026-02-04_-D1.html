@@ -4,144 +4,357 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CryptoDailyReport 2026-02-04</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-primary: #0d1117;
             --bg-secondary: #161b22;
+            --bg-tertiary: #21262d;
             --text-primary: #c9d1d9;
             --text-secondary: #8b949e;
             --accent-blue: #58a6ff;
+            --accent-purple: #a371f7;
             --accent-red: #f85149;
+            --accent-orange: #d29922;
             --accent-green: #3fb950;
+            --border: #30363d;
+            --font-mono: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: -apple-system, sans-serif;
+            font-family: var(--font-sans);
             background: var(--bg-primary);
             color: var(--text-primary);
             padding: 40px;
             max-width: 1200px;
             margin: 0 auto;
+            line-height: 1.7;
         }
         .header {
-            background: linear-gradient(135deg, var(--bg-secondary), #21262d);
-            border: 1px solid #30363d;
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+            border: 1px solid var(--border);
             border-radius: 12px;
-            padding: 30px;
-            margin-bottom: 30px;
+            padding: 40px;
+            margin-bottom: 40px;
         }
         .header h1 {
-            font-size: 2em;
-            background: linear-gradient(90deg, var(--accent-blue), #a371f7);
+            font-family: var(--font-mono);
+            font-size: 1.75rem;
+            font-weight: 600;
+            background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            margin-bottom: 12px;
         }
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 15px;
-            margin: 20px 0;
+        .meta { color: var(--text-secondary); font-size: 0.9rem; font-family: var(--font-mono); }
+        .stats-row {
+            display: flex;
+            gap: 16px;
+            margin: 24px 0;
+            flex-wrap: wrap;
         }
         .stat {
-            background: var(--bg-secondary);
-            border: 1px solid #30363d;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
             border-radius: 8px;
-            padding: 20px;
-            text-align: center;
+            padding: 16px 24px;
+            flex: 1;
+            min-width: 120px;
         }
-        .stat-value { font-size: 2em; font-weight: bold; color: var(--accent-blue); }
-        .stat-label { color: var(--text-secondary); font-size: 0.9em; }
+        .stat-value { font-family: var(--font-mono); font-size: 1.5rem; font-weight: 600; }
+        .stat-value.red { color: var(--accent-red); }
+        .stat-value.blue { color: var(--accent-blue); }
+        .stat-value.green { color: var(--accent-green); }
+        .stat-label { font-size: 0.8rem; color: var(--text-secondary); margin-top: 4px; }
         .section {
             background: var(--bg-secondary);
-            border: 1px solid #30363d;
+            border: 1px solid var(--border);
             border-radius: 12px;
-            padding: 25px;
+            padding: 24px;
             margin-bottom: 20px;
         }
         .section h2 {
-            font-size: 1.3em;
+            font-family: var(--font-mono);
+            font-size: 1.1rem;
+            font-weight: 500;
             margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid #30363d;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border);
         }
         .tag {
             display: inline-block;
-            padding: 3px 10px;
-            border-radius: 15px;
-            font-size: 0.8em;
-            margin-right: 10px;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-right: 8px;
         }
-        .tag.p1 { background: rgba(248, 81, 73, 0.2); color: var(--accent-red); }
-        .tag.p2 { background: rgba(88, 166, 255, 0.2); color: var(--accent-blue); }
-        .tag.p3 { background: rgba(63, 185, 80, 0.2); color: var(--accent-green); }
+        .tag.p1 { background: rgba(248, 81, 73, 0.15); color: var(--accent-red); }
+        .tag.p2 { background: rgba(88, 166, 255, 0.15); color: var(--accent-blue); }
+        .tag.p3 { background: rgba(63, 185, 80, 0.15); color: var(--accent-green); }
         .item {
-            background: var(--bg-primary);
-            border: 1px solid #30363d;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
             border-radius: 8px;
-            padding: 15px;
-            margin-bottom: 15px;
+            padding: 20px;
+            margin-bottom: 16px;
         }
-        .item-title { font-weight: 600; margin-bottom: 10px; }
+        .item-title {
+            font-family: var(--font-mono);
+            font-size: 0.95rem;
+            font-weight: 500;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .item-meta { font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 12px; }
+        .score { font-family: var(--font-mono); color: var(--accent-orange); }
+        .highlight-box {
+            background: var(--bg-primary);
+            border-left: 3px solid var(--accent-blue);
+            padding: 16px;
+            margin: 16px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .checklist { list-style: none; padding: 0; }
+        .checklist li {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            padding: 6px 0;
+            padding-left: 24px;
+            position: relative;
+        }
+        .checklist li::before {
+            content: "□";
+            position: absolute;
+            left: 0;
+            color: var(--text-secondary);
+        }
+        .checklist li.checked::before { content: "☑"; color: var(--accent-green); }
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+        }
+        table { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 0.9rem; }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid var(--border); }
+        th { color: var(--text-secondary); font-weight: 500; font-size: 0.8rem; }
         .footer {
             text-align: center;
-            padding: 30px;
+            padding: 40px;
             color: var(--text-secondary);
-            font-size: 0.9em;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            border-top: 1px solid var(--border);
+            margin-top: 40px;
+        }
+        .nav-link {
+            display: inline-block;
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            color: var(--accent-blue);
+            text-decoration: none;
+            padding: 8px 16px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            margin-right: 12px;
+            transition: all 0.2s;
+        }
+        .nav-link:hover { border-color: var(--accent-blue); background: rgba(88, 166, 255, 0.1); }
+        .nav-link.home { border-color: var(--accent-blue); }
+        .insight-card {
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 12px;
+        }
+        .insight-title {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            color: var(--accent-orange);
+            margin-bottom: 8px;
         }
     </style>
 </head>
 <body>
     <div class="header">
-        <h1>📊 CryptoDailyReport</h1>
-        <p>2026-02-04 | 日度监控</p>
-        <p style="color: var(--text-secondary); font-size: 0.9em;">Generated: 2026-02-04 09:43</p>
-    </div>
-    
-    <div class="stats">
-        <div class="stat">
-            <div class="stat-value">44</div>
-            <div class="stat-label">监控账号</div>
+        <h1>>_ CryptoDailyReport</h1>
+        <div class="meta">
+            <span>2026-02-04</span> ·
+            <span>Daily Monitor</span> ·
+            <span>Generated: 10:00 UTC</span>
         </div>
-        <div class="stat">
-            <div class="stat-value">134</div>
-            <div class="stat-label">推文总数</div>
+        <div class="stats-row">
+            <div class="stat">
+                <div class="stat-value">25</div>
+                <div class="stat-label">Sources</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">95</div>
+                <div class="stat-label">Tweets</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value red">5</div>
+                <div class="stat-label">P1 - Urgent</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value blue">8</div>
+                <div class="stat-label">P2 - Important</div>
+            </div>
         </div>
     </div>
-    
+
+    <div class="nav">
+        <a href="index.html" class="nav-link home">← Home</a>
+        <a href="#" class="nav-link">← Previous</a>
+        <a href="#" class="nav-link">Next →</a>
+    </div>
+
     <div class="section">
-        <h2>🔴 P1 - 紧急</h2>
+        <h2>> 🚨 P1 - Urgent (Must Read)</h2>
+        
         <div class="item">
-            <div class="item-title">1. Kevin Warsh 美联储主席提名</div>
-            <p><span class="tag p1">P1</span> 来源: @Bankless | "硬钱"派代表</p>
+            <div class="item-title">1. Ondo Summit - 白宫与财政部背书</div>
+            <div class="item-meta">
+                <span class="tag p1">P1</span>
+                <span class="score">Score: 85/100</span> ·
+                <span>@OndoFinance</span>
+            </div>
+            <div class="highlight-box">
+                <strong>"This is a win-win for the entire financial system...This is going to become part of the financial fabric"</strong>
+                <br><span style="color: var(--text-secondary);">— Patrick Witt, President's Council of Advisors for Digital Assets</span>
+            </div>
+            <p style="margin: 16px 0; color: var(--text-primary);">白宫与财政部代表在 Ondo Summit 上发表演讲，BlackRock 称 Ondo 模型为"黄金标准"。</p>
+            <ul class="checklist">
+                <li class="checked">持续跟踪 Ondo Finance 项目</li>
+                <li>关注峰会后续合作公告</li>
+                <li>评估 ONDO 代币投资机会</li>
+            </ul>
         </div>
+
         <div class="item">
-            <div class="item-title">2. ETF 资金流出</div>
-            <p><span class="tag p1">P1</span> 来源: @Bankless | 1月净流出约 .6B</p>
+            <div class="item-title">2. BlackRock 称 Ondo 为"黄金标准"</div>
+            <div class="item-meta">
+                <span class="tag p1">P1</span>
+                <span class="score">Score: 82/100</span> ·
+                <span>@OndoFinance</span>
+            </div>
+            <div class="highlight-box">
+                <strong>"I think you guys have put out a gold standard type of tokenized price representation."</strong>
+                <br><span style="color: var(--text-secondary);">— Samara Cohen, BlackRock Global Head of Market Development</span>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="item-title">3. BTC 跌破 $73,000，创大选以来新低</div>
+            <div class="item-meta">
+                <span class="tag p1">P1</span>
+                <span class="score">Score: 75/100</span> ·
+                <span>@WatcherGuru</span>
+            </div>
+            <p>24小时加密市场清算 $2.85 亿，创下 2024 年总统大选以来新低。</p>
+            <ul class="checklist">
+                <li>评估仓位风险</li>
+                <li>长期视角：大跌可能是配置机会</li>
+                <li>关注大户持续买入信号</li>
+            </ul>
         </div>
     </div>
-    
+
     <div class="section">
-        <h2>⭐ P2 - 重要</h2>
-        <div class="item">
-            <div class="item-title">1. Ondo Finance 峰会</div>
-            <p><span class="tag p2">P2</span> 来源: @CoinDesk</p>
-        </div>
-        <div class="item">
-            <div class="item-title">2. MetaMask + Ondo 合作</div>
-            <p><span class="tag p2">P2</span> 来源: @Cointelegraph</p>
+        <h2>> ⭐ P2 - Important</h2>
+        
+        <div class="grid-2">
+            <div class="item">
+                <div class="item-title">4. ADI Chain 香港主权金融模式</div>
+                <div class="item-meta">
+                    <span class="tag p2">P2</span>
+                    <span class="score">65/100</span>
+                </div>
+                <p>验证香港主权金融模式，优先质量而非数量。</p>
+            </div>
+            
+            <div class="item">
+                <div class="item-title">5. zkSync Prividiums 企业方案</div>
+                <div class="item-meta">
+                    <span class="tag p2">P2</span>
+                    <span class="score">62/100</span>
+                </div>
+                <p>使机构能够从第一天起合规启动。</p>
+            </div>
+            
+            <div class="item">
+                <div class="item-title">6. Centrifuge V3.1 多链支持</div>
+                <div class="item-meta">
+                    <span class="tag p2">P2</span>
+                    <span class="score">58/100</span>
+                </div>
+                <p>扩展支持至10条链。</p>
+            </div>
+            
+            <div class="item">
+                <div class="item-title">7. MetaMask 集成代币化资产</div>
+                <div class="item-meta">
+                    <span class="tag p2">P2</span>
+                    <span class="score">55/100</span>
+                </div>
+                <p>集成代币化美股、ETF。</p>
+            </div>
         </div>
     </div>
-    
+
     <div class="section">
-        <h2>🟢 P3 - 一般</h2>
-        <div class="item">
-            <div class="item-title">1. ADI Chain 香港模式</div>
-            <p><span class="tag p3">P3</span> 来源: @ADIChain_</p>
+        <h2>> 💡 Key Insights</h2>
+        
+        <div class="insight-card">
+            <div class="insight-title">🔥 Top Finding</div>
+            <p><strong>Ondo Summit 取得巨大成功</strong> - 白宫与财政部首次在加密主题峰会上高级别参与，BlackRock 称其为"黄金标准"。这可能是 RWA 代币化赛道的转折点。</p>
+        </div>
+        
+        <div class="insight-card">
+            <div class="insight-title">📈 Opportunities</div>
+            <ul style="margin: 12px 0 0 20px; color: var(--text-primary);">
+                <li>RWA代币化赛道（最高优先级）</li>
+                <li>合规DeFi基础设施</li>
+                <li>长期配置窗口</li>
+            </ul>
+        </div>
+        
+        <div class="insight-card">
+            <div class="insight-title">⚠️ Risks</div>
+            <ul style="margin: 12px 0 0 20px; color: var(--text-primary);">
+                <li>市场波动风险（BTC 跌破关键支撑）</li>
+                <li>ETF资金流出</li>
+                <li>宏观不确定性</li>
+            </ul>
         </div>
     </div>
-    
+
+    <div class="section">
+        <h2>> 📊 Data Sources</h2>
+        <table>
+            <tr><th>Account</th><th>Tweets</th><th>Tier</th></tr>
+            <tr><td>@WatcherGuru</td><td>10</td><td>Core</td></tr>
+            <tr><td>@OndoFinance</td><td>16</td><td>Project</td></tr>
+            <tr><td>@zksync</td><td>7</td><td>Project</td></tr>
+            <tr><td>@arbitrum</td><td>7</td><td>Project</td></tr>
+            <tr><td>@Anchorage</td><td>3</td><td>Core</td></tr>
+        </table>
+        <p style="margin-top: 16px; font-size: 0.85rem; color: var(--text-secondary);">Total: 25 sources, 95 tweets</p>
+    </div>
+
     <div class="footer">
-        <p>🤖 Generated by CryptoMonitor v2.0</p>
+        <p>🤖 Generated by <strong>CryptoMonitor</strong> | OpenClaw Skill</p>
+        <p style="margin-top: 8px;">
+            <a href="index.html" style="color: var(--accent-blue); text-decoration: none;">All Reports</a> ·
+            <a href="file:///mnt/e/OpenClow_Output/agents/main/skills/crypto-monitor" style="color: var(--accent-blue); text-decoration: none;">Skill</a> ·
+            <a href="file:///mnt/e/OpenClow_Output/agents/main/output/crypto-monitor" style="color: var(--accent-blue); text-decoration: none;">Data</a>
+        </p>
+        <p style="margin-top: 8px; opacity: 0.6;">Report ID: 2026-02-04-D1</p>
     </div>
 </body>
 </html>
