@@ -7,9 +7,9 @@
 
 ## 📊 今日监控统计
 
-- **监控信息源**: 39个
-- **检索到的推文**: 135条
-  - 🚨 P1必读: 1条
+- **监控信息源**: 21个
+- **检索到的推文**: 117条
+  - 🚨 P1必读: 0条
   - ⭐ P2重要: 2条
 
 ---
@@ -18,23 +18,22 @@
 
 | 指标 | 数值 |
 |------|------|
-| 监控账号 | 39 |
-| 推文总数 | 135 |
+| 监控账号 | 21 |
+| 推文总数 | 117 |
 
 ---
 
 ## 🔴 P1 - 紧急
 
-- @rai4over2 @Investments_CEO 根据可靠来源（如记者Eleanor Terrett的报道），美国参议院民主党人计划于2026年2月4日（今日）举行闭门会议，讨论加密货币市场结构...
 
 ## ⭐ P2 - 重要
 
-- @consensus_hk @hypurr_co @LTP_primebroker @osldotcom Wednesday Feb 11: Solana RWAs Luncheon https://...
+- @notadev_eth @LandhiveRWA This is why Centrifuge works in practice: regulated ownership + onchain se...
 - @DualMintRWA Agree....
 
 ---
 
-**生成时间**: 2026-02-04 11:33
+**生成时间**: 2026-02-04 21:20
 **数据来源**: X平台 + TwitterApi.io
 
 ---

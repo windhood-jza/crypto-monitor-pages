@@ -8,279 +8,82 @@
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-primary: #0a0e14;
-            --bg-secondary: #11161d;
-            --bg-tertiary: #1a212c;
-            --bg-card: #151c26;
-            --text-primary: #e6edf3;
-            --text-secondary: #8b949e;
-            --text-muted: #6e7681;
-            --accent-cyan: #39d353;
-            --accent-blue: #58a6ff;
-            --accent-yellow: #d29922;
-            --accent-red: #f85149;
-            --accent-purple: #a371f7;
-            --border-color: #30363d;
-            --gradient-1: linear-gradient(135deg, #39d353 0%, #58a6ff 50%, #a371f7 100%);
-            --font-mono: 'JetBrains Mono', monospace;
-            --font-sans: 'Inter', sans-serif;
+            --bg-primary: #0d1117; --bg-secondary: #161b22; --text-primary: #c9d1d9; --text-secondary: #8b949e; --accent-blue: #58a6ff; --accent-red: #f85149; --accent-green: #3fb950; --border: #30363d; --font-mono: 'JetBrains Mono', monospace; --font-sans: 'Inter', sans-serif;
         }
-        
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body {
-            font-family: var(--font-sans);
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            line-height: 1.6;
-            padding: 16px;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-        
+        body { font-family: var(--font-sans); background: var(--bg-primary); color: var(--text-primary); padding: 12px; max-width: 1200px; margin: 0 auto; }
         @media (min-width: 768px) { body { padding: 40px; } }
-        
-        /* Header */
-        header {
-            background: linear-gradient(180deg, rgba(57, 211, 83, 0.08) 0%, rgba(88, 166, 255, 0.08) 100%);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 24px;
-            margin-bottom: 24px;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        header::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; height: 3px;
-            background: var(--gradient-1);
-        }
-        
-        header h1 {
-            font-family: var(--font-mono);
-            font-size: 1.5rem;
-            font-weight: 700;
-            background: var(--gradient-1);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 8px;
-        }
-        
-        @media (min-width: 768px) { header h1 { font-size: 2rem; } }
-        
-        header .subtitle {
-            color: var(--text-secondary);
-            font-size: 0.85rem;
-        }
-        
-        header .meta {
-            display: flex;
-            gap: 16px;
-            margin-top: 16px;
-            flex-wrap: wrap;
-        }
-        
-        header .meta span {
-            font-family: var(--font-mono);
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            background: var(--bg-tertiary);
-            padding: 4px 10px;
-            border-radius: 6px;
-        }
-        
-        /* Sections */
-        section {
-            margin-bottom: 24px;
-        }
-        
-        section h2 {
-            font-family: var(--font-mono);
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: var(--text-secondary);
-            margin-bottom: 16px;
-            padding-bottom: 12px;
-            border-bottom: 1px solid var(--border-color);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        section h2::before {
-            content: '';
-            width: 3px;
-            height: 16px;
-            background: var(--gradient-1);
-            border-radius: 2px;
-        }
-        
-        /* Report Cards */
-        .report-list {
-            display: grid;
-            gap: 12px;
-        }
-        
-        .report-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 16px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 16px;
-            flex-wrap: wrap;
-            transition: all 0.2s;
-        }
-        
-        .report-card:hover {
-            border-color: var(--accent-blue);
-            transform: translateY(-2px);
-        }
-        
-        .report-date {
-            font-family: var(--font-mono);
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--text-primary);
-        }
-        
-        .report-period {
-            font-size: 0.8rem;
-            color: var(--text-secondary);
-            margin-top: 4px;
-        }
-        
-        .report-stats {
-            display: flex;
-            gap: 8px;
-        }
-        
-        .stat-badge {
-            font-family: var(--font-mono);
-            font-size: 0.7rem;
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-weight: 600;
-        }
-        
-        .stat-badge.p1 {
-            background: rgba(248, 81, 73, 0.15);
-            color: var(--accent-red);
-        }
-        
-        .stat-badge.p2 {
-            background: rgba(210, 153, 34, 0.15);
-            color: var(--accent-yellow);
-        }
-        
-        .stat-badge.p3 {
-            background: rgba(63, 185, 80, 0.15);
-            color: var(--accent-cyan);
-        }
-        
-        .report-link {
-            font-family: var(--font-mono);
-            font-size: 0.8rem;
-            color: var(--accent-blue);
-            text-decoration: none;
-            padding: 8px 16px;
-            border: 1px solid var(--accent-blue);
-            border-radius: 8px;
-            transition: all 0.2s;
-        }
-        
-        .report-link:hover {
-            background: rgba(88, 166, 255, 0.1);
-        }
-        
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 24px;
-            color: var(--text-muted);
-            font-family: var(--font-mono);
-            font-size: 0.75rem;
-            border-top: 1px solid var(--border-color);
-            margin-top: 32px;
-        }
-        
-        footer a {
-            color: var(--accent-blue);
-            text-decoration: none;
-        }
-        
-        /* Empty state */
-        .empty {
-            text-align: center;
-            padding: 40px;
-            color: var(--text-secondary);
-        }
+        .header { background: linear-gradient(135deg, var(--bg-secondary), #21262d); border: 1px solid var(--border); border-radius: 12px; padding: 16px; margin-bottom: 16px; }
+        @media (min-width: 768px) { .header { padding: 40px; margin-bottom: 40px; } }
+        .header h1 { font-family: var(--font-mono); font-size: 1.2rem; background: linear-gradient(90deg, var(--accent-blue), #a371f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        @media (min-width: 768px) { .header h1 { font-size: 2rem; } }
+        .subtitle { color: var(--text-secondary); font-size: 0.75rem; margin-top: 8px; }
+        .section { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 14px; margin-bottom: 14px; }
+        @media (min-width: 768px) { .section { padding: 24px; margin-bottom: 20px; } }
+        .section h2 { font-family: var(--font-mono); font-size: 0.9rem; margin-bottom: 12px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
+        @media (min-width: 768px) { .section h2 { font-size: 1.1rem; margin-bottom: 20px; padding-bottom: 16px; } }
+        .report-card { background: var(--bg-tertiary); border: 1px solid var(--border); border-radius: 8px; padding: 12px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+        .report-card:hover { border-color: var(--accent-blue); }
+        .report-info h3 { font-family: var(--font-mono); font-size: 0.85rem; margin-bottom: 4px; }
+        .report-meta { font-size: 0.7rem; color: var(--text-secondary); }
+        .report-link { font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent-blue); text-decoration: none; padding: 6px 10px; border: 1px solid var(--accent-blue); border-radius: 6px; }
+        .report-link:hover { background: rgba(88, 166, 255, 0.1); }
+        .quick-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+        .quick-stat { background: var(--bg-tertiary); border-radius: 8px; padding: 10px; text-align: center; }
+        .quick-stat-title { font-family: var(--font-mono); font-size: 0.6rem; color: var(--text-secondary); }
+        .quick-stat-value { font-family: var(--font-mono); font-size: 1.1rem; font-weight: 600; }
+        .quick-stat-value.red { color: var(--accent-red); }
+        .quick-stat-value.blue { color: var(--accent-blue); }
+        .quick-stat-value.green { color: var(--accent-green); }
+        .footer { text-align: center; padding: 16px; color: var(--text-secondary); font-family: var(--font-mono); font-size: 0.65rem; border-top: 1px solid var(--border); margin-top: 16px; }
+        .footer a { color: var(--accent-blue); text-decoration: none; }
     </style>
 </head>
 <body>
-    <header>
-        <h1>> CryptoMonitor</h1>
-        <div class="subtitle">加密货币合规监控日报 | 自动生成</div>
-        <div class="meta">
-            <span>🤖 OpenClaw Skill</span>
-            <span>🛡️ 合规导向</span>
-            <span>📊 每日更新</span>
-        </div>
-    </header>
+    <div class="header">
+        <h1>> CryptoMonitor 报告列表</h1>
+        <div class="subtitle">加密货币合规信息监控日报 | 自动生成</div>
+    </div>
 
-    <section>
+    <div class="section">
         <h2>> 最新报告</h2>
-        <div class="report-list">
-            <!-- Latest Report -->
-            <div class="report-card">
-                <div>
-                    <div class="report-date">📅 2026-02-04</div>
-                    <div class="report-period">日度报告 | Kimi K2.5</div>
-                </div>
-                <div class="report-stats">
-                    <span class="stat-badge p1">P1 3</span>
-                    <span class="stat-badge p2">P2 1</span>
-                </div>
-                <a href="CryptoDailyReport_2026-02-04_1D.html" class="report-link">查看报告 →</a>
+        <div class="report-card">
+            <div class="report-info">
+                <h3>📅 2026-02-04</h3>
+                <div class="report-meta">日度报告 | 自动生成</div>
             </div>
-            
-            <!-- Previous Reports -->
-            <div class="report-card">
-                <div>
-                    <div class="report-date">📅 2026-02-04</div>
-                    <div class="report-period">日度报告</div>
-                </div>
-                <div class="report-stats">
-                    <span class="stat-badge p1">P1 5</span>
-                    <span class="stat-badge p2">P2 8</span>
-                </div>
-                <a href="CryptoDailyReport_2026-02-04_-D1.html" class="report-link">查看报告 →</a>
+            <a href="CryptoDailyReport_2026-02-04_-D1.md" class="report-link">查看 →</a>
+        </div>
+        <div class="report-card">
+            <div class="report-info">
+                <h3>📅 2026-02-03</h3>
+                <div class="report-meta">日度报告</div>
             </div>
-            
-            <div class="report-card">
-                <div>
-                    <div class="report-date">📅 2026-02-03</div>
-                    <div class="report-period">日度报告</div>
-                </div>
-                <div class="report-stats">
-                    <span class="stat-badge p1">P1 4</span>
-                    <span class="stat-badge p2">P2 6</span>
-                </div>
-                <a href="CryptoDailyReport_2026-02-03_-D1.html" class="report-link">查看报告 →</a>
+            <a href="CryptoDailyReport_2026-02-03_-D1.md" class="report-link">查看 →</a>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>> 快速统计</h2>
+        <div class="quick-stats">
+            <div class="quick-stat">
+                <div class="quick-stat-title">P1 必读</div>
+                <div class="quick-stat-value red">5</div>
+            </div>
+            <div class="quick-stat">
+                <div class="quick-stat-title">P2 重要</div>
+                <div class="quick-stat-value blue">8</div>
+            </div>
+            <div class="quick-stat">
+                <div class="quick-stat-title">P3 参考</div>
+                <div class="quick-stat-value green">45</div>
             </div>
         </div>
-    </section>
+    </div>
 
-    <footer>
+    <div class="footer">
         <p>🤖 Generated by <strong>CryptoMonitor</strong> | OpenClaw Skill</p>
-        <p style="margin-top: 8px;">
-            <a href="https://github.com/windhood-jza/crypto-monitor-pages">GitHub Pages</a> · 
-            <a href="https://github.com/openclaw/openclaw">OpenClaw</a>
-        </p>
-    </footer>
+        <p style="margin-top: 8px;"><a href="https://github.com/windhood-jza/crypto-monitor-pages">GitHub Pages</a></p>
+    </div>
 </body>
 </html>
