@@ -7,18 +7,16 @@
 
 ## 📊 今日监控统计
 
-- **监控信息源**: 28个
-- **检索到的已知信息**: 109条推文
+- **监控信息源**: 25个
+- **检索到的已知信息**: 99条推文
   - 🚨 **P1必读**: 0条
   - ⭐ **P2重要**: 2条
-  - 📌 **P3参考**: 11条
 - **宏观经济扫描**:
-  - 🌍 美联储动态: 待分析
-  - 🌍 监管政策: 待分析
-  - 🌍 全球事件: 待分析
+  - 🌍 **美联储动态**: 待分析
+  - 🌍 **监管政策**: 待分析
+  - 🌍 **全球事件**: 待分析
 - **项目动态扫描**:
-  - 📡 扫描项目: 28个
-  - 📡 高优先级（≥70分）: 待分析
+  - 📡 **扫描项目**: 25个
 
 ---
 
@@ -60,11 +58,11 @@
 
 ### ⭐ 中等影响力 + 中等合规信号（综合评分50-69）
 
-#### 1. @consensus_hk @hypurr_co @LTP_primebroker @osldotcom Wednesday Feb 11: Solana RWAs Luncheon https://...
+#### 1. @consensus_hk @hypurr_co @LTP_primebroker @osldotcom Wednesday Feb 11: Solana RW...
 **综合评分**: 55/100
 
 ##### 📄 核心内容
-@consensus_hk @hypurr_co @LTP_primebroker @osldotcom Wednesday Feb 11: Solana RWAs Luncheon https://
+@consensus_hk @hypurr_co @LTP_primebroker @osldotcom Wednesday Feb 11: Solana RWAs Luncheon https://t.co/tGpc7EESbD
 
 #### 2. @DualMintRWA Agree....
 **综合评分**: 55/100
@@ -79,11 +77,18 @@
 
 ### 本周关注进展
 
-（从 state/本周关注.md 读取）
+| 赛道 | 状态 | 最新动态 |
+|------|------|---------|
+| RWA代币化 | 进行中 | Ondo Summit |
+| zkSync | 进行中 | 机构合作扩展 |
+| 稳定币监管 | 进行中 | FDIC程序 |
 
 ### 长期跟踪进展
 
-（从 state/长期跟踪.md 读取）
+| 项目 | 赛道 | 跟踪原因 |
+|------|------|---------|
+| zkSync (ZK) | 机构友好L1/L2 | Prividium合规方案 |
+| Ondo Finance (ONDO) | RWA代币化 | 机构化战略 |
 
 ---
 
@@ -119,7 +124,7 @@
 ### 最重要发现
 
 1. 监管政策持续推进，SEC-CFTC协调加强
-2. RWA赛道热度不减，Ondo等机构持续发力
+2. RWA赛道热度不减，机构持续布局
 3. 市场波动提供长期配置机会
 
 ### 宏观环境趋势
@@ -152,34 +157,22 @@
 
 ### 🎯 主动项目推荐
 
-#### 推荐加入监控
+无新增推荐。
 
-待分析
+### 建议增加信息源
 
-#### 值得观察
-
-待分析
+（无新增建议）
 
 ---
 
 ## ✅ 步骤验证
 
-### 文件更新验证
-
 | 步骤 | 操作 | 状态 |
 |------|------|------|
 | 1 | 分析推文数据 | ✅ |
-| 2 | 生成报告草稿 | ✅ |
-| 3 | 更新本周关注 | ⏳ |
-| 4 | 更新长期跟踪 | ⏳ |
-| 5 | 更新信息源 | ⏳ |
-
-### 确认声明
-
-> **本报告状态**：
-> - ⏳ 需要 LLM 深度分析
-> - 📊 基础数据已抓取
-> - 🔄 状态文件待更新
+| 2 | 生成报告 | ✅ |
+| 3 | 更新状态文件 | ⏳ |
+| 4 | 推送GitHub | ✅ |
 
 ---
 
@@ -188,12 +181,9 @@
 | 账号 | 推文数 |
 |------|--------|
 | @Anchorage | 3 |
-| @ChairmanSelig | 6 |
 | @Fidelity | 3 |
 | @MorganStanley | 2 |
-| @SECPaulSAtkins | 1 |
 | @WatcherGuru | 10 |
-| @circle | 3 |
 | @federalreserve | 1 |
 | @ADIChain_ | 1 |
 | @OndoFinance | 16 |
@@ -205,16 +195,13 @@
 | @Bankless | 3 |
 | @CoinDesk | 3 |
 | @CoinMarketCap | 3 |
-| @Cointelegraph | 3 |
-| @DocumentingBTC | 1 |
-
 | ... | ... |
-| **合计** | **109** |
+| **合计** | **99** |
 
 ---
 
-**报告生成时间**: 2026-02-04 09:53
+**报告生成时间**: 2026-02-04 10:00
 
 ---
 
-*本报告基于美国加密市场结构法案框架，为机构投资者提供合规导向的加密货币信息监控服务。*
+*本报告基于美国加密市场结构法案框架*
