@@ -6,296 +6,87 @@
     <title>CryptoMonitor | 2026-02-05</title>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        :root { --bg: #0d1117; --card: #161b22; --border: #30363d; --text: #e6edf3; --dim: #8b949e; --muted: #6e7681; --blue: #58a6ff; --red: #f85149; --yellow: #d29922; --green: #3fb950; --purple: #a371f7; }
+        :root { --bg: #0d1117; --card: #161b22; --border: #30363d; --text: #e6edf3; --dim: #8b949e; --blue: #58a6ff; --green: #3fb950; --red: #f85149; --yellow: #d29922; --purple: #a371f7; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; padding: 20px; max-width: 1200px; margin: 0 auto; }
         @media (min-width: 768px) { body { padding: 40px; } }
         
-        .header { background: linear-gradient(135deg, rgba(88, 166, 255, 0.08) 0%, rgba(57, 211, 83, 0.08) 100%); border: 1px solid var(--border); border-radius: 16px; padding: 24px 28px; margin-bottom: 24px; }
+        .header { background: linear-gradient(135deg, rgba(88, 166, 255, 0.08) 0%, rgba(57, 211, 83, 0.08) 100%); border: 1px solid var(--border); border-radius: 16px; padding: 24px 28px; margin-bottom: 24px; position: relative; overflow: hidden; }
         .header::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--blue), var(--purple)); border-radius: 16px 16px 0 0; }
-        .header { position: relative; overflow: hidden; }
-        .h-top { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
         .header h1 { font-family: 'JetBrains Mono', monospace; font-size: 1.6rem; font-weight: 700; background: linear-gradient(90deg, var(--blue), var(--purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         @media (min-width: 768px) { .header h1 { font-size: 2rem; } }
-        .tags { display: flex; gap: 10px; flex-wrap: wrap; }
+        .tags { display: flex; gap: 10px; margin-top: 12px; flex-wrap: wrap; }
         .tag { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--dim); background: var(--card); padding: 6px 14px; border-radius: 20px; border: 1px solid var(--border); }
         
         .stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 24px; }
-        @media (min-width: 768px) { .stats { grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 32px; } }
+        @media (min-width: 768px) { .stats { grid-template-columns: repeat(4, 1fr); gap: 16px; } }
         .stat { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 18px; text-align: center; }
-        .stat:hover { border-color: var(--blue); }
         .stat-num { font-family: 'JetBrains Mono', monospace; font-size: 2rem; font-weight: 700; display: block; }
         @media (min-width: 768px) { .stat-num { font-size: 2.6rem; } }
         .stat-num.accent { color: var(--blue); }
         .stat-num.p1 { color: var(--red); }
         .stat-num.p2 { color: var(--yellow); }
-        .stat-label { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 4px; }
+        .stat-label { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--dim); text-transform: uppercase; margin-top: 4px; }
         
         .section { background: var(--card); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 16px; overflow: hidden; }
         @media (min-width: 768px) { .section { margin-bottom: 20px; border-radius: 16px; } }
-        .section summary { display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; cursor: pointer; list-style: none; }
-        @media (min-width: 768px) { .section summary { padding: 20px 24px; } }
-        .section summary:hover { background: rgba(88, 166, 255, 0.04); }
-        .section summary::-webkit-details-marker { display: none; }
-        .s-title { display: flex; align-items: center; gap: 12px; font-family: 'JetBrains Mono', monospace; font-size: 1rem; font-weight: 600; }
-        .s-icon { font-size: 1.4rem; }
-        .s-toggle { font-size: 0.8rem; color: var(--dim); }
-        .section[open] .s-toggle { transform: rotate(180deg); }
-        .s-content { padding: 0 20px 20px; }
-        @media (min-width: 768px) { .s-content { padding: 0 24px 24px; } }
+        .section h2 { font-family: 'JetBrains Mono', monospace; font-size: 1rem; padding: 16px 20px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 12px; }
+        @media (min-width: 768px) { .section h2 { padding: 20px 24px; } }
+        .section-content { padding: 16px 20px; font-size: 0.9rem; color: var(--dim); line-height: 1.8; }
+        @media (min-width: 768px) { .section-content { padding: 20px 24px; } }
+        .section-content ul { padding-left: 20px; margin: 12px 0; }
+        .section-content li { margin: 8px 0; }
         
-        .project { background: rgba(0,0,0,0.2); border-radius: 10px; margin-bottom: 12px; }
-        @media (min-width: 768px) { .project { margin-bottom: 16px; border-radius: 12px; } }
-        .p-header { display: flex; justify-content: space-between; align-items: flex-start; padding: 14px 16px; gap: 12px; flex-wrap: wrap; }
-        @media (min-width: 768px) { .p-header { padding: 18px 20px; } }
-        .p-name { font-family: 'JetBrains Mono', monospace; font-size: 0.95rem; font-weight: 600; flex: 1; }
-        .p-score { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--green); background: rgba(63, 185, 80, 0.1); padding: 4px 12px; border-radius: 6px; }
-        .p-meta { font-size: 0.85rem; color: var(--dim); padding: 0 16px 12px; line-height: 1.6; }
-        @media (min-width: 768px) { .p-meta { padding: 0 20px 16px; font-size: 0.9rem; } }
-        .p-meta strong { color: var(--muted); font-weight: 500; }
-        .p-body { border-top: 1px solid var(--border); padding: 14px 16px; }
-        @media (min-width: 768px) { .p-body { padding: 18px 20px; } }
-        .p-body h5 { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--muted); text-transform: uppercase; margin-bottom: 10px; }
-        .p-body ul { padding-left: 18px; margin: 0; }
-        .p-body li { margin: 6px 0; color: var(--dim); }
-        
-        .insight { background: rgba(0,0,0,0.2); border-radius: 8px; padding: 14px 16px; margin-bottom: 10px; }
-        @media (min-width: 768px) { .insight { padding: 16px 20px; border-radius: 10px; margin-bottom: 12px; } }
-        .i-num { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--green); margin-bottom: 6px; }
-        .i-text { font-size: 0.9rem; color: var(--dim); line-height: 1.7; }
-        
-        .content { font-size: 0.9rem; color: var(--dim); line-height: 1.8; }
-        .content h4 { font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: var(--text); margin: 20px 0 12px; padding-top: 16px; border-top: 1px dashed var(--border); }
-        .content h4:first-child { margin-top: 0; padding-top: 0; border-top: none; }
-        .content ul { padding-left: 20px; margin: 12px 0; }
-        .content li { margin: 8px 0; }
-        
-        .footer { text-align: center; padding: 32px 20px; color: var(--muted); font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; border-top: 1px solid var(--border); margin-top: 32px; }
+        .footer { text-align: center; padding: 32px 20px; color: var(--dim); font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; border-top: 1px solid var(--border); margin-top: 32px; }
         .footer a { color: var(--blue); text-decoration: none; }
     </style>
 </head>
 <body>
     <header class="header">
-        <div class="h-top">
-            <h1>> CryptoMonitor</h1>
-            <div class="tags">
-                <span class="tag">📅 2026-02-05</span>
-                <span class="tag">⏱️ 24h</span>
-                <span class="tag">🤖 自动生成</span>
-            </div>
+        <h1>> CryptoMonitor</h1>
+        <div class="tags">
+            <span class="tag">📅 2026-02-05</span>
+            <span class="tag">⏱️ 24h</span>
+            <span class="tag">🤖 Agent 分析</span>
         </div>
     </header>
     
     <div class="stats">
-        <div class="stat"><span class="stat-num accent">22</span><span class="stat-label">监控信息源</span></div>
-        <div class="stat"><span class="stat-num accent">71</span><span class="stat-label">检索推文</span></div>
-        <div class="stat"><span class="stat-num p1">4</span><span class="stat-label">P1 必读</span></div>
-        <div class="stat"><span class="stat-num p2">8</span><span class="stat-label">P2 重要</span></div>
+        <div class="stat"><span class="stat-num accent">0</span><span class="stat-label">监控信息源</span></div>
+        <div class="stat"><span class="stat-num accent">113</span><span class="stat-label">检索推文</span></div>
+        <div class="stat"><span class="stat-num p1">8</span><span class="stat-label">P1 相关</span></div>
+        <div class="stat"><span class="stat-num p2">4</span><span class="stat-label">P2 相关</span></div>
     </div>
     
     <details class="section" open>
-        <summary class="s-title"><span class="s-icon">🌍</span>宏观与监管<span class="s-toggle">▼</span></summary>
-        <div class="s-content"><div class="content"><p>
-<strong>美联储动态</strong>
-<li>无：本周期内无FOMC决议或Powell重要讲话，CPI/PCE数据处于常规发布间隔期。</li>
-
-<strong>美国监管动态</strong>
-<li>SEC/CFTC：无重大执法行动或政策声明发布。</li>
-
-<strong>全球重大事件</strong>
-<li><strong>UBS加密战略</strong>：瑞士银行集团CEO宣布目标直接加密接入和"fast follower"代币化推动，标志着GSIB级财富管理机构正式确认数字资产战略（来源：@TheBlock__）。</li>
-
----
-
-</p></div></div>
+        <summary style="list-style: none; display: flex; align-items: center; justify-content: space-between; cursor: pointer;">
+            <h2 style="margin: 0; border: none; padding: 0;">🌍 宏观动态</h2>
+        </summary>
+        <div class="section-content">
+            <ul><li>- "crypto regulation" - Google News</li><li>- Google News</li><li>- CFTC chief says pending crypto bill will make US the 'gold standard' for digital asset regulation - Fox Business</li><li>- White House meeting fails to resolve US crypto legislation stalemate - Reuters</li><li>- Ripple Lands Big Regulatory Win In Europe—So Why Is XRP Bleeding? - Yahoo Finance</li></ul>
+        </div>
     </details>
     
     <details class="section" open>
-        <summary class="s-title"><span class="s-icon">📡</span>项目雷达<span class="s-toggle">▼</span></summary>
-        <div class="s-content"><div class="content"><p>
-
-<strong>Ripple Prime × Hyperliquid</strong> | 来源:@Ripple/@CoinDesk | 时间:2026-02-04 | 评分:85/100
-
-<strong>核心发现</strong>：
-<li>Ripple机构级prime brokerage平台整合Hyperliquid，支持客户交易onchain衍生品并与传统资产跨保证金</li>
-<li>首次实现去中心化订单簿(DLOB)与TradFi prime brokerage基础设施的合规桥接</li>
-
-<strong>合规视角</strong>：
-<li>验证"合规DeFi"赛道可行性：机构可通过熟悉的主经纪商界面访问链上衍生品，降低监管不确定性</li>
-
-<strong>建议行动</strong>：
-1. 监控Hyperliquid的机构交易量占比变化，评估去中心化衍生品在机构组合中的渗透率
-2. 跟踪Ripple是否扩展至其他L2或DeFi协议，判断其成为"机构DeFi网关"的战略意图
-
----
-
-<strong>UBS直接加密接入</strong> | 来源:@TheBlock__ | 时间:2026-02-04 | 评分:80/100
-
-<strong>核心发现</strong>：
-<li>全球最大财富管理机构之一(管理资产>$5T)明确计划提供直接加密接入，采用"fast follower"代币化策略</li>
-<li>伴随2025年强劲业绩发布，显示传统金融机构将数字资产视为增长驱动力</li>
-
-<strong>合规视角</strong>：
-<li>GSIB级银行入场消除机构FOMO顾虑，为合规托管和代币化标准设立行业基准</li>
-
-<strong>建议行动</strong>：
-1. 跟踪UBS具体产品形态(现货/衍生品/代币化基金)及上线时间表
-2. 评估其对合规L1/L2(如Base、Avalanche)的潜在采用，关注银行级KYC/AML基础设施需求
-
----
-
-<strong>Centrifuge RWA基础设施</strong> | 来源:@centrifuge | 时间:2026-02-04 | 评分:75/100
-
-<strong>核心发现</strong>：
-<li>Anemoy(关联Centrifuge的Web3原生资产管理)管理$1.3B TVL上链，强调"安全+运营严谨性"</li>
-<li>与DWF Labs等讨论代币发行后的流动性场所和结算周期优化</li>
-
-<strong>合规视角</strong>：
-<li>展示RWA规模化路径：监管所有权结构+链上24/7结算+DeFi流动性整合，符合美国市场结构法案对透明度的要求</li>
-
-<strong>建议行动</strong>：
-1. 监控$1.3B TVL的具体资产构成(国债/信贷/其他)及审计报告发布
-2. 关注Centrifuge与Aave/MakerDAO的RWA抵押品整合进展，评估对DeFi资本效率的影响
-
----
-
-<strong>Aave品牌重组</strong> | 来源:@CoinMarketCap | 时间:2026-02-04 | 评分:72/100
-
-<strong>核心发现</strong>：
-<li>Aave解散Avara umbrella品牌，关闭Family加密钱包，将所有产品整合至Aave Labs</li>
-<li>战略聚焦DeFi核心协议，剥离非核心消费级应用</li>
-
-<strong>合规视角</strong>：
-<li>合规DeFi协议通过业务精简降低监管复杂度，专注于机构级借贷基础设施</li>
-
-<strong>建议行动</strong>：
-1. 评估Aave Labs是否推出机构专属KYC池或许可版本，响应RWA机构资金需求
-2. 监控团队资源再分配对协议升级频率(如V4)的影响
-
----
-
-
-<strong>Scroll ERC-8004 AI代理标准</strong> | 来源:@Scroll_ZKP | 时间:2026-02-04 | 评分:65/100
-
-<strong>核心发现</strong>：
-<li>在Scroll上线ERC-8004标准，为AI代理提供跨链身份注册、声誉系统和验证机制</li>
-<li>支持AI代理无许可发现、协作和交易，适用于DeFi交易、保险、跨链服务市场</li>
-
-<strong>建议行动</strong>：
-1. 关注ERC-8004在Arbitrum/Optimism等L2的跨链采用，评估成为AI+DeFi交互标准的可能性
-
----
-
-<strong>zkSync治理质押试点</strong> | 来源:@zksync | 时间:2026-02-04 | 评分:60/100
-
-<strong>核心发现</strong>：
-<li>启动ZKnomics Staking Pilot，要求质押者委托给"活跃代表"(过去5次治理中参与≥2次)才能获得奖励</li>
-<li>使用Tally基础设施，2月9日开始Season 1奖励</li>
-
-<strong>建议行动</strong>：
-1. 监控委托率与活跃代表数量变化，评估治理去中心化程度提升效果
-
----
-
-<strong>Bankless稳定币深度分析</strong> | 来源:@Bankless | 时间:2026-02-04 | 评分:60/100
-
-<strong>核心发现</strong>：
-<li>分析Liquity V2(用户自定义利率)、Money League(无许可稳定币工厂)、Polaris(内部波动率捕获)三个去信任稳定币项目</li>
-<li>强调与TradFi RWA抵押稳定币的差异化：加密原生抵押、链上赎回、最小化治理</li>
-
-<strong>建议行动</strong>：
-1. 对比这些协议的稳定性机制与USDC/USDT的合规储备模式，评估监管压力下的市场分割风险
-
----
-
-<strong>Arbitrum支付采用</strong> | 来源:@arbitrum | 时间:2026-02-04 | 评分:55/100
-
-<strong>核心发现</strong>：
-<li>Fiat24在Arbitrum处理支付量突破$1.8M，验证L2作为加密支付基础设施的可行性(即时、低成本、安全)</li>
-
-<strong>建议行动</strong>：
-1. 跟踪Arbitrum在稳定币支付基础设施赛道的市场份额，对比Base和Optimism的支付应用
-
----
-
-</p></div></div>
+        <summary style="list-style: none; display: flex; align-items: center; justify-content: space-between; cursor: pointer;">
+            <h2 style="margin: 0; border: none; padding: 0;">📡 项目提及</h2>
+        </summary>
+        <div class="section-content">
+            <ul><li>🟡</li><li>🟢</li><li>🔴</li></ul>
+        </div>
     </details>
     
     <details class="section">
-        <summary class="s-title"><span class="s-icon">💡</span>洞察与跟踪<span class="s-toggle">▼</span></summary>
-        <div class="s-content"><div class="content"><p>
-
-1. <strong>TradFi-DeFi边界模糊化</strong>：Ripple Prime整合Hyperliquid标志着机构级资金开始通过合规主经纪商接口直接访问去中心化衍生品，预示"合规DeFi"从概念进入实用阶段。
-2. <strong>RWA规模化验证</strong>：Centrifuge关联实体$1.3B TVL与UBS加密战略同步推进，显示代币化现实世界资产正从试点转向机构标准配置。
-3. <strong>L2垂直分化加速</strong>：Scroll聚焦AI代理身份层、zkSync强化治理去中心化、Arbitrum深耕支付场景，L2竞争从通用TPS转向场景专用合规基础设施。
-
-
-| 序号 | 项目 | 关注理由 |
-|------|------|---------|
-| 1 | Hyperliquid | 2月5-11日代币销售，观察机构参与度与估值合理性 |
-| 2 | UBS | 等待具体加密产品路线图细节披露 |
-| 3 | Centrifuge | 监控$1.3B TVL资产构成透明度及新机构合作 |
-
-
-| 项目 | 跟踪原因 |
-|------|---------|
-| ERC-8004标准 | AI代理跨链身份层可能成为合规自动化审查的基础设施 |
-| Ripple Prime | 评估是否成为机构进入DeFi衍生品的主要合规通道 |
-
----
-
-</p></div></div>
-    </details>
-    
-    <details class="section">
-        <summary class="s-title"><span class="s-icon">📋</span>信息源优化<span class="s-toggle">▼</span></summary>
-        <div class="s-content"><div class="content"><p>
-
-| 优先级 | 账号 | 理由 |
-|--------|------|------|
-| 核心 | @HyperliquidX | 机构级onchain衍生品关键基础设施，已获Ripple Prime整合 |
-| 项目 | @tallyxyz | 治理基础设施提供商，支持zkSync等L2的委托质押系统 |
-| 项目 | @LiquityProtocol | 去信任稳定币赛道代表，与RWA抵押稳定币形成差异化竞争 |
-
-<li>无</li>
-
----
-
-
-1. 稳定币基础设施
-2. RWA代币化
-3. 合规DeFi
-4. 机构友好L1/L2
-5. 身份认证
-
-<li>≥70 = P1 高影响力 + 强合规信号</li>
-<li>50-69 = P2 中等影响力</li>
-<li>25-49 = P3 参考价值</li>
-<li><25 = P4 可忽略</li>
-
-如果涉及 L2 项目（Arbitrum, Optimism, Base, zkSync 等），必须使用 L2 评估框架分析。
-
----
-
-
-<li><strong>简洁</strong>：每点不超过1句话</li>
-<li><strong>结构化</strong>：使用表格、列表</li>
-<li><strong>可执行</strong>：建议行动要具体</li>
-<li><strong>准确</strong>：统计数字必须正确</li>
-
----
-
-<strong>报告生成时间</strong>: 2026-02-04 15:30  
-<strong>数据来源</strong>: X平台 + TwitterApi.io
-
----
-
-*本报告基于美国加密市场结构法案框架，为机构投资者提供合规导向的加密货币信息监控服务。*
-</p></div></div>
+        <summary style="list-style: none; display: flex; align-items: center; justify-content: space-between; cursor: pointer;">
+            <h2 style="margin: 0; border: none; padding: 0;">📋 分析框架</h2>
+        </summary>
+        <div class="section-content">
+            <ul><li>5大赛道</li><li>分析维度框架</li><li>优先级分类框架</li><li>宏观经济关键词</li><li>信息源列表</li><li>L2项目评估框架</li></ul>
+        </div>
     </details>
     
     <div class="footer">
-        <p>🤖 Generated by <strong>CryptoMonitor</strong> | <a href="https://github.com/windhood-jza/crypto-monitor-pages">GitHub Pages</a></p>
+        <p>🤖 Generated by <strong>CryptoMonitor Agent</strong> | <a href="https://github.com/windhood-jza/crypto-monitor-pages">GitHub Pages</a></p>
     </div>
 </body>
 </html>
