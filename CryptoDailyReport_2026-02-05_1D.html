@@ -15,7 +15,7 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--tex
 .tags { display: flex; gap: 10px; margin-top: 12px; flex-wrap: wrap; }
 .tag { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--dim); background: var(--card); padding: 6px 14px; border-radius: 20px; border: 1px solid var(--border); }
 .stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 24px; }
-@media (min-width: 768px) { .stats { grid-template-columns: repeat(4, 1fr); gap: 16px; } }
+@media (min-width: 768px) { .stats { grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 32px; } }
 .stat { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 18px; text-align: center; }
 .stat-num { font-family: 'JetBrains Mono', monospace; font-size: 2rem; font-weight: 700; display: block; }
 @media (min-width: 768px) { .stat-num { font-size: 2.6rem; } }
@@ -31,41 +31,40 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--tex
 @media (min-width: 768px) { .section-content { padding: 20px 24px; } }
 .project { background: rgba(0,0,0,0.2); border-radius: 10px; margin-bottom: 12px; }
 @media (min-width: 768px) { .project { margin-bottom: 16px; border-radius: 12px; } }
-.project.small { padding: 14px 16px; }
-@media (min-width: 768px) { .project.small { padding: 18px 20px; } }
+.p1-card { border-left: 3px solid var(--red); }
+.p2-card { border-left: 3px solid var(--yellow); }
 .p-header { display: flex; justify-content: space-between; align-items: center; padding: 14px 16px; gap: 12px; }
 @media (min-width: 768px) { .p-header { padding: 18px 20px; } }
 .p-name { font-family: 'JetBrains Mono', monospace; font-size: 0.95rem; font-weight: 600; }
-.p-score { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; padding: 4px 12px; border-radius: 6px; }
-.p-score.p1 { color: var(--red); background: rgba(248, 81, 73, 0.1); }
-.p-score.p2 { color: var(--yellow); background: rgba(210, 153, 34, 0.1); }
+.p-score { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; padding: 4px 12px; border-radius: 6px; color: var(--green); background: rgba(63, 185, 80, 0.1); }
 .p-meta { font-size: 0.85rem; color: var(--dim); padding: 0 16px 12px; }
 @media (min-width: 768px) { .p-meta { padding: 0 20px 16px; } }
 .p-body { border-top: 1px solid var(--border); padding: 14px 16px; }
 @media (min-width: 768px) { .p-body { padding: 18px 20px; } }
-.p-body h5 { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--muted); text-transform: uppercase; margin-bottom: 10px; }
+.p-body h5 { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--blue); text-transform: uppercase; margin: 12px 0 8px; }
+.p-body h5:first-child { margin-top: 0; }
 .p-body ul { padding-left: 18px; margin: 0; }
 .p-body li { margin: 6px 0; color: var(--dim); }
-.l2-scores { display: flex; gap: 8px; margin-top: 8px; }
-.l2-score { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--green); background: rgba(63, 185, 80, 0.1); padding: 3px 8px; border-radius: 4px; }
-.insight { background: rgba(0,0,0,0.2); border-radius: 8px; padding: 14px 16px; margin-bottom: 10px; }
-@media (min-width: 768px) { .insight { padding: 16px 20px; } }
-.i-num { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--green); margin-bottom: 6px; }
-.i-text { font-size: 0.9rem; color: var(--dim); }
-.content ul { padding-left: 20px; margin: 12px 0; }
-.content li { margin: 8px 0; }
+.race-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+.race-tag { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--purple); background: rgba(163, 113, 247, 0.1); padding: 4px 12px; border-radius: 6px; }
+.summary-section { background: rgba(88, 166, 255, 0.05); border: 1px solid var(--blue); border-radius: 12px; padding: 20px; margin-bottom: 20px; }
+.summary-section h3 { font-family: 'JetBrains Mono', monospace; font-size: 1rem; color: var(--blue); margin-bottom: 16px; }
+.summary-section p { font-size: 0.9rem; color: var(--dim); margin: 8px 0; }
+.summary-section h4 { font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: var(--text); margin: 20px 0 12px; padding-top: 16px; border-top: 1px dashed var(--border); }
+.news-list li { margin: 8px 0; color: var(--dim); font-size: 0.85rem; }
+.empty { color: var(--muted); font-style: italic; text-align: center; padding: 20px; }
 .footer { text-align: center; padding: 32px 20px; color: var(--muted); font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; border-top: 1px solid var(--border); margin-top: 32px; }
 .footer a { color: var(--blue); text-decoration: none; }
 </style>
 </head>
 <body>
 <header class="header"><h1>> CryptoMonitor</h1><div class="tags"><span class="tag">📅 2026-02-05</span><span class="tag">⏱️ 24h</span><span class="tag">🤖 Agent 分析</span></div></header>
-<div class="stats"><div class="stat"><span class="stat-num accent">33</span><span class="stat-label">监控信息源</span></div><div class="stat"><span class="stat-num accent">113</span><span class="stat-label">检索推文</span></div><div class="stat"><span class="stat-num p1">6</span><span class="stat-label">P1 相关</span></div><div class="stat"><span class="stat-num p2">6</span><span class="stat-label">P2 相关</span></div></div>
-<details class="section" open><summary style="list-style: none; display: flex; align-items: center; justify-content: space-between; cursor: pointer;"><h2 style="margin: 0; border: none; padding: 0;">🌍 宏观与监管</h2></summary><div class="section-content"><ul><li>涉及 Fed</li><li>涉及 CFTC</li><li>瑞银/贝莱德等传统金融机构动态</li></ul></div></details>
-<details class="section" open><summary style="list-style: none; display: flex; align-items: center; justify-content: space-between; cursor: pointer;"><h2 style="margin: 0; border: none; padding: 0;">📡 项目雷达 · P1 高优先级 (1)</h2></summary><div class="section-content"><div class="project"><div class="p-header"><span class="p-name">@BlackRock</span><span class="p-score p1">78/100</span></div><div class="p-meta">📊 核心 · 2条推文</div><div class="p-body"><h5>核心发现</h5><ul></ul></div></div></div></details>
-<details class="section"><summary style="list-style: none; display: flex; align-items: center; justify-content: space-between; cursor: pointer;"><h2 style="margin: 0; border: none; padding: 0;">📡 项目雷达 · P2 中等优先级 (32)</h2></summary><div class="section-content"><div class="project small"><div class="p-header"><span class="p-name">@CFTC</span><span class="p-score p2">65/100</span></div></div><div class="project small"><div class="p-header"><span class="p-name">@ChairmanSelig</span><span class="p-score p2">65/100</span></div></div><div class="project small"><div class="p-header"><span class="p-name">@WatcherGuru</span><span class="p-score p2">65/100</span></div></div><div class="project small"><div class="p-header"><span class="p-name">@Cointelegraph</span><span class="p-score p2">65/100</span></div></div><div class="project small"><div class="p-header"><span class="p-name">@Ripple</span><span class="p-score p2">65/100</span></div></div></div></details>
-<details class="section"><summary style="list-style: none; display: flex; align-items: center; justify-content: space-between; cursor: pointer;"><h2 style="margin: 0; border: none; padding: 0;">💡 洞察与跟踪</h2></summary><div class="section-content"><div class="insight"><div class="i-num">#1 高优先级</div><div class="i-text"><strong>@BlackRock</strong> · 关注项目动态</div></div></div></details>
-<details class="section"><summary style="list-style: none; display: flex; align-items: center; justify-content: space-between; cursor: pointer;"><h2 style="margin: 0; border: none; padding: 0;">🌐 新闻动态</h2></summary><div class="section-content"><ul><li>"crypto regulation" - Google News</li><li>Google News</li><li>CFTC chief says pending crypto bill will make US the 'gold standard' for digital asset regulation - Fox Business</li><li>"Bitcoin ETF" - Google News</li><li>Google News</li></ul></div></details>
+<div class="stats"><div class="stat"><span class="stat-num accent">37</span><span class="stat-label">监控信息源</span></div><div class="stat"><span class="stat-num accent">112</span><span class="stat-label">检索推文</span></div><div class="stat"><span class="stat-num p1">13</span><span class="stat-label">P1 相关</span></div><div class="stat"><span class="stat-num p2">10</span><span class="stat-label">P2 相关</span></div></div>
+<details class="section" open><summary style="list-style: none; display: flex; align-items: center; justify-content: space-between; cursor: pointer;"><h2 style="margin: 0; border: none; padding: 0;">📋 整体总结</h2></summary><div class="section-content"><div class="summary-section"><h3>整体总结<br><h4>赛道分布<br><p>· 合规DeFi: 17次提及<br><p>· 稳定币: 12次提及<br><p>· RWA: 5次提及<br><h4>宏观概况<br><p>· 本周期涉及Fed监管机构相关动态。<br><h4>机构信号<br><p>· 检测到 10 个机构相关动态</div></div></details>
+<details class="section" open><summary style="list-style: none; display: flex; align-items: center; justify-content: space-between; cursor: pointer;"><h2 style="margin: 0; border: none; padding: 0;">🌍 宏观与监管 · 赛道分布</h2></summary><div class="section-content"><div class="race-tags"><span class="race-tag">合规DeFi 17</span><span class="race-tag">稳定币 12</span><span class="race-tag">RWA 5</span><span class="race-tag">身份认证 5</span></div><ul><li>Fed</li><li>SEC</li><li>CFTC</li><li>BlackRock</li></ul></div></details>
+<details class="section" open><summary style="list-style: none; display: flex; align-items: center; justify-content: space-between; cursor: pointer;"><h2 style="margin: 0; border: none; padding: 0;">📡 项目雷达 · P1 高优先级 (0)</h2></summary><div class="section-content"><div class="empty">暂无高优先级项目</div></div></details>
+<details class="section"><summary style="list-style: none; display: flex; align-items: center; justify-content: space-between; cursor: pointer;"><h2 style="margin: 0; border: none; padding: 0;">📡 项目雷达 · P2 中等优先级 (37)</h2></summary><div class="section-content"><div class="project p2-card"><div class="p-header"><span class="p-name">@BlackRock</span><span class="p-score">64/100</span></div><div class="p-meta">一般项目动态 · 定期关注更新</div></div><div class="project p2-card"><div class="p-header"><span class="p-name">@OndoFinance</span><span class="p-score">62/100</span></div><div class="p-meta">一般项目动态 · 定期关注更新</div></div><div class="project p2-card"><div class="p-header"><span class="p-name">@CoinMarketCap</span><span class="p-score">59/100</span></div><div class="p-meta">一般项目动态 · 保持了解</div></div><div class="project p2-card"><div class="p-header"><span class="p-name">@CFTC</span><span class="p-score">58/100</span></div><div class="p-meta">一般项目动态 · 保持了解</div></div><div class="project p2-card"><div class="p-header"><span class="p-name">@ChairmanSelig</span><span class="p-score">58/100</span></div><div class="p-meta">一般项目动态 · 保持了解</div></div><div class="project p2-card"><div class="p-header"><span class="p-name">@WatcherGuru</span><span class="p-score">58/100</span></div><div class="p-meta">一般项目动态 · 保持了解</div></div><div class="project p2-card"><div class="p-header"><span class="p-name">@WisdomTreeFunds</span><span class="p-score">58/100</span></div><div class="p-meta">一般项目动态 · 保持了解</div></div><div class="project p2-card"><div class="p-header"><span class="p-name">@centrifuge</span><span class="p-score">58/100</span></div><div class="p-meta">一般项目动态 · 保持了解</div></div><div class="project p2-card"><div class="p-header"><span class="p-name">@Cointelegraph</span><span class="p-score">58/100</span></div><div class="p-meta">一般项目动态 · 保持了解</div></div><div class="project p2-card"><div class="p-header"><span class="p-name">@Ripple</span><span class="p-score">58/100</span></div><div class="p-meta">一般项目动态 · 保持了解</div></div></div></details>
+<details class="section"><summary style="list-style: none; display: flex; align-items: center; justify-content: space-between; cursor: pointer;"><h2 style="margin: 0; border: none; padding: 0;">🌐 新闻动态</h2></summary><div class="section-content"><ul class="news-list"><li>"crypto regulation SEC" - Google News</li><li>"Bitcoin ETF BlackRock" - Google News</li><li>"L2 blockchain DeFi" - Google News</li></ul></div></details>
 <div class="footer"><p>🤖 Generated by <strong>CryptoMonitor Agent</strong> | <a href="https://github.com/windhood-jza/crypto-monitor-pages">GitHub Pages</a></p></div>
 </body>
 </html>
