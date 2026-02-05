@@ -9,7 +9,7 @@
 body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; padding: 20px; max-width: 1200px; margin: 0 auto; }
 .header { background: linear-gradient(135deg, rgba(88, 166, 255, 0.08) 0%, rgba(57, 211, 83, 0.08) 100%); border: 1px solid var(--border); border-radius: 16px; padding: 24px 28px; margin-bottom: 24px; }
 .header h1 { font-family: 'JetBrains Mono', monospace; font-size: 1.6rem; background: linear-gradient(90deg, var(--blue), var(--purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-.tags { display: flex; gap: 10px; margin-top: 12px; flex-wrap: wrap; }
+.tags { display: flex; gap: 10px; margin-top: 12px; }
 .tag { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--dim); background: var(--card); padding: 6px 14px; border-radius: 20px; border: 1px solid var(--border); }
 .stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 24px; }
 .stat { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 18px; text-align: center; }
@@ -17,156 +17,81 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--tex
 .stat-num.accent { color: var(--blue); }
 .stat-num.p1 { color: var(--red); }
 .stat-num.p2 { color: var(--yellow); }
-.stat-label { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--muted); text-transform: uppercase; margin-top: 4px; }
-.section { background: var(--card); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 16px; overflow: hidden; }
+.stat-label { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--muted); text-transform: uppercase; }
+.section { background: var(--card); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 16px; }
 .section h2 { font-family: 'JetBrains Mono', monospace; font-size: 1rem; padding: 16px 20px; border-bottom: 1px solid var(--border); }
 .section-content { padding: 16px 20px; }
 .project { background: rgba(0,0,0,0.2); border-radius: 10px; margin-bottom: 12px; }
 .p1-card { border-left: 3px solid var(--red); }
-.p2-card { border-left: 3px solid var(--yellow); }
 .p-header { display: flex; justify-content: space-between; align-items: center; padding: 14px 16px; }
 .p-name { font-family: 'JetBrains Mono', monospace; font-size: 0.95rem; font-weight: 600; }
 .p-score { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; padding: 4px 12px; border-radius: 6px; color: var(--green); background: rgba(63, 185, 80, 0.1); }
 .p-body { padding: 0 16px 16px; font-size: 0.9rem; color: var(--dim); }
 .p-body p { margin: 8px 0; }
-.p-meta { font-size: 0.85rem; color: var(--dim); padding: 0 16px 12px; }
+.p2-item { padding: 10px 0; border-bottom: 1px solid var(--border); }
 .footer { text-align: center; padding: 32px 20px; color: var(--muted); font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; border-top: 1px solid var(--border); margin-top: 32px; }
 </style>
 </head>
 <body>
 <header class="header"><h1>> CryptoMonitor</h1><div class="tags"><span class="tag">📅 2026-02-05</span><span class="tag">⏱️ 24h</span><span class="tag">🤖 Agent v3.2</span></div></header>
-<div class="stats"><div class="stat"><span class="stat-num accent">34</span><span class="stat-label">监控信息源</span></div><div class="stat"><span class="stat-num accent">115</span><span class="stat-label">检索推文</span></div><div class="stat"><span class="stat-num p1">2</span><span class="stat-label">P1 必读</span></div><div class="stat"><span class="stat-num p2">32</span><span class="stat-label">P2 重要</span></div></div>
-<details class="section" open><summary style="padding: 16px 20px; cursor: pointer; font-family: 'JetBrains Mono', monospace; font-size: 1rem;">🚨 P1 必读情报 (2)</summary><div class="section-content">
+<div class="stats"><div class="stat"><span class="stat-num accent">34</span><span class="stat-label">监控信息源</span></div><div class="stat"><span class="stat-num accent">115</span><span class="stat-label">检索推文</span></div><div class="stat"><span class="stat-num p1">9</span><span class="stat-label">P1 必读</span></div><div class="stat"><span class="stat-num p2">25</span><span class="stat-label">P2 重要</span></div></div>
+<details class="section" open><summary style="padding: 16px 20px; cursor: pointer; font-family: 'JetBrains Mono', monospace; font-size: 1rem;">🚨 P1 必读 (9)</summary><div class="section-content">
         <div class="project p1-card">
             <div class="p-header">
                 <span class="p-name">@centrifuge</span>
-                <span class="p-score">75/100</span>
+                <span class="p-score">80/100</span>
             </div>
             <div class="p-body">
-                <p><strong>核心发现</strong>: ## 推文 **内容**: Onchain finance is a team sport. **时间**: Wed Feb 04 21:25:19 +0000 2026 **URL**: ## 推文 **内容**: Centrifuge. **时间**: Wed Feb 04 21:17:38 +...</p>
-                <p><strong>合规视角</strong>: 涉及监管动态，关注合规影响</p>
-                <p><strong>机构影响</strong>: 监管机构动态，可能影响市场预期</p>
-                <p><strong>建议行动</strong>: 深入研究监管影响</p>
+                <p><strong>发现</strong>: ## 推文 **内容**: Onchain finance is a team sport. **时间**: Wed Feb 04 21:25:19 +0000 2026 **URL**: ## 推文 **内容**: Centrifuge. **时间**: Wed Feb 04 21:17:38 +...</p>
+                <p><strong>合规</strong>: 涉及监管动态，关注合规影响</p>
+                <p><strong>行动</strong>: 定期跟踪</p>
             </div>
         </div>
         <div class="project p1-card">
             <div class="p-header">
                 <span class="p-name">@Ripple</span>
-                <span class="p-score">75/100</span>
+                <span class="p-score">80/100</span>
             </div>
             <div class="p-body">
-                <p><strong>核心发现</strong>: ## 推文 **内容**: XRP Community Day kicks off next week! returns with to take some of YOUR questions and share his perspective on how XRP use cases have e...</p>
-                <p><strong>合规视角</strong>: 涉及监管动态，关注合规影响</p>
-                <p><strong>机构影响</strong>: 监管机构动态，可能影响市场预期</p>
-                <p><strong>建议行动</strong>: 深入研究监管影响</p>
+                <p><strong>发现</strong>: ## 推文 **内容**: XRP Community Day kicks off next week! returns with to take some of YOUR questions and share his perspective on how XRP use cases have e...</p>
+                <p><strong>合规</strong>: 涉及监管动态，关注合规影响</p>
+                <p><strong>行动</strong>: 定期跟踪</p>
             </div>
-        </div></div></details>
-<details class="section"><summary style="padding: 16px 20px; cursor: pointer; font-family: 'JetBrains Mono', monospace; font-size: 1rem;">⭐ P2 重要情报 (32)</summary><div class="section-content">
-        <div class="project p2-card">
+        </div>
+        <div class="project p1-card">
             <div class="p-header">
                 <span class="p-name">@BlackRock</span>
-                <span class="p-score">65/100</span>
+                <span class="p-score">70/100</span>
             </div>
-            <div class="p-meta">涉及监管动态，关注合规影响</div>
+            <div class="p-body">
+                <p><strong>发现</strong>: ## 推文 **内容**: Infrastructure, traditionally viewed as a stodgy defensive sector, is now at the center of intersecting mega forces – including geopolit...</p>
+                <p><strong>合规</strong>: 涉及监管动态，关注合规影响</p>
+                <p><strong>行动</strong>: 定期跟踪</p>
+            </div>
         </div>
-        <div class="project p2-card">
+        <div class="project p1-card">
             <div class="p-header">
                 <span class="p-name">@CFTC</span>
-                <span class="p-score">65/100</span>
+                <span class="p-score">70/100</span>
             </div>
-            <div class="p-meta">涉及监管动态，关注合规影响</div>
+            <div class="p-body">
+                <p><strong>发现</strong>: ## 推文 **内容**: . Withdraws Event Contracts Rule Proposal and Staff Sports Event Contracts Advisory: **时间**: Wed Feb 04 17:37:19 +0000 2026 **URL**:...</p>
+                <p><strong>合规</strong>: 涉及监管动态，关注合规影响</p>
+                <p><strong>行动</strong>: 定期跟踪</p>
+            </div>
         </div>
-        <div class="project p2-card">
+        <div class="project p1-card">
             <div class="p-header">
                 <span class="p-name">@ChairmanSelig</span>
-                <span class="p-score">65/100</span>
+                <span class="p-score">70/100</span>
             </div>
-            <div class="p-meta">涉及监管动态，关注合规影响</div>
-        </div>
-        <div class="project p2-card">
-            <div class="p-header">
-                <span class="p-name">@WatcherGuru</span>
-                <span class="p-score">65/100</span>
+            <div class="p-body">
+                <p><strong>发现</strong>: ## 推文 **内容**: The Biden era prediction markets rulemaking was a frolic into merit regulation with an outright ban on political contracts ahead of the ...</p>
+                <p><strong>合规</strong>: 涉及监管动态，关注合规影响</p>
+                <p><strong>行动</strong>: 定期跟踪</p>
             </div>
-            <div class="p-meta">涉及监管动态，关注合规影响</div>
-        </div>
-        <div class="project p2-card">
-            <div class="p-header">
-                <span class="p-name">@circle</span>
-                <span class="p-score">65/100</span>
-            </div>
-            <div class="p-meta">涉及监管动态，关注合规影响</div>
-        </div>
-        <div class="project p2-card">
-            <div class="p-header">
-                <span class="p-name">@OndoFinance</span>
-                <span class="p-score">65/100</span>
-            </div>
-            <div class="p-meta">涉及监管动态，关注合规影响</div>
-        </div>
-        <div class="project p2-card">
-            <div class="p-header">
-                <span class="p-name">@WisdomTreeFunds</span>
-                <span class="p-score">65/100</span>
-            </div>
-            <div class="p-meta">涉及监管动态，关注合规影响</div>
-        </div>
-        <div class="project p2-card">
-            <div class="p-header">
-                <span class="p-name">@ADIChain_</span>
-                <span class="p-score">60/100</span>
-            </div>
-            <div class="p-meta">涉及RWA，关注资产上链进展</div>
-        </div>
-        <div class="project p2-card">
-            <div class="p-header">
-                <span class="p-name">@arbitrum</span>
-                <span class="p-score">60/100</span>
-            </div>
-            <div class="p-meta">涉及机构合作，关注入场信号</div>
-        </div>
-        <div class="project p2-card">
-            <div class="p-header">
-                <span class="p-name">@zksync</span>
-                <span class="p-score">60/100</span>
-            </div>
-            <div class="p-meta">一般项目动态</div>
-        </div>
-        <div class="project p2-card">
-            <div class="p-header">
-                <span class="p-name">@Bankless</span>
-                <span class="p-score">60/100</span>
-            </div>
-            <div class="p-meta">涉及机构合作，关注入场信号</div>
-        </div>
-        <div class="project p2-card">
-            <div class="p-header">
-                <span class="p-name">@CoinMarketCap</span>
-                <span class="p-score">60/100</span>
-            </div>
-            <div class="p-meta">涉及机构合作，关注入场信号</div>
-        </div>
-        <div class="project p2-card">
-            <div class="p-header">
-                <span class="p-name">@Cointelegraph</span>
-                <span class="p-score">60/100</span>
-            </div>
-            <div class="p-meta">涉及机构合作，关注入场信号</div>
-        </div>
-        <div class="project p2-card">
-            <div class="p-header">
-                <span class="p-name">@defillama</span>
-                <span class="p-score">60/100</span>
-            </div>
-            <div class="p-meta">涉及RWA，关注资产上链进展</div>
-        </div>
-        <div class="project p2-card">
-            <div class="p-header">
-                <span class="p-name">@Anchorage</span>
-                <span class="p-score">50/100</span>
-            </div>
-            <div class="p-meta">一般项目动态</div>
         </div></div></details>
-<div class="footer"><p>🤖 Generated by <strong>CryptoMonitor Agent</strong> | <a href="https://github.com/windhood-jza/crypto-monitor-pages">GitHub Pages</a></p></div>
+<details class="section"><summary style="padding: 16px 20px; cursor: pointer; font-family: 'JetBrains Mono', monospace; font-size: 1rem;">⭐ P2 重要 (25)</summary><div class="section-content"><div class="p2-item">@ADIChain_ (60/100) - 涉及RWA，关注资产上链</div><div class="p2-item">@arbitrum (60/100) - 涉及机构动态，关注入场信号</div><div class="p2-item">@zksync (60/100) - 一般项目动态</div><div class="p2-item">@Bankless (60/100) - 涉及机构动态，关注入场信号</div><div class="p2-item">@CoinMarketCap (60/100) - 涉及机构动态，关注入场信号</div><div class="p2-item">@Cointelegraph (60/100) - 涉及机构动态，关注入场信号</div><div class="p2-item">@defillama (60/100) - 涉及RWA，关注资产上链</div><div class="p2-item">@Anchorage (50/100) - 一般项目动态</div><div class="p2-item">@Fidelity (50/100) - 涉及机构动态，关注入场信号</div><div class="p2-item">@MorganStanley (50/100) - 一般项目动态</div><div class="p2-item">@federalreserve (50/100) - 一般项目动态</div><div class="p2-item">@LineaBuild (50/100) - 一般项目动态</div><div class="p2-item">@aztecnetwork (50/100) - 一般项目动态</div><div class="p2-item">@base (50/100) - 一般项目动态</div><div class="p2-item">@civickey (50/100) - 一般项目动态</div></div></details>
+<div class="footer"><p>🤖 Generated by <strong>CryptoMonitor Agent</strong></p></div>
 </body>
 </html>
