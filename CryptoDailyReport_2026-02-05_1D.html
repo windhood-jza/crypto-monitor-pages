@@ -1,92 +1,71 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CryptoMonitor | 2026-02-05</title>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root { --bg: #0d1117; --card: #161b22; --border: #30363d; --text: #e6edf3; --dim: #8b949e; --blue: #58a6ff; --green: #3fb950; --red: #f85149; --yellow: #d29922; --purple: #a371f7; }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; padding: 20px; max-width: 1200px; margin: 0 auto; }
-        @media (min-width: 768px) { body { padding: 40px; } }
-        
-        .header { background: linear-gradient(135deg, rgba(88, 166, 255, 0.08) 0%, rgba(57, 211, 83, 0.08) 100%); border: 1px solid var(--border); border-radius: 16px; padding: 24px 28px; margin-bottom: 24px; position: relative; overflow: hidden; }
-        .header::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--blue), var(--purple)); border-radius: 16px 16px 0 0; }
-        .header h1 { font-family: 'JetBrains Mono', monospace; font-size: 1.6rem; font-weight: 700; background: linear-gradient(90deg, var(--blue), var(--purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        @media (min-width: 768px) { .header h1 { font-size: 2rem; } }
-        .tags { display: flex; gap: 10px; margin-top: 12px; flex-wrap: wrap; }
-        .tag { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--dim); background: var(--card); padding: 6px 14px; border-radius: 20px; border: 1px solid var(--border); }
-        
-        .stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 24px; }
-        @media (min-width: 768px) { .stats { grid-template-columns: repeat(4, 1fr); gap: 16px; } }
-        .stat { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 18px; text-align: center; }
-        .stat-num { font-family: 'JetBrains Mono', monospace; font-size: 2rem; font-weight: 700; display: block; }
-        @media (min-width: 768px) { .stat-num { font-size: 2.6rem; } }
-        .stat-num.accent { color: var(--blue); }
-        .stat-num.p1 { color: var(--red); }
-        .stat-num.p2 { color: var(--yellow); }
-        .stat-label { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--dim); text-transform: uppercase; margin-top: 4px; }
-        
-        .section { background: var(--card); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 16px; overflow: hidden; }
-        @media (min-width: 768px) { .section { margin-bottom: 20px; border-radius: 16px; } }
-        .section h2 { font-family: 'JetBrains Mono', monospace; font-size: 1rem; padding: 16px 20px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 12px; }
-        @media (min-width: 768px) { .section h2 { padding: 20px 24px; } }
-        .section-content { padding: 16px 20px; font-size: 0.9rem; color: var(--dim); line-height: 1.8; }
-        @media (min-width: 768px) { .section-content { padding: 20px 24px; } }
-        .section-content ul { padding-left: 20px; margin: 12px 0; }
-        .section-content li { margin: 8px 0; }
-        
-        .footer { text-align: center; padding: 32px 20px; color: var(--dim); font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; border-top: 1px solid var(--border); margin-top: 32px; }
-        .footer a { color: var(--blue); text-decoration: none; }
-    </style>
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CryptoMonitor | 2026-02-05</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root { --bg: #0d1117; --card: #161b22; --border: #30363d; --text: #e6edf3; --dim: #8b949e; --muted: #6e7681; --blue: #58a6ff; --red: #f85149; --yellow: #d29922; --green: #3fb950; --purple: #a371f7; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; padding: 20px; max-width: 1200px; margin: 0 auto; }
+@media (min-width: 768px) { body { padding: 40px; } }
+.header { background: linear-gradient(135deg, rgba(88, 166, 255, 0.08) 0%, rgba(57, 211, 83, 0.08) 100%); border: 1px solid var(--border); border-radius: 16px; padding: 24px 28px; margin-bottom: 24px; position: relative; overflow: hidden; }
+.header::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--blue), var(--purple)); border-radius: 16px 16px 0 0; }
+.header h1 { font-family: 'JetBrains Mono', monospace; font-size: 1.6rem; font-weight: 700; background: linear-gradient(90deg, var(--blue), var(--purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+@media (min-width: 768px) { .header h1 { font-size: 2rem; } }
+.tags { display: flex; gap: 10px; margin-top: 12px; flex-wrap: wrap; }
+.tag { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--dim); background: var(--card); padding: 6px 14px; border-radius: 20px; border: 1px solid var(--border); }
+.stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 24px; }
+@media (min-width: 768px) { .stats { grid-template-columns: repeat(4, 1fr); gap: 16px; } }
+.stat { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 18px; text-align: center; }
+.stat-num { font-family: 'JetBrains Mono', monospace; font-size: 2rem; font-weight: 700; display: block; }
+@media (min-width: 768px) { .stat-num { font-size: 2.6rem; } }
+.stat-num.accent { color: var(--blue); }
+.stat-num.p1 { color: var(--red); }
+.stat-num.p2 { color: var(--yellow); }
+.stat-label { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--muted); text-transform: uppercase; margin-top: 4px; }
+.section { background: var(--card); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 16px; overflow: hidden; }
+@media (min-width: 768px) { .section { margin-bottom: 20px; border-radius: 16px; } }
+.section h2 { font-family: 'JetBrains Mono', monospace; font-size: 1rem; padding: 16px 20px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 12px; }
+@media (min-width: 768px) { .section h2 { padding: 20px 24px; } }
+.section-content { padding: 16px 20px; font-size: 0.9rem; color: var(--dim); line-height: 1.8; }
+@media (min-width: 768px) { .section-content { padding: 20px 24px; } }
+.project { background: rgba(0,0,0,0.2); border-radius: 10px; margin-bottom: 12px; }
+@media (min-width: 768px) { .project { margin-bottom: 16px; border-radius: 12px; } }
+.project.small { padding: 14px 16px; }
+@media (min-width: 768px) { .project.small { padding: 18px 20px; } }
+.p-header { display: flex; justify-content: space-between; align-items: center; padding: 14px 16px; gap: 12px; }
+@media (min-width: 768px) { .p-header { padding: 18px 20px; } }
+.p-name { font-family: 'JetBrains Mono', monospace; font-size: 0.95rem; font-weight: 600; }
+.p-score { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; padding: 4px 12px; border-radius: 6px; }
+.p-score.p1 { color: var(--red); background: rgba(248, 81, 73, 0.1); }
+.p-score.p2 { color: var(--yellow); background: rgba(210, 153, 34, 0.1); }
+.p-meta { font-size: 0.85rem; color: var(--dim); padding: 0 16px 12px; }
+@media (min-width: 768px) { .p-meta { padding: 0 20px 16px; } }
+.p-body { border-top: 1px solid var(--border); padding: 14px 16px; }
+@media (min-width: 768px) { .p-body { padding: 18px 20px; } }
+.p-body h5 { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--muted); text-transform: uppercase; margin-bottom: 10px; }
+.p-body ul { padding-left: 18px; margin: 0; }
+.p-body li { margin: 6px 0; color: var(--dim); }
+.l2-scores { display: flex; gap: 8px; margin-top: 8px; }
+.l2-score { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--green); background: rgba(63, 185, 80, 0.1); padding: 3px 8px; border-radius: 4px; }
+.insight { background: rgba(0,0,0,0.2); border-radius: 8px; padding: 14px 16px; margin-bottom: 10px; }
+@media (min-width: 768px) { .insight { padding: 16px 20px; } }
+.i-num { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--green); margin-bottom: 6px; }
+.i-text { font-size: 0.9rem; color: var(--dim); }
+.content ul { padding-left: 20px; margin: 12px 0; }
+.content li { margin: 8px 0; }
+.footer { text-align: center; padding: 32px 20px; color: var(--muted); font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; border-top: 1px solid var(--border); margin-top: 32px; }
+.footer a { color: var(--blue); text-decoration: none; }
+</style>
 </head>
 <body>
-    <header class="header">
-        <h1>> CryptoMonitor</h1>
-        <div class="tags">
-            <span class="tag">📅 2026-02-05</span>
-            <span class="tag">⏱️ 24h</span>
-            <span class="tag">🤖 Agent 分析</span>
-        </div>
-    </header>
-    
-    <div class="stats">
-        <div class="stat"><span class="stat-num accent">33</span><span class="stat-label">监控信息源</span></div>
-        <div class="stat"><span class="stat-num accent">113</span><span class="stat-label">检索推文</span></div>
-        <div class="stat"><span class="stat-num p1">5</span><span class="stat-label">P1 相关</span></div>
-        <div class="stat"><span class="stat-num p2">4</span><span class="stat-label">P2 相关</span></div>
-    </div>
-    
-    <details class="section" open>
-        <summary style="list-style: none; display: flex; align-items: center; justify-content: space-between; cursor: pointer;">
-            <h2 style="margin: 0; border: none; padding: 0;">🌍 宏观动态</h2>
-        </summary>
-        <div class="section-content">
-            <ul><li>- "crypto regulation" - Google News</li><li>- Google News</li><li>- CFTC chief says pending crypto bill will make US the 'gold standard' for digital asset regulation - Fox Business</li><li>- White House meeting fails to resolve US crypto legislation stalemate - Reuters</li><li>- Ripple Lands Big Regulatory Win In Europe—So Why Is XRP Bleeding? - Yahoo Finance</li></ul>
-        </div>
-    </details>
-    
-    <details class="section" open>
-        <summary style="list-style: none; display: flex; align-items: center; justify-content: space-between; cursor: pointer;">
-            <h2 style="margin: 0; border: none; padding: 0;">📡 项目提及</h2>
-        </summary>
-        <div class="section-content">
-            <ul><li>🟡</li><li>🟢</li><li>🔴</li></ul>
-        </div>
-    </details>
-    
-    <details class="section">
-        <summary style="list-style: none; display: flex; align-items: center; justify-content: space-between; cursor: pointer;">
-            <h2 style="margin: 0; border: none; padding: 0;">📋 分析框架</h2>
-        </summary>
-        <div class="section-content">
-            <ul><li>5大赛道</li><li>分析维度框架</li><li>优先级分类框架</li><li>宏观经济关键词</li><li>信息源列表</li><li>L2项目评估框架</li></ul>
-        </div>
-    </details>
-    
-    <div class="footer">
-        <p>🤖 Generated by <strong>CryptoMonitor Agent</strong> | <a href="https://github.com/windhood-jza/crypto-monitor-pages">GitHub Pages</a></p>
-    </div>
+<header class="header"><h1>> CryptoMonitor</h1><div class="tags"><span class="tag">📅 2026-02-05</span><span class="tag">⏱️ 24h</span><span class="tag">🤖 Agent 分析</span></div></header>
+<div class="stats"><div class="stat"><span class="stat-num accent">33</span><span class="stat-label">监控信息源</span></div><div class="stat"><span class="stat-num accent">113</span><span class="stat-label">检索推文</span></div><div class="stat"><span class="stat-num p1">6</span><span class="stat-label">P1 相关</span></div><div class="stat"><span class="stat-num p2">6</span><span class="stat-label">P2 相关</span></div></div>
+<details class="section" open><summary style="list-style: none; display: flex; align-items: center; justify-content: space-between; cursor: pointer;"><h2 style="margin: 0; border: none; padding: 0;">🌍 宏观与监管</h2></summary><div class="section-content"><ul><li>涉及 Fed</li><li>涉及 CFTC</li><li>瑞银/贝莱德等传统金融机构动态</li></ul></div></details>
+<details class="section" open><summary style="list-style: none; display: flex; align-items: center; justify-content: space-between; cursor: pointer;"><h2 style="margin: 0; border: none; padding: 0;">📡 项目雷达 · P1 高优先级 (1)</h2></summary><div class="section-content"><div class="project"><div class="p-header"><span class="p-name">@BlackRock</span><span class="p-score p1">78/100</span></div><div class="p-meta">📊 核心 · 2条推文</div><div class="p-body"><h5>核心发现</h5><ul></ul></div></div></div></details>
+<details class="section"><summary style="list-style: none; display: flex; align-items: center; justify-content: space-between; cursor: pointer;"><h2 style="margin: 0; border: none; padding: 0;">📡 项目雷达 · P2 中等优先级 (32)</h2></summary><div class="section-content"><div class="project small"><div class="p-header"><span class="p-name">@CFTC</span><span class="p-score p2">65/100</span></div></div><div class="project small"><div class="p-header"><span class="p-name">@ChairmanSelig</span><span class="p-score p2">65/100</span></div></div><div class="project small"><div class="p-header"><span class="p-name">@WatcherGuru</span><span class="p-score p2">65/100</span></div></div><div class="project small"><div class="p-header"><span class="p-name">@Cointelegraph</span><span class="p-score p2">65/100</span></div></div><div class="project small"><div class="p-header"><span class="p-name">@Ripple</span><span class="p-score p2">65/100</span></div></div></div></details>
+<details class="section"><summary style="list-style: none; display: flex; align-items: center; justify-content: space-between; cursor: pointer;"><h2 style="margin: 0; border: none; padding: 0;">💡 洞察与跟踪</h2></summary><div class="section-content"><div class="insight"><div class="i-num">#1 高优先级</div><div class="i-text"><strong>@BlackRock</strong> · 关注项目动态</div></div></div></details>
+<details class="section"><summary style="list-style: none; display: flex; align-items: center; justify-content: space-between; cursor: pointer;"><h2 style="margin: 0; border: none; padding: 0;">🌐 新闻动态</h2></summary><div class="section-content"><ul><li>"crypto regulation" - Google News</li><li>Google News</li><li>CFTC chief says pending crypto bill will make US the 'gold standard' for digital asset regulation - Fox Business</li><li>"Bitcoin ETF" - Google News</li><li>Google News</li></ul></div></details>
+<div class="footer"><p>🤖 Generated by <strong>CryptoMonitor Agent</strong> | <a href="https://github.com/windhood-jza/crypto-monitor-pages">GitHub Pages</a></p></div>
 </body>
 </html>
