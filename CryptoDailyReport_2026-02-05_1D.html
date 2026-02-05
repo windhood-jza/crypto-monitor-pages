@@ -36,46 +36,122 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--tex
 .p-name { font-family: 'JetBrains Mono', monospace; font-size: 0.95rem; font-weight: 600; }
 .p-score { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; padding: 4px 12px; border-radius: 6px; color: var(--green); background: rgba(63, 185, 80, 0.1); }
 .p-body { padding: 0 16px 16px; color: var(--dim); font-size: 0.9rem; }
-.empty { color: var(--muted); font-style: italic; text-align: center; padding: 20px; }
+table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.85rem; }
+th, td { padding: 10px; text-align: left; border-bottom: 1px solid var(--border); }
+th { font-family: 'JetBrains Mono', monospace; color: var(--muted); }
 .footer { text-align: center; padding: 32px 20px; color: var(--muted); font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; border-top: 1px solid var(--border); margin-top: 32px; }
 .footer a { color: var(--blue); text-decoration: none; }
 </style>
 </head>
 <body>
-<header class="header"><h1>> CryptoMonitor</h1><div class="tags"><span class="tag">📅 2026-02-05</span><span class="tag">⏱️ 24h</span><span class="tag">🤖 Agent v3.0</span></div></header>
-<div class="stats"><div class="stat"><span class="stat-num accent">34</span><span class="stat-label">监控信息源</span></div><div class="stat"><span class="stat-num accent">115</span><span class="stat-label">检索推文</span></div><div class="stat"><span class="stat-num p1">1</span><span class="stat-label">P1 必读</span></div><div class="stat"><span class="stat-num p2">33</span><span class="stat-label">P2 重要</span></div></div>
-<details class="section" open><summary style="list-style: none; padding: 16px 20px; cursor: pointer; font-family: 'JetBrains Mono', monospace; font-size: 1rem; border-bottom: 1px solid var(--border);">📊 监控统计</summary><div class="section-content"><p><h1>加密合规信息监控日报 <li>2026-02-05</h1></li></p><p>---</p><p><h2>📊 今日监控统计</h2>
-<strong>监控信息源</strong>: 34个
-<strong>检索推文</strong>: 115条
-  <li>🚨 **P1必读**: 27条</li>
-  <li>⭐ **P2重要**: 5条</li>
-  <li>📌 **P3参考**: 41条</li>
-  <li>❌ **P4忽略**: 42条</li></p><p></p></div></details>
-<details class="section" open><summary style="list-style: none; padding: 16px 20px; cursor: pointer; font-family: 'JetBrains Mono', monospace; font-size: 1rem; border-bottom: 1px solid var(--border);">🌍 项目动态雷达</summary><div class="section-content"><p> 宏观经济环境</p><p><h3>美联储动态</h3>
-<li>Fed</li></p><p><h3>美国监管动态</h3>
-<li>SEC</li>
-<li>CFTC</li></p><p><h3>全球重大事件</h3>
-<li>BlackRock</li>
-<li>Fidelity</li></p><p><h2>📡 项目动态雷达</h2></p><p><h3>🚨 高影响力 + 强合规信号（综合评分≥70）</h3>
-#### BlackRock
-<strong>来源</strong>: @BlackRock
-<strong>综合评分</strong>: 76/100
-<strong>建议行动</strong>: 重点关注，持续跟踪</p><p><h3>⭐ 中等影响力 + 中等合规信号（综合评分50-69）</h3>
-<li>@CFTC (68/100)</li>
-<li>@OndoFinance (66/100)</li>
-<li>@Fidelity (60/100)</li>
-<li>@ChairmanSelig (58/100)</li>
-<li>@WatcherGuru (58/100)</li>
-<li>@WisdomTreeFunds (58/100)</li>
-<li>@centrifuge (58/100)</li>
-<li>@Ripple (58/100)</li>
-<li>@ADIChain_ (54/100)</li>
-<li>@defillama (54/100)</li>
-<li>@Anchorage (50/100)</li>
-<li>@MorganStanley (50/100)</li>
-<li>@circle (50/100)</li>
-<li>@federalreserve (50/100)</li>
-<li>@LineaBuild (50/100)</li></p><p></p></div></details>
+<header class="header"><h1>> CryptoMonitor</h1><div class="tags"><span class="tag">📅 2026-02-05</span><span class="tag">⏱️ 24h</span><span class="tag">🤖 Agent v3.1</span></div></header>
+<div class="stats"><div class="stat"><span class="stat-num accent">65</span><span class="stat-label">监控信息源</span></div><div class="stat"><span class="stat-num accent">133</span><span class="stat-label">检索推文</span></div><div class="stat"><span class="stat-num p1">1</span><span class="stat-label">P1 必读</span></div><div class="stat"><span class="stat-num p2">64</span><span class="stat-label">P2 重要</span></div></div>
+<details class="section" open><summary style="list-style: none; padding: 16px 20px; cursor: pointer; font-family: 'JetBrains Mono', monospace; font-size: 1rem; border-bottom: 1px solid var(--border);">📊 监控统计</summary><div class="section-content"><pre style="white-space: pre-wrap; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem;"># 加密合规信息监控日报 - 2026-02-05
+
+---
+
+## 📊 今日监控统计
+
+| 指标 | 数值 |
+|------|------|
+| 监控信息源 | 65个 |
+| 检索推文 | 133条 |
+| 🚨 P1必读 | 30条 |
+| ⭐ P2重要 | 10条 |
+| 📌 P3参考 | 46条 |
+
+### 赛道分布
+| 赛道 | 提及次数 |
+|------|---------|
+| 稳定币 | 5 |
+| RWA | 3 |
+| 机构L2 | 3 |
+| 合规DeFi | 2 |
+| 身份认证 | 2 |
+
+</pre></div></details>
+<details class="section" open><summary style="list-style: none; padding: 16px 20px; cursor: pointer; font-family: 'JetBrains Mono', monospace; font-size: 1rem; border-bottom: 1px solid var(--border);">🌍 项目动态雷达</summary><div class="section-content"><pre style="white-space: pre-wrap; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem;"> 项目动态雷达
+
+### 🚨 高影响力 + 强合规信号（综合评分≥70）
+
+#### @BlackRock
+- **来源**: @BlackRock (核心)
+- **推文数**: 2条
+- **综合评分**: 76/100
+
+##### 核心发现
+-  ## 推文 **内容**: Infrastructure, traditionally viewed as a stodgy defensive sector, is now at the center of intersecting mega forces – including geopolitical fragmentation and AI. We see scope for inves...
+
+##### 合规视角
+- 关注合规进展
+
+##### 机构影响
+- 机构相关
+
+##### 赛道影响
+- 稳定币: 关注
+- RWA: 关注
+- 合规DeFi: 关注
+- 机构L2: 关注
+- 身份认证: 关注
+
+##### 时效性
+- **影响类型**: 短期影响 (数周至数月)
+- **时间窗口**: 2026-02-05 起
+
+##### 建议行动
+- [ ] 立即深度研究项目背景
+- [ ] 关注后续动态更新
+- [ ] 评估对投资组合的影响
+
+### ⭐ 中等影响力 + 中等合规信号（综合评分50-69）
+
+#### @CFTC
+- **来源**: @CFTC | **评分**: 68/100 | **推文**: 1条
+
+#### @Fidelity
+- **来源**: @Fidelity | **评分**: 60/100 | **推文**: 2条
+
+#### @circle
+- **来源**: @circle | **评分**: 60/100 | **推文**: 3条
+
+#### @ChairmanSelig
+- **来源**: @ChairmanSelig | **评分**: 58/100 | **推文**: 1条
+
+#### @WatcherGuru
+- **来源**: @WatcherGuru | **评分**: 58/100 | **推文**: 10条
+
+#### @grok
+- **来源**: @grok | **评分**: 58/100 | **推文**: 2条
+
+#### @sanampudi1963
+- **来源**: @sanampudi1963 | **评分**: 58/100 | **推文**: 1条
+
+#### @starallsec
+- **来源**: @starallsec | **评分**: 58/100 | **推文**: 1条
+
+#### @whatsupcripto
+- **来源**: @whatsupcripto | **评分**: 58/100 | **推文**: 1条
+
+#### @OndoFinance
+- **来源**: @OndoFinance | **评分**: 58/100 | **推文**: 1条
+
+#### @WisdomTreeFunds
+- **来源**: @WisdomTreeFunds | **评分**: 58/100 | **推文**: 2条
+
+#### @centrifuge
+- **来源**: @centrifuge | **评分**: 58/100 | **推文**: 2条
+
+#### @Ripple
+- **来源**: @Ripple | **评分**: 58/100 | **推文**: 3条
+
+#### @ADIChain_
+- **来源**: @ADIChain_ | **评分**: 54/100 | **推文**: 2条
+
+#### @defillama
+- **来源**: @defillama | **评分**: 54/100 | **推文**: 3条
+
+</pre></div></details>
 <details class="section" open><summary style="list-style: none; padding: 16px 20px; cursor: pointer; font-family: 'JetBrains Mono', monospace; font-size: 1rem; border-bottom: 1px solid var(--border);">📡 P1 高优先级 (1)</summary><div class="section-content">
         <div class="project p1-card">
             <div class="p-header">
@@ -83,10 +159,10 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--tex
                 <span class="p-score">76/100</span>
             </div>
             <div class="p-body">
-                <p> ## 推文 **内容**: Infrastructure, traditionally viewed as a stodgy defensive sector, is now at the center of intersecting mega forces – including geopoli...</p>
+                <p> ## 推文 **内容**: Infrastructure, traditionally viewed as a stodgy defensive sector, is now at the center of intersecting mega forces – including geopolitical fragmentation and AI. We see scope for inves...</p>
             </div>
         </div></div></details>
-<details class="section"><summary style="list-style: none; padding: 16px 20px; cursor: pointer; font-family: 'JetBrains Mono', monospace; font-size: 1rem; border-bottom: 1px solid var(--border);">📡 P2 中等优先级 (33)</summary><div class="section-content">
+<details class="section"><summary style="list-style: none; padding: 16px 20px; cursor: pointer; font-family: 'JetBrains Mono', monospace; font-size: 1rem; border-bottom: 1px solid var(--border);">📡 P2 中等优先级 (64)</summary><div class="section-content">
         <div class="project p2-card">
             <div class="p-header">
                 <span class="p-name">@CFTC</span>
@@ -95,13 +171,13 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--tex
         </div>
         <div class="project p2-card">
             <div class="p-header">
-                <span class="p-name">@OndoFinance</span>
-                <span class="p-score">66/100</span>
+                <span class="p-name">@Fidelity</span>
+                <span class="p-score">60/100</span>
             </div>
         </div>
         <div class="project p2-card">
             <div class="p-header">
-                <span class="p-name">@Fidelity</span>
+                <span class="p-name">@circle</span>
                 <span class="p-score">60/100</span>
             </div>
         </div>
@@ -114,6 +190,36 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--tex
         <div class="project p2-card">
             <div class="p-header">
                 <span class="p-name">@WatcherGuru</span>
+                <span class="p-score">58/100</span>
+            </div>
+        </div>
+        <div class="project p2-card">
+            <div class="p-header">
+                <span class="p-name">@grok</span>
+                <span class="p-score">58/100</span>
+            </div>
+        </div>
+        <div class="project p2-card">
+            <div class="p-header">
+                <span class="p-name">@sanampudi1963</span>
+                <span class="p-score">58/100</span>
+            </div>
+        </div>
+        <div class="project p2-card">
+            <div class="p-header">
+                <span class="p-name">@starallsec</span>
+                <span class="p-score">58/100</span>
+            </div>
+        </div>
+        <div class="project p2-card">
+            <div class="p-header">
+                <span class="p-name">@whatsupcripto</span>
+                <span class="p-score">58/100</span>
+            </div>
+        </div>
+        <div class="project p2-card">
+            <div class="p-header">
+                <span class="p-name">@OndoFinance</span>
                 <span class="p-score">58/100</span>
             </div>
         </div>
@@ -146,43 +252,46 @@ body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--tex
                 <span class="p-name">@defillama</span>
                 <span class="p-score">54/100</span>
             </div>
-        </div>
-        <div class="project p2-card">
-            <div class="p-header">
-                <span class="p-name">@Anchorage</span>
-                <span class="p-score">50/100</span>
-            </div>
-        </div>
-        <div class="project p2-card">
-            <div class="p-header">
-                <span class="p-name">@MorganStanley</span>
-                <span class="p-score">50/100</span>
-            </div>
-        </div>
-        <div class="project p2-card">
-            <div class="p-header">
-                <span class="p-name">@circle</span>
-                <span class="p-score">50/100</span>
-            </div>
-        </div>
-        <div class="project p2-card">
-            <div class="p-header">
-                <span class="p-name">@federalreserve</span>
-                <span class="p-score">50/100</span>
-            </div>
-        </div>
-        <div class="project p2-card">
-            <div class="p-header">
-                <span class="p-name">@LineaBuild</span>
-                <span class="p-score">50/100</span>
-            </div>
         </div></div></details>
-<details class="section"><summary style="list-style: none; padding: 16px 20px; cursor: pointer; font-family: 'JetBrains Mono', monospace; font-size: 1rem; border-bottom: 1px solid var(--border);">💡 洞察总结</summary><div class="section-content"><p> 今日洞察总结</p><p><h3>最重要发现</h3>
-1. @BlackRock <li>P1 (76分)</li></p><p><h3>宏观环境趋势</h3>
-<li>本周期涉及Fed监管机构相关动态。</li></p><p><h3>监管趋势</h3>
-<li>持续关注 SEC/CFTC 动态</li></p><p><h3>机会雷达</h3>
-<li>RWA 代币化赛道</li>
-<li>合规 DeFi 协议</li></p><p></p></div></details>
-<div class="footer"><p>🤖 Generated by <strong>CryptoMonitor Agent v3.0</strong> | <a href="https://github.com/windhood-jza/crypto-monitor-pages">GitHub Pages</a></p></div>
+<details class="section"><summary style="list-style: none; padding: 16px 20px; cursor: pointer; font-family: 'JetBrains Mono', monospace; font-size: 1rem; border-bottom: 1px solid var(--border);">💡 洞察总结</summary><div class="section-content"><pre style="white-space: pre-wrap; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem;"> 今日洞察总结
+
+### 最重要发现
+1. **BlackRock** (76分) -  ## 推文 **内容**: Infrastructure, traditionally viewed as a stodgy defensive sector...
+
+### 宏观环境趋势
+- 本周期涉及美联储、SEC/CFTC相关动态。
+- 监管环境持续演变，关注政策落地
+
+### 监管趋势
+- SEC/CFTC 监管框架逐步明确
+- 合规化趋势持续强化
+
+### 机会雷达
+- RWA 代币化赛道持续升温
+- 合规 DeFi 协议值得关注
+- 机构入场信号增强
+
+### 风险警示
+- 监管政策不确定性
+- 合规成本可能增加
+
+## 📈 跟踪进展更新
+
+### 本周关注进展
+| 项目 | 赛道 | 状态 | 最新动态 |
+|------|------|------|---------|
+| @BlackRock | - | 监控中 |  ## 推文 **内容**: Infrastructure,... |
+
+### 长期跟踪进展
+| 项目 | 跟踪原因 | 状态 |
+|------|---------|------|
+| @CFTC | 赛道监控 | 进行中 |
+| @Fidelity | 赛道监控 | 进行中 |
+| @circle | 赛道监控 | 进行中 |
+| @ChairmanSelig | 赛道监控 | 进行中 |
+| @WatcherGuru | 赛道监控 | 进行中 |
+
+</pre></div></details>
+<div class="footer"><p>🤖 Generated by <strong>CryptoMonitor Agent v3.1</strong> | <a href="https://github.com/windhood-jza/crypto-monitor-pages">GitHub Pages</a></p></div>
 </body>
 </html>
