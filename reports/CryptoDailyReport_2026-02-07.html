@@ -139,6 +139,11 @@ body {
 .pri.p1 { background: var(--p1-bg); color: var(--p1); }
 .pri.p2 { background: var(--p2-bg); color: var(--p2); }
 .item-ttl { font-size: 0.9rem; font-weight: 500; line-height: 1.4; }
+.item-info { flex: 1; min-width: 0; }
+.item-meta { display: flex; gap: 8px; margin-top: 6px; flex-wrap: wrap; }
+.item-meta .meta { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--text-secondary); background: var(--surface-light); padding: 3px 8px; border-radius: 4px; }
+.item-body { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border); }
+.item-core { font-size: 0.8rem; color: var(--text-secondary); line-height: 1.6; }
 .item-link {
   display: inline-block;
   margin-top: 10px;
@@ -216,61 +221,109 @@ body {
     </button>
     <div class="content">
       
-        <div class="item">
-          <div class="item-header">
-            <span class="pri p1">P1 1</span>
-            <div class="item-ttl">CFTC更新支付稳定币定义</div>
-          </div>
+    <div class="item">
+      <div class="item-header">
+        <span class="pri p1">P1 1</span>
+        <div class="item-info">
+          <div class="item-ttl">CFTC更新支付稳定币定义</div>
+          <div class="item-meta"><span class="meta">@CFTC</span><span class="meta">2026-02-07</span><span class="meta">监管政策</span></div>
         </div>
+      </div>
+      <div class="item-body">
+        <div class="item-core">美国商品期货交易委员会（CFTC）发布监管更新，正式将国家信托银行发行的稳定币纳入合格抵押品范畴。这一更新是支付稳定币监管框架的重要组成部分，标志着银行系稳定币获得了明确的监管地位。更新内容包括：明确国家信托银行发行稳定币的合规路径、设定储备管理和审计要求、以及建立与主要贸易伙伴的监管互认机制。</div>
+      </div>
+    </div>
 
-        <div class="item">
-          <div class="item-header">
-            <span class="pri p1">P1 2</span>
-            <div class="item-ttl">GENIUS Act推动美国成为稳定币创新领导者</div>
-          </div>
+    <div class="item">
+      <div class="item-header">
+        <span class="pri p1">P1 2</span>
+        <div class="item-info">
+          <div class="item-ttl">GENIUS Act推动美国成为稳定币创新领导者</div>
+          <div class="item-meta"><span class="meta">@ChairmanSelig</span><span class="meta">2026-02-07</span><span class="meta">监管政策</span></div>
         </div>
+      </div>
+      <div class="item-body">
+        <div class="item-core">美国参议院议员Selig发表声明称，在GENIUS Act框架下，美国已取代其他司法管辖区成为稳定币创新的全球领导者。声明强调三大支撑因素：明确的牌照路径吸引了全球稳定币发行商的关注、传统金融机构的合规参与验证了监管框架的有效性、以及与主要贸易伙伴的监管互认为跨境稳定币流通提供了便利。</div>
+      </div>
+    </div>
 
-        <div class="item">
-          <div class="item-header">
-            <span class="pri p1">P1 3</span>
-            <div class="item-ttl">SEC与CFTC协调巩固美国加密资本地位</div>
-          </div>
+    <div class="item">
+      <div class="item-header">
+        <span class="pri p1">P1 3</span>
+        <div class="item-info">
+          <div class="item-ttl">SEC与CFTC协调巩固美国加密资本地位</div>
+          <div class="item-meta"><span class="meta">@SECPaulSAtkins</span><span class="meta">2026-02-07</span><span class="meta">监管协调</span></div>
         </div>
+      </div>
+      <div class="item-body">
+        <div class="item-core">美国证券交易委员会（SEC）委员Paul S. Atkins发表声明，强调SEC与CFTC的协调机制正在有效巩固美国作为"世界加密资本"的地位。声明指出，两机构的分工明确：SEC负责加密证券的定性和监管，CFTC负责商品类代币和衍生品的监管。这一协调机制减少了监管真空和管辖冲突，为市场参与者提供了更清晰的合规路径。</div>
+      </div>
+    </div>
 
-        <div class="item">
-          <div class="item-header">
-            <span class="pri p1">P1 4</span>
-            <div class="item-ttl">zkSync Season 1质押计划启动</div>
-          </div>
+    <div class="item">
+      <div class="item-header">
+        <span class="pri p1">P1 4</span>
+        <div class="item-info">
+          <div class="item-ttl">zkSync Season 1质押计划启动</div>
+          <div class="item-meta"><span class="meta">@zksync</span><span class="meta">2026-02-07</span><span class="meta">L2协议升级</span></div>
         </div>
+      </div>
+      <div class="item-body">
+        <div class="item-core">zkSync正式宣布Season 1质押计划将于2月9日启动，目标是实现4亿ZK代币的质押参与。质押计划的核心机制包括：质押代币将获得网络安全奖励、质押者有权参与治理投票、以及质押锁定期与奖励倍数挂钩。项目的官方声明强调，质押计划是将ZK代币与网络安全价值绑定的关键一步。</div>
+      </div>
+    </div>
 
-        <div class="item">
-          <div class="item-header">
-            <span class="pri p1">P1 5</span>
-            <div class="item-ttl">Ondo Finance获得Goldman Sachs背书</div>
-          </div>
+    <div class="item">
+      <div class="item-header">
+        <span class="pri p1">P1 5</span>
+        <div class="item-info">
+          <div class="item-ttl">Ondo Finance获得Goldman Sachs背书</div>
+          <div class="item-meta"><span class="meta">@OndoFinance</span><span class="meta">2026-02-07</span><span class="meta">机构合作</span></div>
         </div>
+      </div>
+      <div class="item-body">
+        <div class="item-core">Ondo Finance宣布获得Goldman Sachs对其代币化业务的背书。背书的核心内容包括：Goldman Sachs认可Ondo的代币化平台架构、确认平台符合机构级风控要求、以及支持Ondo在RWA代币化领域的领先地位。这一背书标志着顶级投行对RWA代币化商业模式的正式认可。</div>
+      </div>
+    </div>
 
-        <div class="item">
-          <div class="item-header">
-            <span class="pri p1">P1 6</span>
-            <div class="item-ttl">Centrifuge V3.1多链执行优化</div>
-          </div>
+    <div class="item">
+      <div class="item-header">
+        <span class="pri p1">P1 6</span>
+        <div class="item-info">
+          <div class="item-ttl">Centrifuge V3.1多链执行优化</div>
+          <div class="item-meta"><span class="meta">@centrifuge</span><span class="meta">2026-02-07</span><span class="meta">协议升级</span></div>
         </div>
+      </div>
+      <div class="item-body">
+        <div class="item-core">Centrifuge宣布发布V3.1版本更新，主要内容包括多链执行优化、跨链资产转移效率提升、以及与主流DeFi协议的整合增强。V3.1的升级标志着信贷代币化协议向更广泛的生态扩展迈进，为机构用户提供了更灵活的资产配置选择。</div>
+      </div>
+    </div>
 
-        <div class="item">
-          <div class="item-header">
-            <span class="pri p1">P1 7</span>
-            <div class="item-ttl">比特币重返71,000美元</div>
-          </div>
+    <div class="item">
+      <div class="item-header">
+        <span class="pri p1">P1 7</span>
+        <div class="item-info">
+          <div class="item-ttl">比特币重返71,000美元</div>
+          <div class="item-meta"><span class="meta">@WatcherGuru</span><span class="meta">2026-02-07</span><span class="meta">市场动态</span></div>
         </div>
+      </div>
+      <div class="item-body">
+        <div class="item-core">比特币价格重返$71,000关键阻力位，单日涨幅超过13%。这一价格突破发生在美国监管框架持续明确、机构入场信号增强的背景下，反映出市场对加密资产中长期价值的乐观预期。</div>
+      </div>
+    </div>
 
-        <div class="item">
-          <div class="item-header">
-            <span class="pri p1">P1 8</span>
-            <div class="item-ttl">RWA过去一年增长超3倍</div>
-          </div>
+    <div class="item">
+      <div class="item-header">
+        <span class="pri p1">P1 8</span>
+        <div class="item-info">
+          <div class="item-ttl">RWA过去一年增长超3倍</div>
+          <div class="item-meta"><span class="meta">@defillama</span><span class="meta">2026-02-07</span><span class="meta">数据报告</span></div>
         </div>
+      </div>
+      <div class="item-body">
+        <div class="item-core">根据DeFiLlama数据，RWA（现实资产代币化）赛道在过去一年增长超过3倍，突破重要里程碑。增长驱动因素包括：代币化国债规模扩张、信贷资产代币化加速、以及不动产登记上链的试点推进。</div>
+      </div>
+    </div>
     </div>
   </section>
 
@@ -286,89 +339,161 @@ body {
     </button>
     <div class="content">
       
-        <div class="item">
-          <div class="item-header">
-            <span class="pri p2">P2 1</span>
-            <div class="item-ttl">Base Batches 002完成50名builder孵化</div>
-          </div>
+    <div class="item">
+      <div class="item-header">
+        <span class="pri p2">P2 1</span>
+        <div class="item-info">
+          <div class="item-ttl">Base Batches 002完成50名builder孵化</div>
+          <div class="item-meta"><span class="meta">@base</span><span class="meta">2026-02-07</span><span class="meta">生态建设</span></div>
         </div>
+      </div>
+      <div class="item-body">
+        <div class="item-core">Base宣布Batches 002完成，50名builder进入孵化阶段。这一里程碑标志着Base生态进入规模化发展阶段，涵盖DeFi、基础设施、消费者应用等多个细分领域。</div>
+      </div>
+    </div>
 
-        <div class="item">
-          <div class="item-header">
-            <span class="pri p2">P2 2</span>
-            <div class="item-ttl">Arbitrum动态定价机制优化</div>
-          </div>
+    <div class="item">
+      <div class="item-header">
+        <span class="pri p2">P2 2</span>
+        <div class="item-info">
+          <div class="item-ttl">Arbitrum动态定价机制优化</div>
+          <div class="item-meta"><span class="meta">@arbitrum</span><span class="meta">2026-02-07</span><span class="meta">协议升级</span></div>
         </div>
+      </div>
+      <div class="item-body">
+        <div class="item-core">Arbitrum宣布动态定价机制优化完成，显著降低了L2交易费用并提升了用户体验。</div>
+      </div>
+    </div>
 
-        <div class="item">
-          <div class="item-header">
-            <span class="pri p2">P2 3</span>
-            <div class="item-ttl">Optimism Retro Funding Round 8启动</div>
-          </div>
+    <div class="item">
+      <div class="item-header">
+        <span class="pri p2">P2 3</span>
+        <div class="item-info">
+          <div class="item-ttl">Optimism Retro Funding Round 8启动</div>
+          <div class="item-meta"><span class="meta">@optimism</span><span class="meta">2026-02-07</span><span class="meta">生态激励</span></div>
         </div>
+      </div>
+      <div class="item-body">
+        <div class="item-core">Optimism宣布启动Retro Funding Round 8，继续激励为生态系统做出贡献的项目和开发者。</div>
+      </div>
+    </div>
 
-        <div class="item">
-          <div class="item-header">
-            <span class="pri p2">P2 4</span>
-            <div class="item-ttl">Aave V3流动性创历史新高</div>
-          </div>
+    <div class="item">
+      <div class="item-header">
+        <span class="pri p2">P2 4</span>
+        <div class="item-info">
+          <div class="item-ttl">Aave V3流动性创历史新高</div>
+          <div class="item-meta"><span class="meta">@aave</span><span class="meta">2026-02-07</span><span class="meta">数据里程碑</span></div>
         </div>
+      </div>
+      <div class="item-body">
+        <div class="item-core">Aave V3总流动性突破历史新高，TVL达到新的里程碑水平。</div>
+      </div>
+    </div>
 
-        <div class="item">
-          <div class="item-header">
-            <span class="pri p2">P2 5</span>
-            <div class="item-ttl">MakerDAO新增RWA抵押品</div>
-          </div>
+    <div class="item">
+      <div class="item-header">
+        <span class="pri p2">P2 5</span>
+        <div class="item-info">
+          <div class="item-ttl">MakerDAO新增RWA抵押品</div>
+          <div class="item-meta"><span class="meta">@MakerDAO</span><span class="meta">2026-02-07</span><span class="meta">协议升级</span></div>
         </div>
+      </div>
+      <div class="item-body">
+        <div class="item-core">MakerDAO宣布新增RWA类别抵押品，进一步扩展了协议的收入来源和资产多样性。</div>
+      </div>
+    </div>
 
-        <div class="item">
-          <div class="item-header">
-            <span class="pri p2">P2 6</span>
-            <div class="item-ttl">Polymesh获得监管牌照更新</div>
-          </div>
+    <div class="item">
+      <div class="item-header">
+        <span class="pri p2">P2 6</span>
+        <div class="item-info">
+          <div class="item-ttl">Polymesh获得监管牌照更新</div>
+          <div class="item-meta"><span class="meta">@polymesh</span><span class="meta">2026-02-07</span><span class="meta">合规进展</span></div>
         </div>
+      </div>
+      <div class="item-body">
+        <div class="item-core">Polymesh宣布获得新的监管牌照更新，进一步巩固了其作为合规链的市场地位。</div>
+      </div>
+    </div>
 
-        <div class="item">
-          <div class="item-header">
-            <span class="pri p2">P2 7</span>
-            <div class="item-ttl">Circle扩展USDC发行网络</div>
-          </div>
+    <div class="item">
+      <div class="item-header">
+        <span class="pri p2">P2 7</span>
+        <div class="item-info">
+          <div class="item-ttl">Circle扩展USDC发行网络</div>
+          <div class="item-meta"><span class="meta">@circle</span><span class="meta">2026-02-07</span><span class="meta">基础设施</span></div>
         </div>
+      </div>
+      <div class="item-body">
+        <div class="item-core">Circle宣布扩展USDC发行网络，新增多个区块链的支持。</div>
+      </div>
+    </div>
 
-        <div class="item">
-          <div class="item-header">
-            <span class="pri p2">P2 8</span>
-            <div class="item-ttl">Starknet主网性能升级</div>
-          </div>
+    <div class="item">
+      <div class="item-header">
+        <span class="pri p2">P2 8</span>
+        <div class="item-info">
+          <div class="item-ttl">Starknet主网性能升级</div>
+          <div class="item-meta"><span class="meta">@starknet</span><span class="meta">2026-02-07</span><span class="meta">技术升级</span></div>
         </div>
+      </div>
+      <div class="item-body">
+        <div class="item-core">Starknet宣布主网性能显著提升，交易确认时间和费用都有明显改善。</div>
+      </div>
+    </div>
 
-        <div class="item">
-          <div class="item-header">
-            <span class="pri p2">P2 9</span>
-            <div class="item-ttl">Scroll主网升级完成</div>
-          </div>
+    <div class="item">
+      <div class="item-header">
+        <span class="pri p2">P2 9</span>
+        <div class="item-info">
+          <div class="item-ttl">Scroll主网升级完成</div>
+          <div class="item-meta"><span class="meta">@scroll_io</span><span class="meta">2026-02-07</span><span class="meta">协议升级</span></div>
         </div>
+      </div>
+      <div class="item-body">
+        <div class="item-core">Scroll宣布主网升级完成，进一步提升了zkEVM的性能和安全性。</div>
+      </div>
+    </div>
 
-        <div class="item">
-          <div class="item-header">
-            <span class="pri p2">P2 10</span>
-            <div class="item-ttl">Tether发布季度储备证明</div>
-          </div>
+    <div class="item">
+      <div class="item-header">
+        <span class="pri p2">P2 10</span>
+        <div class="item-info">
+          <div class="item-ttl">Tether发布季度储备证明</div>
+          <div class="item-meta"><span class="meta">@tether_to</span><span class="meta">2026-02-07</span><span class="meta">合规透明</span></div>
         </div>
+      </div>
+      <div class="item-body">
+        <div class="item-core">Tether发布季度储备证明报告，继续保持透明度承诺。</div>
+      </div>
+    </div>
 
-        <div class="item">
-          <div class="item-header">
-            <span class="pri p2">P2 11</span>
-            <div class="item-ttl">LayerZero发布跨链安全更新</div>
-          </div>
+    <div class="item">
+      <div class="item-header">
+        <span class="pri p2">P2 11</span>
+        <div class="item-info">
+          <div class="item-ttl">LayerZero发布跨链安全更新</div>
+          <div class="item-meta"><span class="meta">@layerzero_labs</span><span class="meta">2026-02-07</span><span class="meta">安全升级</span></div>
         </div>
+      </div>
+      <div class="item-body">
+        <div class="item-core">LayerZero发布跨链安全更新，增强协议的安全性和可靠性。</div>
+      </div>
+    </div>
 
-        <div class="item">
-          <div class="item-header">
-            <span class="pri p2">P2 12</span>
-            <div class="item-ttl">Stargate更新流动性策略</div>
-          </div>
+    <div class="item">
+      <div class="item-header">
+        <span class="pri p2">P2 12</span>
+        <div class="item-info">
+          <div class="item-ttl">Stargate更新流动性策略</div>
+          <div class="item-meta"><span class="meta">@stargate_fi</span><span class="meta">2026-02-07</span><span class="meta">协议升级</span></div>
         </div>
+      </div>
+      <div class="item-body">
+        <div class="item-core">Stargate更新流动性策略，优化跨链资产转移效率和收益分配。</div>
+      </div>
+    </div>
     </div>
   </section>
 
@@ -382,14 +507,7 @@ body {
       <span class="section-arrow">›</span>
     </button>
     <div class="content">
-      <div class="card"><div class="card-ttl">机会一: 银行系稳定币基础设施</div></div>
-<div class="card"><div class="card-ttl">机会二: RWA代币化平台规模化</div></div>
-<div class="card"><div class="card-ttl">机会三: 合规L2生态建设</div></div>
-<div class="card"><div class="card-ttl">风险一: 监管执行不确定性</div></div>
-<div class="card"><div class="card-ttl">风险二: L2安全风险</div></div>
-<div class="card"><div class="card-ttl">风险三: 资金流出压力</div></div>
-<div class="card"><div class="card-ttl">短期行动（1-2周）</div></div>
-<div class="card"><div class="card-ttl">中期行动（1-3个月）</div></div>
+      
     </div>
   </section>
 
@@ -403,7 +521,7 @@ body {
       <span class="section-arrow">›</span>
     </button>
     <div class="content">
-      <div class="card"><div class="card-desc">暂无数据</div></div>
+      
     </div>
   </section>
 
@@ -417,14 +535,14 @@ body {
       <span class="section-arrow">›</span>
     </button>
     <div class="content">
-      <div class="card"><div class="card-desc">暂无数据</div></div>
+      
     </div>
   </section>
 </main>
 
 <!-- Footer -->
 <footer class="footer">
-  <p class="footer-txt">Generated by <a href="https://github.com/windhood-jza/crypto-monitor-pages" class="footer-lnk" target="_blank">CryptoMonitor</a> • 2026-02-07 16:02</p>
+  <p class="footer-txt">Generated by <a href="https://github.com/windhood-jza/crypto-monitor-pages" class="footer-lnk" target="_blank">CryptoMonitor</a> • 2026-02-07 16:06</p>
 </footer>
 
 <script>
