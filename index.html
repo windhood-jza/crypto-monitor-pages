@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CryptoMonitor 加密合规情报日报</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #0a0a0f;
+            color: #f0f0f0;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 30px;
+            background: linear-gradient(145deg, #12121a 0%, #1a1a25 100%);
+            border-radius: 20px;
+            border: 1px solid #2a2a3a;
+        }
+        
+        .logo {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 8px;
+        }
+        
+        .tagline {
+            color: #888;
+            font-size: 1rem;
+        }
+        
+        /* Stats */
+        .stats-row {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 25px;
+        }
+        
+        .stat-box {
+            text-align: center;
+        }
+        
+        .stat-num {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #4ade80;
+        }
+        
+        .stat-lbl {
+            font-size: 0.75rem;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        /* Section Title */
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin: 40px 0 20px;
+            padding-left: 15px;
+            border-left: 3px solid #4ade80;
+            color: #eee;
+        }
+        
+        /* Report Cards */
+        .report-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .report-card {
+            display: grid;
+            grid-template-columns: 60px 1fr auto;
+            gap: 20px;
+            align-items: center;
+            padding: 20px 25px;
+            background: linear-gradient(145deg, #12121a 0%, #161620 100%);
+            border-radius: 14px;
+            border: 1px solid #252535;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.2s ease;
+        }
+        
+        .report-card:hover {
+            border-color: #4ade80;
+            transform: translateX(5px);
+            background: linear-gradient(145deg, #13131f 0%, #1a1a28 100%);
+        }
+        
+        .report-icon {
+            width: 50px;
+            height: 50px;
+            background: #1a1a25;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            border: 1px solid #2a2a3a;
+        }
+        
+        .report-info {
+            min-width: 0;
+        }
+        
+        .report-date {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: #4ade80;
+            margin-bottom: 4px;
+        }
+        
+        .report-name {
+            font-size: 1rem;
+            font-weight: 500;
+            color: #fff;
+        }
+        
+        .report-tags {
+            display: flex;
+            gap: 8px;
+            margin-top: 8px;
+        }
+        
+        .tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            padding: 4px 10px;
+            background: #1a1a25;
+            border-radius: 20px;
+            color: #888;
+            border: 1px solid #2a2a3a;
+        }
+        
+        .report-arrow {
+            color: #4ade80;
+            font-size: 1.2rem;
+            opacity: 0;
+            transition: all 0.2s ease;
+        }
+        
+        .report-card:hover .report-arrow {
+            opacity: 1;
+        }
+        
+        /* Loading */
+        .loading {
+            text-align: center;
+            padding: 60px;
+            color: #666;
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid #1a1a25;
+            color: #555;
+            font-size: 0.85rem;
+        }
+        
+        .footer a {
+            color: #4ade80;
+            text-decoration: none;
+        }
+        
+        /* Responsive */
+        @media (max-width: 600px) {
+            .report-card {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .report-icon { margin: 0 auto; }
+            .report-arrow { display: none; }
+            .stats-row { gap: 20px; }
+            .stat-num { font-size: 1.4rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">🔐 CryptoMonitor</div>
+            <p class="tagline">加密合规情报日报 · 每日自动更新</p>
+            <div class="stats-row">
+                <div class="stat-box">
+                    <div class="stat-num" id="reportCount">-</div>
+                    <div class="stat-lbl">Reports</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-num" id="latestDate">-</div>
+                    <div class="stat-lbl">Latest</div>
+                </div>
+            </div>
+        </header>
+        
+        <!-- Reports -->
+        <section>
+            <h2 class="section-title">📚 历史报告</h2>
+            <div class="report-list" id="reportList">
+                <div class="loading">加载中...</div>
+            </div>
+        </section>
+        
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Powered by <a href="https://github.com/windhood-jza/crypto-monitor-pages" target="_blank">CryptoMonitor</a></p>
+        </footer>
+    </div>
+    
+    <script>
+        async function loadReports() {
+            const list = document.getElementById('reportList');
+            const countEl = document.getElementById('reportCount');
+            const dateEl = document.getElementById('latestDate');
+            
+            try {
+                const resp = await fetch('reports.json');
+                if (!resp.ok) throw new Error('加载失败');
+                
+                const data = await resp.json();
+                const reports = data.reports || [];
+                
+                countEl.textContent = reports.length;
+                if (reports.length > 0) {
+                    dateEl.textContent = reports[0].date;
+                }
+                
+                if (reports.length === 0) {
+                    list.innerHTML = '<div class="loading">暂无报告</div>';
+                    return;
+                }
+                
+                list.innerHTML = reports.map(r => `
+                    <a href="${r.url}" class="report-card" target="_blank">
+                        <div class="report-icon">📄</div>
+                        <div class="report-info">
+                            <div class="report-date">📅 ${r.date}</div>
+                            <div class="report-name">${r.title}</div>
+                            <div class="report-tags">
+                                <span class="tag">P1: ${r.p1 || '-'}</span>
+                                <span class="tag">P2: ${r.p2 || '-'}</span>
+                                <span class="tag">推文: ${r.tweets || '-'}</span>
+                            </div>
+                        </div>
+                        <div class="report-arrow">→</div>
+                    </a>
+                `).join('');
+                
+            } catch (e) {
+                list.innerHTML = '<div class="loading">加载失败，请刷新</div>';
+            }
+        }
+        
+        loadReports();
+    </script>
+</body>
+</html>
