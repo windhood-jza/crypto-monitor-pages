@@ -6,608 +6,432 @@
 <title>CryptoMonitor 2026-02-07</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-/* Design System */
+/* Reset */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* Variables */
 :root {
-  --bg: #080808;
-  --bg-elevated: #111113;
-  --bg-card: #18181b;
-  --bg-card-hover: #202025;
-  --border: #27272a;
-  --border-subtle: #3f3f46;
-  --text: #fafafa;
-  --text-secondary: #a1a1aa;
-  --text-muted: #71717a;
-  --accent: #22c55e;
-  --accent-dim: rgba(34, 197, 94, 0.12);
-  --accent-glow: rgba(34, 197, 94, 0.25);
-  --p1: #ef4444;
-  --p1-dim: rgba(239, 68, 68, 0.15);
-  --p2: #f59e0b;
-  --p2-dim: rgba(245, 158, 11, 0.15);
-  --shadow-sm: 0 1px 2px rgba(0,0,0,0.3);
-  --shadow-md: 0 4px 12px rgba(0,0,0,0.4);
-  --shadow-lg: 0 8px 24px rgba(0,0,0,0.5);
+  --bg: #0a0a0b;
+  --surface: #131316;
+  --surface-light: #1c1c1f;
+  --border: #2a2a2e;
+  --border-light: #3a3a3e;
+  --text: #f5f5f7;
+  --text-secondary: #86868b;
+  --accent: #30d158;
+  --accent-bg: rgba(48, 209, 88, 0.12);
+  --p1: #ff375f;
+  --p1-bg: rgba(255, 55, 95, 0.12);
+  --p2: #ffcc00;
+  --p2-bg: rgba(255, 204, 0, 0.12);
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-/* Typography */
+/* Base */
 html { font-size: 16px; -webkit-font-smoothing: antialiased; -webkit-tap-highlight-color: transparent; }
-
 body {
-  font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
   background: var(--bg);
   color: var(--text);
   line-height: 1.6;
   letter-spacing: -0.01em;
-  min-height: 100vh;
 }
 
 /* Header */
 .header {
-  background: linear-gradient(180deg, var(--bg-elevated) 0%, var(--bg) 100%);
+  background: var(--surface);
   border-bottom: 1px solid var(--border);
-  padding: 24px 20px 20px;
+  padding: 20px 16px;
   position: sticky;
   top: 0;
   z-index: 100;
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
 }
 
-.header-top {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  margin-bottom: 16px;
-}
-
-.logo {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 1.5rem;
-  font-weight: 500;
-  letter-spacing: -0.02em;
-  color: var(--text);
-}
-
+.header-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+.logo { font-family: 'JetBrains Mono', monospace; font-size: 1.25rem; font-weight: 500; letter-spacing: -0.02em; }
 .logo span { color: var(--accent); }
+.date { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--text-secondary); }
 
-.date {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.75rem;
-  color: var(--text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-}
-
-/* Stats Grid */
-.stats-row {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-}
-
-.stat-card {
-  background: var(--bg-card);
+/* Stats */
+.stats { display: flex; gap: 10px; }
+.stat {
+  flex: 1;
+  background: var(--surface-light);
   border: 1px solid var(--border);
   border-radius: 12px;
-  padding: 14px 12px;
+  padding: 12px;
   text-align: center;
-  transition: all 0.2s ease;
+  cursor: pointer;
+  -webkit-tap-highlight-color: rgba(255,255,255,0.05);
 }
+.stat:active { transform: scale(0.97); opacity: 0.8; }
+.stat-num { font-family: 'JetBrains Mono', monospace; font-size: 1.25rem; font-weight: 600; color: var(--accent); display: block; }
+.stat-lbl { font-size: 0.7rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; }
 
-.stat-card:active {
-  transform: scale(0.97);
-  background: var(--bg-card-hover);
-}
-
-.stat-value {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 1.25rem;
-  font-weight: 500;
-  color: var(--accent);
-  display: block;
-  margin-bottom: 4px;
-}
-
-.stat-label {
-  font-size: 0.7rem;
-  color: var(--text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-}
-
-/* Container */
-.container {
-  padding: 20px 16px 40px;
-  max-width: 600px;
-  margin: 0 auto;
-}
+/* Main */
+.main { padding: 16px; max-width: 600px; margin: 0 auto; }
 
 /* Section */
-.section {
-  margin-bottom: 16px;
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  overflow: hidden;
-  transition: border-color 0.2s ease;
-}
-
-.section:focus-within,
-.section:hover {
-  border-color: var(--border-subtle);
-}
-
-.section-header {
+.section { margin-bottom: 14px; }
+.section-btn {
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 18px 16px;
+  padding: 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
   cursor: pointer;
   -webkit-tap-highlight-color: rgba(255,255,255,0.05);
-  user-select: none;
 }
-
-.section-header:active {
-  background: var(--bg-card-hover);
-}
-
-.section-left {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
+.section-btn:active { background: var(--surface-light); }
+.section-btn[aria-expanded="true"] { border-color: var(--accent); background: var(--accent-bg); }
+.section-left { display: flex; align-items: center; gap: 12px; }
 .section-icon {
   width: 36px;
   height: 36px;
-  background: var(--accent-dim);
+  background: var(--surface-light);
   border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1rem;
 }
-
-.section-title {
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: var(--text);
-}
-
-.section-count {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.75rem;
-  color: var(--text-muted);
-  margin-left: 6px;
-}
-
+.section-btn[aria-expanded="true"] .section-icon { background: var(--accent-bg); }
+.section-name { font-size: 0.95rem; font-weight: 600; }
+.section-count { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--text-secondary); margin-left: 6px; }
 .section-arrow {
-  width: 28px;
-  height: 28px;
+  width: 24px;
+  height: 24px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--text-muted);
+  color: var(--text-secondary);
   font-size: 1.1rem;
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.2s ease;
 }
+.section-btn[aria-expanded="true"] .section-arrow { transform: rotate(90deg); color: var(--accent); }
 
-.section.open .section-arrow {
-  transform: rotate(90deg);
-  color: var(--accent);
-}
+/* Content */
+.content { display: none; padding: 12px 0 16px; }
+.section-btn[aria-expanded="true"] + .content { display: block; }
 
-.section-content {
-  display: grid;
-  grid-template-rows: 0fr;
-  transition: grid-template-rows 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.section.open .section-content {
-  grid-template-rows: 1fr;
-}
-
-.section-inner {
-  overflow: hidden;
-  padding: 0 16px 16px;
-}
-
-.section-divider {
-  height: 1px;
-  background: var(--border);
-  margin: 0 16px;
-}
-
-/* Item Cards */
+/* Items */
 .item {
-  margin-top: 12px;
-  background: var(--bg-elevated);
+  background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 12px;
   padding: 14px;
-  transition: all 0.2s ease;
+  margin-top: 10px;
 }
-
-.item:active {
-  background: var(--bg-card-hover);
-}
-
-.item-priority {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
+.item:first-child { margin-top: 0; }
+.item-header { display: flex; align-items: flex-start; gap: 10px; }
+.pri {
   padding: 4px 10px;
   border-radius: 6px;
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.7rem;
   font-weight: 600;
-  margin-bottom: 8px;
+  flex-shrink: 0;
 }
-
-.p1 {
-  background: var(--p1-dim);
-  color: var(--p1);
-  border: 1px solid rgba(239, 68, 68, 0.25);
-}
-
-.p2 {
-  background: var(--p2-dim);
-  color: var(--p2);
-  border: 1px solid rgba(245, 158, 11, 0.25);
-}
-
-.item-title {
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: var(--text);
-  line-height: 1.4;
-}
-
-.item-meta {
-  display: flex;
-  gap: 12px;
-  margin-top: 10px;
-  flex-wrap: wrap;
-}
-
-.meta-tag {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.7rem;
-  color: var(--text-secondary);
-  background: var(--bg-card);
-  padding: 4px 8px;
-  border-radius: 6px;
-  border: 1px solid var(--border);
-}
-
+.pri.p1 { background: var(--p1-bg); color: var(--p1); }
+.pri.p2 { background: var(--p2-bg); color: var(--p2); }
+.item-ttl { font-size: 0.9rem; font-weight: 500; line-height: 1.4; }
 .item-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
+  display: inline-block;
   margin-top: 10px;
   font-size: 0.8rem;
   color: var(--accent);
   text-decoration: none;
-  transition: gap 0.2s ease;
 }
 
-.item-link:hover {
-  gap: 8px;
-}
-
-/* Info Cards */
-.info-card {
-  padding: 12px;
-  background: var(--bg-elevated);
-  border-radius: 10px;
-  margin-top: 10px;
+/* Cards */
+.card {
+  background: var(--surface);
   border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px;
+  margin-top: 10px;
 }
-
-.info-title {
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--text);
-  margin-bottom: 6px;
-}
-
-.info-desc {
-  font-size: 0.8rem;
-  color: var(--text-secondary);
-  line-height: 1.5;
-}
+.card-ttl { font-size: 0.9rem; font-weight: 600; margin-bottom: 6px; }
+.card-desc { font-size: 0.8rem; color: var(--text-secondary); line-height: 1.5; }
 
 /* Footer */
-.footer {
-  text-align: center;
-  padding: 32px 20px 24px;
-  border-top: 1px solid var(--border);
-  margin-top: 20px;
-}
+.footer { text-align: center; padding: 32px 16px 24px; border-top: 1px solid var(--border); margin-top: 20px; }
+.footer-txt { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--text-secondary); }
+.footer-lnk { color: var(--accent); text-decoration: none; }
 
-.footer-text {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.7rem;
-  color: var(--text-muted);
-  letter-spacing: 0.05em;
-}
-
-.footer-link {
-  color: var(--accent);
-  text-decoration: none;
-}
-
-/* Animations */
-@keyframes fadeSlideUp {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.section.open .section-inner {
-  animation: fadeSlideUp 0.3s ease forwards;
-}
-
-/* Stagger animations */
-.section:nth-child(1) .section-inner { animation-delay: 0s; }
-.section:nth-child(2) .section-inner { animation-delay: 0.05s; }
-.section:nth-child(3) .section-inner { animation-delay: 0.1s; }
+/* Anim */
+@keyframes slideDown { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
+.content { animation: slideDown 0.25s ease; }
 
 /* Desktop */
 @media (min-width: 768px) {
-  .header { padding: 32px 24px 24px; }
-  .container { padding: 32px 24px 60px; }
-  .section-header { padding: 20px 20px; }
-  .section-inner { padding: 0 20px 20px; }
-  .section-divider { margin: 0 20px; }
-  .logo { font-size: 1.75rem; }
-  .stat-value { font-size: 1.5rem; }
-}
-
-/* Dark mode support */
-@media (prefers-color-scheme: light) {
-  :root {
-    --bg: #fafafa;
-    --bg-elevated: #ffffff;
-    --bg-card: #ffffff;
-    --bg-card-hover: #f5f5f5;
-    --border: #e4e4e7;
-    --border-subtle: #d4d4d8;
-    --text: #18181b;
-    --text-secondary: #71717a;
-    --text-muted: #a1a1aa;
-    --accent-dim: rgba(34, 197, 94, 0.1);
-    --p1-dim: rgba(239, 68, 68, 0.1);
-    --p2-dim: rgba(245, 158, 11, 0.1);
-  }
+  .header { padding: 28px 24px; }
+  .main { padding: 24px; }
+  .logo { font-size: 1.5rem; }
+  .stat { padding: 16px; }
+  .stat-num { font-size: 1.5rem; }
+  .section-btn { padding: 20px; }
+  .item, .card { padding: 18px; }
 }
 </style>
 </head>
 <body>
 <!-- Header -->
 <header class="header">
-  <div class="header-top">
+  <div class="header-row">
     <h1 class="logo"><span>◈</span> CryptoMonitor</h1>
     <time class="date">2026.02.07</time>
   </div>
-  <div class="stats-row">
-    <div class="stat-card" tabindex="0">
-      <span class="stat-value">15</span>
-      <span class="stat-label">推文</span>
-    </div>
-    <div class="stat-card" tabindex="0">
-      <span class="stat-value">8</span>
-      <span class="stat-label">P1 情报</span>
-    </div>
-    <div class="stat-card" tabindex="0">
-      <span class="stat-value">12</span>
-      <span class="stat-label">P2 情报</span>
-    </div>
+  <div class="stats">
+    <button class="stat" tabindex="0">
+      <span class="stat-num">15</span>
+      <span class="stat-lbl">推文</span>
+    </button>
+    <button class="stat" tabindex="0">
+      <span class="stat-num">8</span>
+      <span class="stat-lbl">P1</span>
+    </button>
+    <button class="stat" tabindex="0">
+      <span class="stat-num">12</span>
+      <span class="stat-lbl">P2</span>
+    </button>
   </div>
 </header>
 
-<main class="container">
-  <!-- P1 Section (Default Open) -->
-  <article class="section open" data-section="p1">
-    <div class="section-header" role="button" tabindex="0" aria-expanded="true">
+<!-- Main -->
+<main class="main">
+  <!-- P1 Section -->
+  <section class="section">
+    <button class="section-btn" aria-expanded="true" onclick="toggle(this)">
       <div class="section-left">
         <div class="section-icon">⚡</div>
-        <h2 class="section-title">P1 必读情报<span class="section-count">8</span></h2>
+        <span class="section-name">P1 必读</span>
+        <span class="section-count">8</span>
       </div>
-      <div class="section-arrow" aria-hidden="true">›</div>
-    </div>
-    <div class="section-content">
-      <div class="section-inner">
-        
-            <div class="item">
-              <span class="item-priority p1">P1 1</span>
-              <div class="item-title">CFTC更新支付稳定币定义</div>
-            </div>
-            <div class="item">
-              <span class="item-priority p1">P1 2</span>
-              <div class="item-title">GENIUS Act推动美国成为稳定币创新领导者</div>
-            </div>
-            <div class="item">
-              <span class="item-priority p1">P1 3</span>
-              <div class="item-title">SEC与CFTC协调巩固美国加密资本地位</div>
-            </div>
-            <div class="item">
-              <span class="item-priority p1">P1 4</span>
-              <div class="item-title">zkSync Season 1质押计划启动</div>
-            </div>
-            <div class="item">
-              <span class="item-priority p1">P1 5</span>
-              <div class="item-title">Ondo Finance获得Goldman Sachs背书</div>
-            </div>
-            <div class="item">
-              <span class="item-priority p1">P1 6</span>
-              <div class="item-title">Centrifuge V3.1多链执行优化</div>
-            </div>
-            <div class="item">
-              <span class="item-priority p1">P1 7</span>
-              <div class="item-title">比特币重返71,000美元</div>
-            </div>
-            <div class="item">
-              <span class="item-priority p1">P1 8</span>
-              <div class="item-title">RWA过去一年增长超3倍</div>
-            </div>
-      </div>
-    </div>
-  </article>
+      <span class="section-arrow">›</span>
+    </button>
+    <div class="content">
+      
+        <div class="item">
+          <div class="item-header">
+            <span class="pri p1">P1 1</span>
+            <div class="item-ttl">CFTC更新支付稳定币定义</div>
+          </div>
+        </div>
 
-  <!-- P2 Section (Default Open) -->
-  <article class="section open" data-section="p2">
-    <div class="section-header" role="button" tabindex="0" aria-expanded="true">
+        <div class="item">
+          <div class="item-header">
+            <span class="pri p1">P1 2</span>
+            <div class="item-ttl">GENIUS Act推动美国成为稳定币创新领导者</div>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="item-header">
+            <span class="pri p1">P1 3</span>
+            <div class="item-ttl">SEC与CFTC协调巩固美国加密资本地位</div>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="item-header">
+            <span class="pri p1">P1 4</span>
+            <div class="item-ttl">zkSync Season 1质押计划启动</div>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="item-header">
+            <span class="pri p1">P1 5</span>
+            <div class="item-ttl">Ondo Finance获得Goldman Sachs背书</div>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="item-header">
+            <span class="pri p1">P1 6</span>
+            <div class="item-ttl">Centrifuge V3.1多链执行优化</div>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="item-header">
+            <span class="pri p1">P1 7</span>
+            <div class="item-ttl">比特币重返71,000美元</div>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="item-header">
+            <span class="pri p1">P1 8</span>
+            <div class="item-ttl">RWA过去一年增长超3倍</div>
+          </div>
+        </div>
+    </div>
+  </section>
+
+  <!-- P2 Section -->
+  <section class="section">
+    <button class="section-btn" aria-expanded="true" onclick="toggle(this)">
       <div class="section-left">
         <div class="section-icon">◆</div>
-        <h2 class="section-title">P2 重要情报<span class="section-count">12</span></h2>
+        <span class="section-name">P2 重要</span>
+        <span class="section-count">12</span>
       </div>
-      <div class="section-arrow" aria-hidden="true">›</div>
+      <span class="section-arrow">›</span>
+    </button>
+    <div class="content">
+      
+        <div class="item">
+          <div class="item-header">
+            <span class="pri p2">P2 1</span>
+            <div class="item-ttl">Base Batches 002完成50名builder孵化</div>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="item-header">
+            <span class="pri p2">P2 2</span>
+            <div class="item-ttl">Arbitrum动态定价机制优化</div>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="item-header">
+            <span class="pri p2">P2 3</span>
+            <div class="item-ttl">Optimism Retro Funding Round 8启动</div>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="item-header">
+            <span class="pri p2">P2 4</span>
+            <div class="item-ttl">Aave V3流动性创历史新高</div>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="item-header">
+            <span class="pri p2">P2 5</span>
+            <div class="item-ttl">MakerDAO新增RWA抵押品</div>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="item-header">
+            <span class="pri p2">P2 6</span>
+            <div class="item-ttl">Polymesh获得监管牌照更新</div>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="item-header">
+            <span class="pri p2">P2 7</span>
+            <div class="item-ttl">Circle扩展USDC发行网络</div>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="item-header">
+            <span class="pri p2">P2 8</span>
+            <div class="item-ttl">Starknet主网性能升级</div>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="item-header">
+            <span class="pri p2">P2 9</span>
+            <div class="item-ttl">Scroll主网升级完成</div>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="item-header">
+            <span class="pri p2">P2 10</span>
+            <div class="item-ttl">Tether发布季度储备证明</div>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="item-header">
+            <span class="pri p2">P2 11</span>
+            <div class="item-ttl">LayerZero发布跨链安全更新</div>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="item-header">
+            <span class="pri p2">P2 12</span>
+            <div class="item-ttl">Stargate更新流动性策略</div>
+          </div>
+        </div>
     </div>
-    <div class="section-content">
-      <div class="section-inner">
-        
-            <div class="item">
-              <span class="item-priority p2">P2 1</span>
-              <div class="item-title">Base Batches 002完成50名builder孵化</div>
-            </div>
-            <div class="item">
-              <span class="item-priority p2">P2 2</span>
-              <div class="item-title">Arbitrum动态定价机制优化</div>
-            </div>
-            <div class="item">
-              <span class="item-priority p2">P2 3</span>
-              <div class="item-title">Optimism Retro Funding Round 8启动</div>
-            </div>
-            <div class="item">
-              <span class="item-priority p2">P2 4</span>
-              <div class="item-title">Aave V3流动性创历史新高</div>
-            </div>
-            <div class="item">
-              <span class="item-priority p2">P2 5</span>
-              <div class="item-title">MakerDAO新增RWA抵押品</div>
-            </div>
-            <div class="item">
-              <span class="item-priority p2">P2 6</span>
-              <div class="item-title">Polymesh获得监管牌照更新</div>
-            </div>
-            <div class="item">
-              <span class="item-priority p2">P2 7</span>
-              <div class="item-title">Circle扩展USDC发行网络</div>
-            </div>
-            <div class="item">
-              <span class="item-priority p2">P2 8</span>
-              <div class="item-title">Starknet主网性能升级</div>
-            </div>
-            <div class="item">
-              <span class="item-priority p2">P2 9</span>
-              <div class="item-title">Scroll主网升级完成</div>
-            </div>
-            <div class="item">
-              <span class="item-priority p2">P2 10</span>
-              <div class="item-title">Tether发布季度储备证明</div>
-            </div>
-            <div class="item">
-              <span class="item-priority p2">P2 11</span>
-              <div class="item-title">LayerZero发布跨链安全更新</div>
-            </div>
-            <div class="item">
-              <span class="item-priority p2">P2 12</span>
-              <div class="item-title">Stargate更新流动性策略</div>
-            </div>
-      </div>
-    </div>
-  </article>
+  </section>
 
   <!-- Insights Section -->
-  <article class="section" data-section="insights">
-    <div class="section-header" role="button" tabindex="0" aria-expanded="false">
+  <section class="section">
+    <button class="section-btn" aria-expanded="false" onclick="toggle(this)">
       <div class="section-left">
         <div class="section-icon">◇</div>
-        <h2 class="section-title">洞察总结</h2>
+        <span class="section-name">洞察总结</span>
       </div>
-      <div class="section-arrow" aria-hidden="true">›</div>
+      <span class="section-arrow">›</span>
+    </button>
+    <div class="content">
+      <div class="card"><div class="card-ttl">机会一: 银行系稳定币基础设施</div></div>
+<div class="card"><div class="card-ttl">机会二: RWA代币化平台规模化</div></div>
+<div class="card"><div class="card-ttl">机会三: 合规L2生态建设</div></div>
+<div class="card"><div class="card-ttl">风险一: 监管执行不确定性</div></div>
+<div class="card"><div class="card-ttl">风险二: L2安全风险</div></div>
+<div class="card"><div class="card-ttl">风险三: 资金流出压力</div></div>
+<div class="card"><div class="card-ttl">短期行动（1-2周）</div></div>
+<div class="card"><div class="card-ttl">中期行动（1-3个月）</div></div>
     </div>
-    <div class="section-content">
-      <div class="section-inner">
-        
-      </div>
-    </div>
-  </article>
+  </section>
 
   <!-- Tracking Section -->
-  <article class="section" data-section="tracking">
-    <div class="section-header" role="button" tabindex="0" aria-expanded="false">
+  <section class="section">
+    <button class="section-btn" aria-expanded="false" onclick="toggle(this)">
       <div class="section-left">
         <div class="section-icon">○</div>
-        <h2 class="section-title">跟踪进展</h2>
+        <span class="section-name">跟踪进展</span>
       </div>
-      <div class="section-arrow" aria-hidden="true">›</div>
+      <span class="section-arrow">›</span>
+    </button>
+    <div class="content">
+      <div class="card"><div class="card-desc">暂无数据</div></div>
     </div>
-    <div class="section-content">
-      <div class="section-inner">
-        
-      </div>
-    </div>
-  </article>
+  </section>
 
   <!-- Macro Section -->
-  <article class="section" data-section="macro">
-    <div class="section-header" role="button" tabindex="0" aria-expanded="false">
+  <section class="section">
+    <button class="section-btn" aria-expanded="false" onclick="toggle(this)">
       <div class="section-left">
         <div class="section-icon">●</div>
-        <h2 class="section-title">宏观经济</h2>
+        <span class="section-name">宏观经济</span>
       </div>
-      <div class="section-arrow" aria-hidden="true">›</div>
+      <span class="section-arrow">›</span>
+    </button>
+    <div class="content">
+      <div class="card"><div class="card-desc">暂无数据</div></div>
     </div>
-    <div class="section-content">
-      <div class="section-inner">
-        
-      </div>
-    </div>
-  </article>
+  </section>
 </main>
 
 <!-- Footer -->
 <footer class="footer">
-  <p class="footer-text">Generated by <a href="https://github.com/windhood-jza/crypto-monitor-pages" class="footer-link" target="_blank">CryptoMonitor</a> • 2026-02-07 15:04</p>
+  <p class="footer-txt">Generated by <a href="https://github.com/windhood-jza/crypto-monitor-pages" class="footer-lnk" target="_blank">CryptoMonitor</a> • 2026-02-07 16:02</p>
 </footer>
 
 <script>
-(function() {
-  // Section toggle
-  document.querySelectorAll('.section-header').forEach(function(header) {
-    header.addEventListener('click', function() {
-      var section = this.closest('.section');
-      var isOpen = section.classList.contains('open');
-      
-      // Toggle current
-      section.classList.toggle('open');
-      this.setAttribute('aria-expanded', !isOpen);
-    });
-    
-    header.addEventListener('keydown', function(e) {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        this.click();
-      }
-    });
-  });
-  
-  // Auto-expand P1/P2
-  document.querySelectorAll('.section[data-section="p1"], .section[data-section="p2"]').forEach(function(s) {
-    s.classList.add('open');
-  });
-})();
+function toggle(btn) {
+  var expanded = btn.getAttribute('aria-expanded') === 'true';
+  btn.setAttribute('aria-expanded', !expanded);
+}
 </script>
 </body>
 </html>
