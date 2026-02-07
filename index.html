@@ -2,199 +2,280 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CryptoMonitor 加密合规情报日报</title>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>CryptoMonitor</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500&family=system-ui:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: #0a0a0f;
-            color: #f0f0f0;
-            min-height: 100vh;
-            padding: 40px 20px;
+        /* Reset & Base */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
         
+        :root {
+            --bg: #0d0d12;
+            --card-bg: #16161e;
+            --card-border: #2a2a3a;
+            --text: #f5f5f7;
+            --text-secondary: #8e8e93;
+            --accent: #34c759;
+            --accent-dim: rgba(52, 199, 89, 0.15);
+            --danger: #ff453a;
+            --warning: #ff9f0a;
+        }
+        
+        html {
+            font-size: 16px;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.5;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        /* Container */
         .container {
-            max-width: 900px;
+            padding: 20px 16px 40px;
+            max-width: 600px;
             margin: 0 auto;
         }
         
         /* Header */
         .header {
             text-align: center;
-            margin-bottom: 50px;
-            padding: 30px;
-            background: linear-gradient(145deg, #12121a 0%, #1a1a25 100%);
-            border-radius: 20px;
-            border: 1px solid #2a2a3a;
+            padding: 24px 20px 28px;
+            margin-bottom: 24px;
         }
         
         .logo {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 2.2rem;
-            font-weight: 700;
-            color: #ffffff;
-            margin-bottom: 8px;
+            font-size: 1.75rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin-bottom: 6px;
         }
         
         .tagline {
-            color: #888;
-            font-size: 1rem;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
         }
         
-        /* Stats */
+        /* Stats Row */
         .stats-row {
             display: flex;
             justify-content: center;
-            gap: 40px;
-            margin-top: 25px;
+            gap: 48px;
+            margin-top: 20px;
+            padding: 16px 24px;
+            background: var(--card-bg);
+            border-radius: 16px;
+            border: 1px solid var(--card-border);
         }
         
-        .stat-box {
+        .stat {
             text-align: center;
         }
         
-        .stat-num {
+        .stat-value {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 1.8rem;
-            font-weight: 600;
-            color: #4ade80;
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: var(--accent);
         }
         
-        .stat-lbl {
-            font-size: 0.75rem;
-            color: #666;
+        .stat-label {
+            font-size: 0.7rem;
+            color: var(--text-secondary);
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
+            margin-top: 2px;
         }
         
-        /* Section Title */
+        /* Section */
+        .section {
+            margin-bottom: 24px;
+        }
+        
         .section-title {
-            font-size: 1.3rem;
+            font-size: 1rem;
             font-weight: 600;
-            margin: 40px 0 20px;
-            padding-left: 15px;
-            border-left: 3px solid #4ade80;
-            color: #eee;
-        }
-        
-        /* Report Cards */
-        .report-list {
+            margin-bottom: 16px;
+            padding-left: 12px;
             display: flex;
-            flex-direction: column;
-            gap: 12px;
+            align-items: center;
+            gap: 8px;
         }
         
+        .section-title::before {
+            content: '';
+            width: 3px;
+            height: 16px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+        
+        /* Report Card */
         .report-card {
-            display: grid;
-            grid-template-columns: 60px 1fr auto;
-            gap: 20px;
+            display: flex;
             align-items: center;
-            padding: 20px 25px;
-            background: linear-gradient(145deg, #12121a 0%, #161620 100%);
+            gap: 14px;
+            padding: 16px;
+            margin-bottom: 10px;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
             border-radius: 14px;
-            border: 1px solid #252535;
             text-decoration: none;
             color: inherit;
             transition: all 0.2s ease;
+            touch-action: manipulation;
         }
         
-        .report-card:hover {
-            border-color: #4ade80;
-            transform: translateX(5px);
-            background: linear-gradient(145deg, #13131f 0%, #1a1a28 100%);
+        .report-card:active {
+            background: #1c1c26;
+            transform: scale(0.98);
         }
         
         .report-icon {
-            width: 50px;
-            height: 50px;
-            background: #1a1a25;
+            width: 44px;
+            height: 44px;
+            background: var(--accent-dim);
             border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.3rem;
-            border: 1px solid #2a2a3a;
+            font-size: 1.25rem;
+            flex-shrink: 0;
         }
         
-        .report-info {
+        .report-content {
+            flex: 1;
             min-width: 0;
         }
         
         .report-date {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.85rem;
-            color: #4ade80;
-            margin-bottom: 4px;
+            font-size: 0.8rem;
+            color: var(--accent);
+            margin-bottom: 3px;
         }
         
-        .report-name {
-            font-size: 1rem;
+        .report-title {
+            font-size: 0.95rem;
             font-weight: 500;
-            color: #fff;
+            color: var(--text);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
         
-        .report-tags {
+        .report-meta {
             display: flex;
             gap: 8px;
-            margin-top: 8px;
+            margin-top: 6px;
+            flex-wrap: wrap;
         }
         
-        .tag {
+        .meta-tag {
             font-family: 'JetBrains Mono', monospace;
             font-size: 0.7rem;
-            padding: 4px 10px;
-            background: #1a1a25;
-            border-radius: 20px;
-            color: #888;
-            border: 1px solid #2a2a3a;
+            padding: 3px 8px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 6px;
+            color: var(--text-secondary);
         }
         
         .report-arrow {
-            color: #4ade80;
-            font-size: 1.2rem;
-            opacity: 0;
-            transition: all 0.2s ease;
-        }
-        
-        .report-card:hover .report-arrow {
-            opacity: 1;
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            font-size: 1.1rem;
+            flex-shrink: 0;
         }
         
         /* Loading */
         .loading {
             text-align: center;
-            padding: 60px;
-            color: #666;
+            padding: 48px 20px;
+            color: var(--text-secondary);
+        }
+        
+        .spinner {
+            width: 28px;
+            height: 28px;
+            border: 2px solid var(--card-border);
+            border-top-color: var(--accent);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin: 0 auto 12px;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
         }
         
         /* Footer */
         .footer {
             text-align: center;
-            margin-top: 60px;
-            padding-top: 30px;
-            border-top: 1px solid #1a1a25;
-            color: #555;
-            font-size: 0.85rem;
+            padding: 32px 16px 20px;
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            border-top: 1px solid var(--card-border);
+            margin-top: 32px;
         }
         
         .footer a {
-            color: #4ade80;
+            color: var(--accent);
             text-decoration: none;
         }
         
-        /* Responsive */
-        @media (max-width: 600px) {
-            .report-card {
-                grid-template-columns: 1fr;
-                text-align: center;
+        /* Desktop enhancements */
+        @media (min-width: 768px) {
+            .container {
+                padding: 40px 24px 60px;
             }
-            .report-icon { margin: 0 auto; }
-            .report-arrow { display: none; }
-            .stats-row { gap: 20px; }
-            .stat-num { font-size: 1.4rem; }
+            
+            .header {
+                padding: 32px 24px 36px;
+            }
+            
+            .logo {
+                font-size: 2rem;
+            }
+            
+            .stats-row {
+                gap: 64px;
+                padding: 20px 32px;
+            }
+            
+            .stat-value {
+                font-size: 1.75rem;
+            }
+            
+            .report-card {
+                padding: 20px;
+                margin-bottom: 12px;
+            }
+            
+            .report-card:hover {
+                border-color: var(--accent);
+                transform: translateX(4px);
+            }
+            
+            .report-icon {
+                width: 52px;
+                height: 52px;
+                font-size: 1.5rem;
+            }
         }
     </style>
 </head>
@@ -203,78 +284,83 @@
         <!-- Header -->
         <header class="header">
             <div class="logo">🔐 CryptoMonitor</div>
-            <p class="tagline">加密合规情报日报 · 每日自动更新</p>
+            <p class="tagline">加密合规情报日报</p>
             <div class="stats-row">
-                <div class="stat-box">
-                    <div class="stat-num" id="reportCount">-</div>
-                    <div class="stat-lbl">Reports</div>
+                <div class="stat">
+                    <div class="stat-value" id="reportCount">--</div>
+                    <div class="stat-label">Reports</div>
                 </div>
-                <div class="stat-box">
-                    <div class="stat-num" id="latestDate">-</div>
-                    <div class="stat-lbl">Latest</div>
+                <div class="stat">
+                    <div class="stat-value" id="latestDate">----</div>
+                    <div class="stat-label">Latest</div>
                 </div>
             </div>
         </header>
         
-        <!-- Reports -->
-        <section>
-            <h2 class="section-title">📚 历史报告</h2>
-            <div class="report-list" id="reportList">
-                <div class="loading">加载中...</div>
+        <!-- Reports List -->
+        <section class="section">
+            <h2 class="section-title">历史报告</h2>
+            <div id="reportList">
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <div>加载中...</div>
+                </div>
             </div>
         </section>
         
         <!-- Footer -->
         <footer class="footer">
-            <p>Powered by <a href="https://github.com/windhood-jza/crypto-monitor-pages" target="_blank">CryptoMonitor</a></p>
+            Powered by <a href="https://github.com/windhood-jza/crypto-monitor-pages" target="_blank">CryptoMonitor</a>
         </footer>
     </div>
     
     <script>
-        async function loadReports() {
+        (function() {
             const list = document.getElementById('reportList');
             const countEl = document.getElementById('reportCount');
             const dateEl = document.getElementById('latestDate');
             
-            try {
-                const resp = await fetch('reports.json');
-                if (!resp.ok) throw new Error('加载失败');
-                
-                const data = await resp.json();
-                const reports = data.reports || [];
-                
-                countEl.textContent = reports.length;
-                if (reports.length > 0) {
-                    dateEl.textContent = reports[0].date;
+            async function loadReports() {
+                try {
+                    const resp = await fetch('reports.json');
+                    if (!resp.ok) throw new Error();
+                    
+                    const data = await resp.json();
+                    const reports = data.reports || [];
+                    
+                    countEl.textContent = reports.length;
+                    if (reports.length > 0) {
+                        dateEl.textContent = reports[0].date;
+                    }
+                    
+                    if (reports.length === 0) {
+                        list.innerHTML = '<div class="loading">暂无报告</div>';
+                        return;
+                    }
+                    
+                    list.innerHTML = reports.map(function(r) {
+                        return '<a href="' + r.url + '" class="report-card" target="_blank">' +
+                            '<div class="report-icon">📄</div>' +
+                            '<div class="report-content">' +
+                            '<div class="report-date">📅 ' + r.date + '</div>' +
+                            '<div class="report-title">' + r.title + '</div>' +
+                            '<div class="report-meta">' +
+                            '<span class="meta-tag">P1: ' + (r.p1 || '-') + '</span>' +
+                            '<span class="meta-tag">P2: ' + (r.p2 || '-') + '</span>' +
+                            '<span class="meta-tag">推文: ' + (r.tweets || '-') + '</span>' +
+                            '</div>' +
+                            '</div>' +
+                            '<div class="report-arrow">›</div>' +
+                            '</a>';
+                    }).join('');
+                    
+                } catch (e) {
+                    list.innerHTML = '<div class="loading">加载失败，请刷新重试</div>';
                 }
-                
-                if (reports.length === 0) {
-                    list.innerHTML = '<div class="loading">暂无报告</div>';
-                    return;
-                }
-                
-                list.innerHTML = reports.map(r => `
-                    <a href="${r.url}" class="report-card" target="_blank">
-                        <div class="report-icon">📄</div>
-                        <div class="report-info">
-                            <div class="report-date">📅 ${r.date}</div>
-                            <div class="report-name">${r.title}</div>
-                            <div class="report-tags">
-                                <span class="tag">P1: ${r.p1 || '-'}</span>
-                                <span class="tag">P2: ${r.p2 || '-'}</span>
-                                <span class="tag">推文: ${r.tweets || '-'}</span>
-                            </div>
-                        </div>
-                        <div class="report-arrow">→</div>
-                    </a>
-                `).join('');
-                
-            } catch (e) {
-                list.innerHTML = '<div class="loading">加载失败，请刷新</div>';
             }
-        }
-        
-        loadReports();
+            
+            loadReports();
+        })();
     </script>
 </body>
 </html>
