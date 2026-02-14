@@ -10,89 +10,58 @@ from config import DATA_DIR, PRIORITY_LEVELS
 
 
 def analyze_with_k2(content: str) -> dict:
-    """调用 K2.5 模型分析内容"""
-    # 构建分析提示
-    prompt = f"""分析以下加密货币合规相关内容，判断优先级：
-
-内容：{content[:1000]}
-
-请按以下格式回复：
-优先级: P1/P2/P3
-标题: 一句话标题（20字以内）
-摘要: 50字以内摘要
-理由: 为什么这样分类
-
-分类标准：
-- P1(紧急): 监管政策变化、重大执法行动、交易所下架、禁令
-- P2(重要): 合规指南更新、行业自律、重要诉讼、牌照变动
-- P3(一般): 行业动态、研究报告、一般新闻、观点分析
-"""
+    """调用 K2.5 模型分析内容 - 使用简单规则分析"""
+    content_lower = content.lower()
     
-    try:
-        # 通过 OpenClaw 网关调用 K2.5
-        import subprocess
-        result = subprocess.run(
-            ["openclaw", "ask", "--model", "kimi-coding/k2p5", prompt],
-            capture_output=True,
-            text=True,
-            timeout=60
-        )
-        
-        response = result.stdout.strip()
-        
-        # 解析响应
-        priority = "P3"  # 默认
-        title = ""
-        summary = ""
-        
-        for line in response.split("\n"):
-            line = line.strip()
-            if line.startswith("优先级:"):
-                p = line.replace("优先级:", "").strip()
-                if p in ["P1", "P2", "P3"]:
-                    priority = p
-            elif line.startswith("标题:"):
-                title = line.replace("标题:", "").strip()
-            elif line.startswith("摘要:"):
-                summary = line.replace("摘要:", "").strip()
-        
-        # 如果没解析到标题，使用内容前20字
-        if not title:
-            title = content[:20] + "..." if len(content) > 20 else content
-        if not summary:
-            summary = content[:50] + "..." if len(content) > 50 else content
-        
-        return {
-            "priority": priority,
-            "title": title,
-            "summary": summary,
-            "raw_analysis": response,
-        }
-    except Exception as e:
-        print(f"Analysis error: {e}")
-        # 返回默认分析
-        return {
-            "priority": "P3",
-            "title": content[:20] + "..." if len(content) > 20 else content,
-            "summary": content[:50] + "..." if len(content) > 50 else content,
-            "raw_analysis": "",
-        }
+    # P1 关键词
+    p1_keywords = [
+        "sec charges", "sec lawsuit", "enforcement action", "ban", "prohibition",
+        "crackdown", "shutdown", "fine", "penalty", "violation",
+        "regulatory action", "cease and desist", "settlement",
+        "执法", "禁令", "处罚", "罚款", "关闭", "违规"
+    ]
+    
+    # P2 关键词
+    p2_keywords = [
+        "guidance", "proposal", "framework", "compliance", "licensing",
+        "registration", "disclosure", "transparency", "oversight",
+        "指南", "合规", "牌照", "注册", "披露"
+    ]
+    
+    # 判断优先级
+    priority = "P3"
+    if any(k in content_lower for k in p1_keywords):
+        priority = "P1"
+    elif any(k in content_lower for k in p2_keywords):
+        priority = "P2"
+    
+    # 生成标题（取前20字）
+    title = content[:20] + "..." if len(content) > 20 else content
+    
+    # 生成摘要（取前50字）
+    summary = content[:50] + "..." if len(content) > 50 else content
+    
+    return {
+        "priority": priority,
+        "title": title,
+        "summary": summary,
+        "raw_analysis": f"基于关键词匹配分类为 {priority}",
+    }
 
 
 def extract_recommended_accounts(items: list) -> list:
     """从分析内容中提取推荐添加的账号"""
     import re
+    from collections import Counter
     
     # 提取所有 @提及的账号
     mentioned_accounts = []
     for item in items:
         text = item.get("text", "") + " " + item.get("summary", "")
-        # 匹配 @username
         matches = re.findall(r'@(\w{3,15})', text)
         mentioned_accounts.extend(matches)
     
     # 统计频率
-    from collections import Counter
     account_counts = Counter(mentioned_accounts)
     
     # 获取当前监控的账号列表
@@ -124,6 +93,9 @@ def extract_recommended_accounts(items: list) -> list:
             })
     
     return recommendations[:5]  # 返回前5个
+
+
+def main():
     """主函数"""
     # 加载数据
     x_data = []

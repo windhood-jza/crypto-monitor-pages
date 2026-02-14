@@ -53,7 +53,13 @@ HTML_TEMPLATE = '''<!DOCTYPE html>
         .history-item a { color: #667eea; text-decoration: none; }
         .history-item.current { background: #667eea; }
         .history-item.current a { color: white; }
-        footer { text-align: center; padding: 30px; color: #999; font-size: 12px; }
+        .recommendations { background: #f8f9fa; border-radius: 12px; padding: 20px; margin: 20px 0; }
+        .recommendations h2 { font-size: 16px; color: #667eea; margin-bottom: 12px; }
+        .rec-item { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #e0e0e0; }
+        .rec-item:last-child { border-bottom: none; }
+        .rec-username { font-weight: 600; color: #333; }
+        .rec-category { font-size: 12px; color: #666; background: #e3f2fd; padding: 2px 8px; border-radius: 4px; }
+        .rec-reason { font-size: 12px; color: #999; }
         @media (max-width: 600px) {
             .container { padding: 12px; }
             header { padding: 20px; }
@@ -147,6 +153,25 @@ HTML_TEMPLATE = '''<!DOCTYPE html>
         </div>
         {% endif %}
         
+        {% if recommendations %}
+        <div class="recommendations">
+            <h2>💡 推荐添加的账号</h2>
+            <p style="font-size: 13px; color: #666; margin-bottom: 12px;">基于本次报告内容，建议关注以下账号：</p>
+            {% for rec in recommendations %}
+            <div class="rec-item">
+                <div>
+                    <span class="rec-username">@{{ rec.username }}</span>
+                    <span class="rec-category">{{ rec.category }}</span>
+                </div>
+                <span class="rec-reason">{{ rec.reason }}</span>
+            </div>
+            {% endfor %}
+            <p style="font-size: 12px; color: #999; margin-top: 12px;">
+                添加到配置: <a href="https://github.com/windhood-jza/crypto-monitor-pages/edit/main/config/accounts.json" target="_blank">config/accounts.json</a>
+            </p>
+        </div>
+        {% endif %}
+        
         <footer>
             <p>自动生成的加密货币合规情报监控报告</p>
             <p>数据来源: X/Twitter API + RSS 新闻源 | 分析模型: K2.5</p>
@@ -206,13 +231,21 @@ def generate_report():
     
     history = history[:MAX_HISTORY]
     
+    # 加载推荐账号
+    rec_file = os.path.join(DATA_DIR, "recommendations.json")
+    recommendations = []
+    if os.path.exists(rec_file):
+        with open(rec_file, "r", encoding="utf-8") as f:
+            recommendations = json.load(f)
+    
     # 渲染模板
     template = Template(HTML_TEMPLATE)
     html = template.render(
         date=today,
         items=template_items,
         counts={"P1": len(grouped["P1"]), "P2": len(grouped["P2"]), "P3": len(grouped["P3"])},
-        history=history
+        history=history,
+        recommendations=recommendations
     )
     
     # 保存报告

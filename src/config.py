@@ -34,9 +34,14 @@ RSS_FEEDS = [
     "https://theblock.co/rss.xml",
 ]
 
-# 数据目录
-DATA_DIR = "data"
-OUTPUT_DIR = "docs"
+# 数据目录（使用绝对路径）
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+DATA_DIR = os.path.join(BASE_DIR, "data")
+OUTPUT_DIR = os.path.join(BASE_DIR, "docs")
+
+# 确保目录存在
+os.makedirs(DATA_DIR, exist_ok=True)
+os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 # 分析配置
 PRIORITY_LEVELS = {
