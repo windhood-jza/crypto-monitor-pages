@@ -1,0 +1,35 @@
+{
+  "version": "2026-02-14",
+  "description": "加密货币合规情报监控账号配置",
+  "accounts": [
+    {"username": "SECGov", "category": "监管", "priority": "high", "enabled": true},
+    {"username": "CFTC", "category": "监管", "priority": "high", "enabled": true},
+    {"username": "BrianArmstrong", "category": "交易所", "priority": "high", "enabled": true},
+    {"username": "coinbase", "category": "交易所", "priority": "high", "enabled": true},
+    {"username": "krakenfx", "category": "交易所", "priority": "medium", "enabled": true},
+    {"username": "binance", "category": "交易所", "priority": "medium", "enabled": true},
+    {"username": "SBF_FTX", "category": "人物", "priority": "low", "enabled": false}
+  ],
+  "keywords": [
+    "SEC",
+    "regulation",
+    "compliance",
+    "KYC",
+    "AML",
+    "enforcement",
+    "stablecoin",
+    "DeFi regulation"
+  ],
+  "rss_feeds": [
+    "https://cointelegraph.com/rss",
+    "https://coindesk.com/arc/outboundfeeds/rss/",
+    "https://decrypt.co/feed",
+    "https://theblock.co/rss.xml"
+  ],
+  "update_guide": {
+    "how_to_edit": "访问 https://github.com/windhood-jza/crypto-monitor-pages/edit/main/config/accounts.json",
+    "format": "每个账号包含: username(必填), category(分类), priority(优先级: high/medium/low), enabled(是否启用: true/false)",
+    "categories": ["监管", "交易所", "项目方", "KOL", "媒体", "人物"],
+    "note": "修改后推送到 main 分支，下次定时任务自动生效"
+  }
+}

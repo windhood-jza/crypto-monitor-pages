@@ -79,7 +79,51 @@ def analyze_with_k2(content: str) -> dict:
         }
 
 
-def main():
+def extract_recommended_accounts(items: list) -> list:
+    """从分析内容中提取推荐添加的账号"""
+    import re
+    
+    # 提取所有 @提及的账号
+    mentioned_accounts = []
+    for item in items:
+        text = item.get("text", "") + " " + item.get("summary", "")
+        # 匹配 @username
+        matches = re.findall(r'@(\w{3,15})', text)
+        mentioned_accounts.extend(matches)
+    
+    # 统计频率
+    from collections import Counter
+    account_counts = Counter(mentioned_accounts)
+    
+    # 获取当前监控的账号列表
+    current_accounts = set()
+    config_file = os.path.join(os.path.dirname(__file__), "..", "config", "accounts.json")
+    if os.path.exists(config_file):
+        with open(config_file, "r", encoding="utf-8") as f:
+            config = json.load(f)
+            current_accounts = {a["username"].lower() for a in config.get("accounts", [])}
+    
+    # 过滤已监控的账号，返回推荐列表
+    recommendations = []
+    for username, count in account_counts.most_common(10):
+        if username.lower() not in current_accounts and count >= 2:
+            # 判断类别
+            category = "未知"
+            if any(k in username.lower() for k in ["sec", "cftc", "fed", "treasury"]):
+                category = "监管"
+            elif any(k in username.lower() for k in ["coinbase", "kraken", "binance", "exchange"]):
+                category = "交易所"
+            elif any(k in username.lower() for k in ["foundation", "labs", "dao"]):
+                category = "项目方"
+            
+            recommendations.append({
+                "username": username,
+                "category": category,
+                "mention_count": count,
+                "reason": f"在 {count} 条内容中被提及"
+            })
+    
+    return recommendations[:5]  # 返回前5个
     """主函数"""
     # 加载数据
     x_data = []
@@ -126,18 +170,27 @@ def main():
     priority_order = {"P1": 0, "P2": 1, "P3": 2}
     analyzed_items.sort(key=lambda x: priority_order.get(x["priority"], 3))
     
+    # 提取推荐账号
+    recommendations = extract_recommended_accounts(analyzed_items)
+    
     # 保存分析结果
     output_file = os.path.join(DATA_DIR, "analyzed_data.json")
     with open(output_file, "w", encoding="utf-8") as f:
         json.dump(analyzed_items, f, ensure_ascii=False, indent=2)
     
+    # 保存推荐账号
+    rec_file = os.path.join(DATA_DIR, "recommendations.json")
+    with open(rec_file, "w", encoding="utf-8") as f:
+        json.dump(recommendations, f, ensure_ascii=False, indent=2)
+    
     print(f"\nAnalyzed {len(analyzed_items)} items")
     print(f"P1: {sum(1 for i in analyzed_items if i['priority'] == 'P1')}")
     print(f"P2: {sum(1 for i in analyzed_items if i['priority'] == 'P2')}")
     print(f"P3: {sum(1 for i in analyzed_items if i['priority'] == 'P3')}")
+    print(f"Recommendations: {len(recommendations)}")
     print(f"Saved to: {output_file}")
     
-    return analyzed_items
+    return analyzed_items, recommendations
 
 
 if __name__ == "__main__":
