@@ -9,8 +9,111 @@ sys.path.insert(0, str(Path(__file__).parent))
 from config import DATA_DIR, PRIORITY_LEVELS
 
 
-def analyze_with_k2(content: str) -> dict:
-    """调用 K2.5 模型分析内容 - 使用简单规则分析"""
+def analyze_with_k2(content: str, source_type: str = "tweet") -> dict:
+    """调用 K2.5 模型分析内容"""
+    
+    # 构建分析提示
+    prompt = f"""你是一位加密货币合规专家。请分析以下内容并输出结构化结果。
+
+原始内容：
+{content[:1500]}
+
+请按以下格式输出：
+
+【中文标题】：用一句话概括（20字以内）
+【中文摘要】：详细摘要（100字以内，包含关键信息）
+【优先级】：P1/P2/P3
+【分类】：监管政策/执法行动/机构动态/项目更新/市场影响/其他
+【影响评估】：正面/负面/中性
+【相关代币/项目】：列出可能影响的代币或项目（如有）
+【建议行动】：观察者应该采取什么行动
+
+分类标准：
+- P1(紧急): 监管政策变化、重大执法行动、交易所下架、禁令、重大安全事件
+- P2(重要): 合规指南更新、行业自律、重要诉讼、牌照变动、机构大额持仓变化
+- P3(一般): 行业动态、研究报告、一般新闻、观点分析、技术更新
+
+请确保输出格式严格遵循上述模板。"""
+
+    try:
+        # 尝试通过 OpenClaw 调用 K2.5
+        import subprocess
+        result = subprocess.run(
+            ["openclaw", "ask", "--model", "kimi-coding/k2p5", prompt],
+            capture_output=True,
+            text=True,
+            timeout=120
+        )
+        
+        if result.returncode == 0 and result.stdout.strip():
+            response = result.stdout.strip()
+            return parse_k2_response(response, content)
+        else:
+            # 如果 OpenClaw 失败，使用备用分析
+            print(f"OpenClaw failed, using fallback analysis")
+            return fallback_analysis(content)
+            
+    except Exception as e:
+        print(f"Analysis error: {e}")
+        return fallback_analysis(content)
+
+
+def parse_k2_response(response: str, original_content: str) -> dict:
+    """解析 K2.5 的响应"""
+    result = {
+        "priority": "P3",
+        "title": "",
+        "summary": "",
+        "category": "其他",
+        "impact": "中性",
+        "related_tokens": "",
+        "suggested_action": "",
+        "raw_analysis": response,
+    }
+    
+    lines = response.split("\n")
+    current_field = None
+    
+    for line in lines:
+        line = line.strip()
+        if not line:
+            continue
+            
+        # 提取各字段
+        if "【中文标题】" in line or "标题】" in line:
+            result["title"] = line.split("】", 1)[-1].strip().replace("：", "").replace(":", "")
+        elif "【中文摘要】" in line or "摘要】" in line:
+            result["summary"] = line.split("】", 1)[-1].strip().replace("：", "").replace(":", "")
+        elif "【优先级】" in line or "优先级】" in line:
+            p = line.split("】", 1)[-1].strip().replace("：", "").replace(":", "")
+            if "P1" in p:
+                result["priority"] = "P1"
+            elif "P2" in p:
+                result["priority"] = "P2"
+            else:
+                result["priority"] = "P3"
+        elif "【分类】" in line or "分类】" in line:
+            result["category"] = line.split("】", 1)[-1].strip().replace("：", "").replace(":", "")
+        elif "【影响评估】" in line or "影响】" in line:
+            result["impact"] = line.split("】", 1)[-1].strip().replace("：", "").replace(":", "")
+        elif "【相关代币" in line or "代币】" in line:
+            result["related_tokens"] = line.split("】", 1)[-1].strip().replace("：", "").replace(":", "")
+        elif "【建议行动】" in line or "行动】" in line or "建议】" in line:
+            result["suggested_action"] = line.split("】", 1)[-1].strip().replace("：", "").replace(":", "")
+    
+    # 如果没有解析到标题，使用原文前20字
+    if not result["title"]:
+        result["title"] = original_content[:20] + "..." if len(original_content) > 20 else original_content
+    
+    # 如果没有解析到摘要，使用原文前100字
+    if not result["summary"]:
+        result["summary"] = original_content[:100] + "..." if len(original_content) > 100 else original_content
+    
+    return result
+
+
+def fallback_analysis(content: str) -> dict:
+    """备用分析（当 K2.5 不可用时）"""
     content_lower = content.lower()
     
     # P1 关键词
@@ -30,22 +133,28 @@ def analyze_with_k2(content: str) -> dict:
     
     # 判断优先级
     priority = "P3"
+    category = "其他"
+    
     if any(k in content_lower for k in p1_keywords):
         priority = "P1"
+        category = "执法行动"
     elif any(k in content_lower for k in p2_keywords):
         priority = "P2"
+        category = "监管政策"
     
-    # 生成标题（取前20字）
+    # 生成中文标题和摘要（简单翻译/概括）
     title = content[:20] + "..." if len(content) > 20 else content
-    
-    # 生成摘要（取前50字）
-    summary = content[:50] + "..." if len(content) > 50 else content
+    summary = content[:100] + "..." if len(content) > 100 else content
     
     return {
         "priority": priority,
         "title": title,
         "summary": summary,
-        "raw_analysis": f"基于关键词匹配分类为 {priority}",
+        "category": category,
+        "impact": "中性",
+        "related_tokens": "",
+        "suggested_action": "持续关注" if priority == "P3" else "立即评估影响",
+        "raw_analysis": "基于关键词匹配的备用分析",
     }
 
 
@@ -117,10 +226,11 @@ def main():
     # 分析所有内容
     analyzed_items = []
     
-    # 分析推文
-    for item in x_data[:15]:  # 限制分析数量
-        print(f"Analyzing tweet: {item.get('text', '')[:30]}...")
-        analysis = analyze_with_k2(item.get("text", ""))
+    # 分析推文（限制数量避免超时）
+    for i, item in enumerate(x_data[:10]):  # 限制分析数量避免超时
+        print(f"[{i+1}/10] Analyzing tweet from @{item.get('author', 'unknown')}...")
+        content = item.get("text", "")
+        analysis = analyze_with_k2(content, "tweet")
         analyzed_items.append({
             **item,
             **analysis,
@@ -128,10 +238,10 @@ def main():
         })
     
     # 分析 RSS 文章
-    for item in rss_data[:15]:
-        print(f"Analyzing article: {item.get('title', '')[:30]}...")
+    for i, item in enumerate(rss_data[:5]):
+        print(f"[{i+1}/5] Analyzing article: {item.get('title', '')[:30]}...")
         content = f"{item.get('title', '')} {item.get('summary', '')}"
-        analysis = analyze_with_k2(content)
+        analysis = analyze_with_k2(content, "article")
         analyzed_items.append({
             **item,
             **analysis,

@@ -53,7 +53,15 @@ HTML_TEMPLATE = '''<!DOCTYPE html>
         .history-item a { color: #667eea; text-decoration: none; }
         .history-item.current { background: #667eea; }
         .history-item.current a { color: white; }
-        .recommendations { background: #f8f9fa; border-radius: 12px; padding: 20px; margin: 20px 0; }
+        .item-details { margin-top: 10px; padding: 10px; background: #f8f9fa; border-radius: 6px; font-size: 13px; }
+        .item-details .detail-row { display: flex; margin: 4px 0; }
+        .item-details .detail-label { color: #666; min-width: 80px; }
+        .item-details .detail-value { color: #333; }
+        .item-category { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; margin-left: 8px; }
+        .cat-regulatory { background: #ffebee; color: #c62828; }
+        .cat-institution { background: #e8f5e9; color: #2e7d32; }
+        .cat-defi { background: #e3f2fd; color: #1565c0; }
+        .cat-media { background: #fff3e0; color: #ef6c00; }
         .recommendations h2 { font-size: 16px; color: #667eea; margin-bottom: 12px; }
         .rec-item { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #e0e0e0; }
         .rec-item:last-child { border-bottom: none; }
@@ -94,8 +102,13 @@ HTML_TEMPLATE = '''<!DOCTYPE html>
             <h2>🔴 P1 紧急 - 监管政策/执法行动</h2>
             {% for item in items.P1 %}
             <div class="item">
-                <div class="item-title">{{ item.title }}</div>
+                <div class="item-title">{{ item.title }}<span class="item-category cat-{{ item.category|lower|replace('/', '-')|replace(' ', '-') }}">{{ item.category }}</span></div>
                 <div class="item-summary">{{ item.summary }}</div>
+                <div class="item-details">
+                    {% if item.impact %}<div class="detail-row"><span class="detail-label">影响评估:</span><span class="detail-value">{{ item.impact }}</span></div>{% endif %}
+                    {% if item.related_tokens %}<div class="detail-row"><span class="detail-label">相关代币:</span><span class="detail-value">{{ item.related_tokens }}</span></div>{% endif %}
+                    {% if item.suggested_action %}<div class="detail-row"><span class="detail-label">建议行动:</span><span class="detail-value">{{ item.suggested_action }}</span></div>{% endif %}
+                </div>
                 <div class="item-meta">
                     <span class="badge badge-p1">P1</span>
                     <span>{{ item.time }}</span>
@@ -111,8 +124,13 @@ HTML_TEMPLATE = '''<!DOCTYPE html>
             <h2>🟡 P2 重要 - 合规指南/行业自律</h2>
             {% for item in items.P2 %}
             <div class="item">
-                <div class="item-title">{{ item.title }}</div>
+                <div class="item-title">{{ item.title }}<span class="item-category cat-{{ item.category|lower|replace('/', '-')|replace(' ', '-') }}">{{ item.category }}</span></div>
                 <div class="item-summary">{{ item.summary }}</div>
+                <div class="item-details">
+                    {% if item.impact %}<div class="detail-row"><span class="detail-label">影响评估:</span><span class="detail-value">{{ item.impact }}</span></div>{% endif %}
+                    {% if item.related_tokens %}<div class="detail-row"><span class="detail-label">相关代币:</span><span class="detail-value">{{ item.related_tokens }}</span></div>{% endif %}
+                    {% if item.suggested_action %}<div class="detail-row"><span class="detail-label">建议行动:</span><span class="detail-value">{{ item.suggested_action }}</span></div>{% endif %}
+                </div>
                 <div class="item-meta">
                     <span class="badge badge-p2">P2</span>
                     <span>{{ item.time }}</span>
@@ -128,8 +146,13 @@ HTML_TEMPLATE = '''<!DOCTYPE html>
             <h2>🔵 P3 一般 - 行业动态/研究报告</h2>
             {% for item in items.P3 %}
             <div class="item">
-                <div class="item-title">{{ item.title }}</div>
+                <div class="item-title">{{ item.title }}<span class="item-category cat-{{ item.category|lower|replace('/', '-')|replace(' ', '-') }}">{{ item.category }}</span></div>
                 <div class="item-summary">{{ item.summary }}</div>
+                <div class="item-details">
+                    {% if item.impact %}<div class="detail-row"><span class="detail-label">影响评估:</span><span class="detail-value">{{ item.impact }}</span></div>{% endif %}
+                    {% if item.related_tokens %}<div class="detail-row"><span class="detail-label">相关代币:</span><span class="detail-value">{{ item.related_tokens }}</span></div>{% endif %}
+                    {% if item.suggested_action %}<div class="detail-row"><span class="detail-label">建议行动:</span><span class="detail-value">{{ item.suggested_action }}</span></div>{% endif %}
+                </div>
                 <div class="item-meta">
                     <span class="badge badge-p3">P3</span>
                     <span>{{ item.time }}</span>
